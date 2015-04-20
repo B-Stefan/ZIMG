@@ -9,13 +9,14 @@ then
 
     echo "CREATE USER 'dbUser'@'localhost' IDENTIFIED BY 'dbPass'" | mysql -uroot -prootpass
     echo "CREATE DATABASE zimg" | mysql -uroot -prootpass
-    echo "GRANT ALL ON *.* TO 'root'@'localhost'" | mysql -uroot -prootpass
+    echo "GRANT ALL ON zimg.* TO 'dbUser'@'localhost'" | mysql -uroot -prootpass
+    echo "GRANT ALL ON *.* TO 'dbUser'@'localhost'" | mysql -uroot -prootpass
     echo "flush privileges" | mysql -uroot -prootpass
 
     touch /var/log/databasesetup
 
     if [ -f /vagrant/data/initial.sql ];
     then
-        mysql -uroot -prootpass wordpress < /vagrant/data/initial.sql
+        mysql -uroot -prootpass zimg < /vagrant/data/initial.sql
     fi
 fi
