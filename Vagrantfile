@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "precise32"
   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
   config.vm.network :forwarded_port, guest: 80, host: 8080
-  config.vm.network :forwarded_port, guest: 3306, host: 3306
+  config.vm.network :forwarded_port, guest: 3306, host: 3308
   config.vm.provision :shell, :path => "bootstrap.sh"
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
