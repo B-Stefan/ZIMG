@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS upvotes(
   PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS tag2Image(
+CREATE TABLE IF NOT EXISTS tag2image(
   id int NOT NULL AUTO_INCREMENT,
   tagId int,
   imageId int,
