@@ -1,12 +1,12 @@
 USE zimg;
 
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS upvotes;
 DROP TABLE IF EXISTS tag2Image;
-DROP TABLE IF EXISTS comments2Image;
-DROP TABLE IF EXISTS upvote2Image;
+SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE IF NOT EXISTS users(
   id int NOT NULL AUTO_INCREMENT,
@@ -46,7 +46,11 @@ CREATE TABLE IF NOT EXISTS comments(
 
 CREATE TABLE IF NOT EXISTS upvotes(
   id int NOT NULL AUTO_INCREMENT,
+  userId int,
+  imageId int,
   createdAt DATETIME,
+  FOREIGN KEY (userId) REFERENCES users (id),
+  FOREIGN KEY (imageId) REFERENCES images(id),
   PRIMARY KEY(id)
 );
 
@@ -59,13 +63,3 @@ CREATE TABLE IF NOT EXISTS tag2Image(
   FOREIGN KEY (imageId) REFERENCES images (id),
   PRIMARY KEY(id)
 );
-CREATE TABLE IF NOT EXISTS upvote2Image(
-  id int NOT NULL AUTO_INCREMENT,
-  upvoteId int,
-  imageId int,
-  createdAt DATETIME,
-  FOREIGN KEY (imageId) REFERENCES images(id),
-  FOREIGN KEY (upvoteId) REFERENCES upvotes(id),
-  PRIMARY KEY(id)
-);
-
