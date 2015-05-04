@@ -53,7 +53,15 @@ CREATE TABLE IF NOT EXISTS upvotes(
   FOREIGN KEY (imageId) REFERENCES images(id),
   PRIMARY KEY(id)
 );
-
+CREATE TABLE IF NOT EXISTS favorite(
+  id int NOT NULL AUTO_INCREMENT,
+  userId int,
+  imageId int,
+  createdAt DATETIME,
+  FOREIGN KEY (userId) REFERENCES users (id),
+  FOREIGN KEY (imageId) REFERENCES images(id),
+  PRIMARY KEY(id)
+);
 CREATE TABLE IF NOT EXISTS tag2image(
   id int NOT NULL AUTO_INCREMENT,
   tagId int,
