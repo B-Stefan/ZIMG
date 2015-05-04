@@ -37,7 +37,10 @@ CREATE TABLE IF NOT EXISTS comments(
   id int NOT NULL AUTO_INCREMENT,
   comment VARCHAR(500),
   userId int,
+  imageId int,
+  createdAt DATETIME,
   FOREIGN KEY (userId) REFERENCES users (id),
+  FOREIGN KEY (imageId) REFERENCES images(id),
   PRIMARY KEY(id)
 );
 
@@ -47,14 +50,6 @@ CREATE TABLE IF NOT EXISTS upvotes(
   PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS comments2Image(
-  id int NOT NULL AUTO_INCREMENT,
-  commentId int,
-  imageId int,
-  FOREIGN KEY (commentId) REFERENCES comments(id),
-  FOREIGN KEY (imageId) REFERENCES images(id),
-  PRIMARY KEY(id)
-);
 CREATE TABLE IF NOT EXISTS tag2Image(
   id int NOT NULL AUTO_INCREMENT,
   tagId int,
