@@ -22,7 +22,7 @@ CREATE VIEW top_ten_images AS
 CREATE VIEW admins AS
     SELECT users.id, users.name, users.email, users.password, users.createdAt
     FROM users
-    WHERE admin = 1;
+    WHERE users.admin = 1;
 
 CREATE VIEW top_uploader AS
 	SELECT COUNT(*) AS images, users.name
