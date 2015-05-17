@@ -1,3 +1,4 @@
+USE zimg;
 SET FOREIGN_KEY_CHECKS = 0;
 
 INSERT INTO `users`(`name`,`email`,`password`, `createdAt`, `admin`) VALUES
