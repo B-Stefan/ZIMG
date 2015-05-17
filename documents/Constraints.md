@@ -1,5 +1,5 @@
 #Constrants
-Nachfolgend die Einschränkungen für zimg, die beim Anlegen/Update oder beim Löschen zu beachten sind: 
+Nachfolgend die Einschränkungen für ZIMG, die beim Anlegen/Update oder beim Löschen zu beachten sind: 
 
 
 ##Comment
