@@ -21,7 +21,7 @@ INSERT INTO `tags`(`tag`, `createdAt`) VALUES
     ('grün', NOW()),
     ('sichlor', NOW());
 
-INSERT INTO `favorite`(`userId`, `imageId`, `createdAt`) VALUES
+INSERT INTO `favorites`(`userId`, `imageId`, `createdAt`) VALUES
     (1, 2, NOW()),
     (2, 3, NOW()),
     (3, 1, NOW()),
