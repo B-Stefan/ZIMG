@@ -2,9 +2,9 @@ USE zimg;
 
 ALTER TABLE images
   DROP FOREIGN KEY images_ibfk_1,
-  DROP INDEX  fk_user,
+  DROP INDEX  fk_userId,
 
-  ADD FOREIGN KEY fk_user (uploaderId) REFERENCES users (id) ON DELETE CASCADE
+  ADD FOREIGN KEY fk_userId (uploaderId) REFERENCES users (id) ON DELETE CASCADE
 ;
 
 ALTER TABLE comments

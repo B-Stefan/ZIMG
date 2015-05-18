@@ -56,7 +56,7 @@ ALTER TABLE images
   ADD COLUMN uploaderId int,
   ADD COLUMN fileName VARCHAR(500),
   ADD COLUMN createdAt DATETIME,
-  ADD FOREIGN KEY fk_user (uploaderId) REFERENCES users (id) ON DELETE CASCADE
+  ADD FOREIGN KEY fk_userId (uploaderId) REFERENCES users (id) ON DELETE CASCADE
 ;
 
 ALTER TABLE tags
