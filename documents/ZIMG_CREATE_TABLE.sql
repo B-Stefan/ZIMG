@@ -1,5 +1,6 @@
 USE zimg;
 
+#Drop old tables
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS images;
@@ -7,69 +8,89 @@ DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS favorites;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS upvotes;
-DROP TABLE IF EXISTS tag2Image;
+DROP TABLE IF EXISTS tag2image;
 SET FOREIGN_KEY_CHECKS = 1;
 
-CREATE TABLE IF NOT EXISTS users(
+
+#Create table section
+CREATE TABLE  IF NOT EXISTS users(
   id int NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255),
-  email VARCHAR(255),
-  password VARCHAR(500),
-  createdAt DATETIME,
-  admin bool,
+  PRIMARY KEY(id)
+);
+CREATE TABLE  IF NOT EXISTS images(
+  id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id)
+);
+CREATE TABLE  IF NOT EXISTS tags(
+  id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id)
+);
+CREATE TABLE  IF NOT EXISTS comments(
+  id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id)
+);
+CREATE TABLE  IF NOT EXISTS upvotes(
+  id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id)
+);
+CREATE TABLE  IF NOT EXISTS favorites(
+  id int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY(id)
+);
+CREATE TABLE  IF NOT EXISTS tag2image(
+  id int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS images(
-  id int NOT NULL AUTO_INCREMENT,
-  uploaderId int,
-  fileName VARCHAR(500),
-  createdAt DATETIME,
-  FOREIGN KEY (uploaderId) REFERENCES users (id),
-  PRIMARY KEY(id)
-);
 
-CREATE TABLE IF NOT EXISTS tags(
-  id int NOT NULL AUTO_INCREMENT,
-  tag VARCHAR(500),
-  createdAt DATETIME,
-  PRIMARY KEY(id)
-);
-CREATE TABLE IF NOT EXISTS comments(
-  id int NOT NULL AUTO_INCREMENT,
-  comment VARCHAR(500),
-  userId int,
-  imageId int,
-  createdAt DATETIME,
-  FOREIGN KEY (userId) REFERENCES users (id),
-  FOREIGN KEY (imageId) REFERENCES images(id),
-  PRIMARY KEY(id)
-);
+#Add all columns
+ALTER TABLE users
+  ADD COLUMN name VARCHAR(255),
+  ADD COLUMN email VARCHAR(255),
+  ADD COLUMN password VARCHAR(500),
+  ADD COLUMN createdAt DATETIME,
+  ADD COLUMN admin bool
+;
 
-CREATE TABLE IF NOT EXISTS upvotes(
-  id int NOT NULL AUTO_INCREMENT,
-  userId int,
-  imageId int,
-  createdAt DATETIME,
-  FOREIGN KEY (userId) REFERENCES users (id),
-  FOREIGN KEY (imageId) REFERENCES images(id),
-  PRIMARY KEY(id)
-);
-CREATE TABLE IF NOT EXISTS favorites(
-  id int NOT NULL AUTO_INCREMENT,
-  userId int,
-  imageId int,
-  createdAt DATETIME,
-  FOREIGN KEY (userId) REFERENCES users (id),
-  FOREIGN KEY (imageId) REFERENCES images(id),
-  PRIMARY KEY(id)
-);
-CREATE TABLE IF NOT EXISTS tag2image(
-  id int NOT NULL AUTO_INCREMENT,
-  tagId int,
-  imageId int,
-  createdAt DATETIME,
-  FOREIGN KEY (tagId) REFERENCES tags (id),
-  FOREIGN KEY (imageId) REFERENCES images (id),
-  PRIMARY KEY(id)
-);
+ALTER TABLE images
+  ADD COLUMN uploaderId int,
+  ADD COLUMN fileName VARCHAR(500),
+  ADD COLUMN createdAt DATETIME,
+  ADD FOREIGN KEY fk_user (uploaderId) REFERENCES users (id) ON DELETE CASCADE
+;
+
+ALTER TABLE tags
+  ADD COLUMN tag VARCHAR(500),
+  ADD COLUMN createdAt DATETIME
+;
+
+ALTER TABLE comments
+  ADD COLUMN comment VARCHAR(500),
+  ADD COLUMN userId int,
+  ADD COLUMN imageId int,
+  ADD COLUMN createdAt DATETIME,
+  ADD FOREIGN KEY fk_userId (userId)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images(id) ON DELETE SET NULL
+;
+
+ALTER TABLE upvotes
+  ADD COLUMN userId int,
+  ADD COLUMN imageId int,
+  ADD COLUMN createdAt DATETIME,
+  ADD FOREIGN KEY fk_userId (userId)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images(id) ON DELETE SET NULL
+;
+ALTER TABLE favorites
+  ADD COLUMN userId int,
+  ADD COLUMN imageId int,
+  ADD COLUMN createdAt DATETIME,
+  ADD FOREIGN KEY fk_userId (userId)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images(id) ON DELETE CASCADE
+;
+ALTER TABLE tag2image
+  ADD COLUMN tagId int,
+  ADD COLUMN imageId int,
+  ADD COLUMN createdAt DATETIME,
+  ADD FOREIGN KEY fk_tagId (tagId)      REFERENCES tags (id)  ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images (id)ON DELETE CASCADE
+;
