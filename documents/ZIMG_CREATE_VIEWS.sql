@@ -12,10 +12,10 @@ CREATE VIEW top_ten_tags AS
 	LIMIT 10;
 
 CREATE VIEW top_ten_images AS
-	SELECT COUNT(*) AS favorite, images.fileName, images.createdAt
-	FROM images, favorite
-	WHERE images.id = favorite.imageId
-	GROUP BY favorite.imageId
+	SELECT COUNT(*) AS favorites, images.fileName, images.createdAt
+	FROM images, favorites
+	WHERE images.id = favorites.imageId
+	GROUP BY favorites.imageId
 	ORDER BY COUNT(*) DESC
 	LIMIT 10;
 
