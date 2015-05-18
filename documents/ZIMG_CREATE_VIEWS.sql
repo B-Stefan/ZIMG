@@ -1,3 +1,5 @@
+USE zimg;
+
 CREATE VIEW last_upvotes AS
 	SELECT images.fileName, users.name, upvotes.createdAt
 	FROM images, users, upvotes
