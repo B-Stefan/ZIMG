@@ -40,7 +40,7 @@ INSERT INTO `comments`(`comment`, `userId`,  `imageId`, `createdAt`) VALUES
     ('Jo voll süß. :) Die mag bestimmt voll den stinke Fisch', 4, 2, NOW()),
     ('Hoch die Hand!', 3, 4, NOW()),
     ('Viva Revolution', 4, 5, NOW()),
-    ('Voll gut das Bild. :)', 0, 4, NOW());
+    ('Voll gut das Bild. :)', 1, 4, NOW());
     
 INSERT INTO `upvotes`(`userId`, `imageId`, `createdAt`) VALUES
 	(1, 1, NOW()),
