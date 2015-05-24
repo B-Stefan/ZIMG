@@ -46,51 +46,51 @@ CREATE TABLE  IF NOT EXISTS tag2image(
 #Add all columns
 ALTER TABLE users
   ADD COLUMN name VARCHAR(255),
-  ADD COLUMN email VARCHAR(255),
-  ADD COLUMN password VARCHAR(500),
-  ADD COLUMN createdat DATETIME,
-  ADD COLUMN admin bool
+  ADD COLUMN email VARCHAR(255) NOT NULL ,
+  ADD COLUMN password VARCHAR(100) NOT NULL,
+  ADD COLUMN createdat DATETIME NOT NULL ,
+  ADD COLUMN admin bool DEFAULT FALSE
 ;
 
 ALTER TABLE images
   ADD COLUMN uploaderid int NOT NULL,
   ADD COLUMN filename VARCHAR(500),
-  ADD COLUMN createdat DATETIME,
+  ADD COLUMN createdat DATETIME NOT NULL ,
   ADD FOREIGN KEY fk_userid (uploaderid) REFERENCES users (id) ON DELETE CASCADE
 ;
 
 ALTER TABLE tags
-  ADD COLUMN tag VARCHAR(500),
-  ADD COLUMN createdat DATETIME
+  ADD COLUMN tag VARCHAR(100),
+  ADD COLUMN createdat DATETIME NOT NULL
 ;
 
 ALTER TABLE comments
-  ADD COLUMN comment VARCHAR(500),
+  ADD COLUMN comment VARCHAR(500) DEFAULT  '',
   ADD COLUMN userid int NOT NULL,
-  ADD COLUMN imageid int,
-  ADD COLUMN createdat DATETIME,
+  ADD COLUMN imageid int NOT NULL,
+  ADD COLUMN createdat DATETIME NOT NULL ,
   ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
   ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
 ;
 
 ALTER TABLE upvotes
   ADD COLUMN userid int NOT NULL,
-  ADD COLUMN imageid int,
-  ADD COLUMN createdat DATETIME,
+  ADD COLUMN imageid int NOT NULL,
+  ADD COLUMN createdat DATETIME NOT NULL ,
   ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
   ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
 ;
 ALTER TABLE favorites
   ADD COLUMN userid int NOT NULL,
   ADD COLUMN imageid int NOT NULL ,
-  ADD COLUMN createdat DATETIME,
+  ADD COLUMN createdat DATETIME NOT NULL,
   ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
   ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE CASCADE
 ;
 ALTER TABLE tag2image
   ADD COLUMN tagid int NOT NULL ,
   ADD COLUMN imageid int NOT NULL ,
-  ADD COLUMN createdat DATETIME,
+  ADD COLUMN createdat DATETIME NOT NULL,
   ADD FOREIGN KEY fk_tagid (tagid)      REFERENCES tags (id)  ON DELETE CASCADE,
   ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images (id)ON DELETE CASCADE
 ;
