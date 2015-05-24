@@ -48,49 +48,49 @@ ALTER TABLE users
   ADD COLUMN name VARCHAR(255),
   ADD COLUMN email VARCHAR(255),
   ADD COLUMN password VARCHAR(500),
-  ADD COLUMN createdAt DATETIME,
+  ADD COLUMN createdat DATETIME,
   ADD COLUMN admin bool
 ;
 
 ALTER TABLE images
-  ADD COLUMN uploaderId int,
-  ADD COLUMN fileName VARCHAR(500),
-  ADD COLUMN createdAt DATETIME,
-  ADD FOREIGN KEY fk_user (uploaderId) REFERENCES users (id) ON DELETE CASCADE
+  ADD COLUMN uploaderid int NOT NULL,
+  ADD COLUMN filename VARCHAR(500),
+  ADD COLUMN createdat DATETIME,
+  ADD FOREIGN KEY fk_userid (uploaderid) REFERENCES users (id) ON DELETE CASCADE
 ;
 
 ALTER TABLE tags
   ADD COLUMN tag VARCHAR(500),
-  ADD COLUMN createdAt DATETIME
+  ADD COLUMN createdat DATETIME
 ;
 
 ALTER TABLE comments
   ADD COLUMN comment VARCHAR(500),
-  ADD COLUMN userId int,
-  ADD COLUMN imageId int,
-  ADD COLUMN createdAt DATETIME,
-  ADD FOREIGN KEY fk_userId (userId)    REFERENCES users (id) ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images(id) ON DELETE SET NULL
+  ADD COLUMN userid int NOT NULL,
+  ADD COLUMN imageid int,
+  ADD COLUMN createdat DATETIME,
+  ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
 ;
 
 ALTER TABLE upvotes
-  ADD COLUMN userId int,
-  ADD COLUMN imageId int,
-  ADD COLUMN createdAt DATETIME,
-  ADD FOREIGN KEY fk_userId (userId)    REFERENCES users (id) ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images(id) ON DELETE SET NULL
+  ADD COLUMN userid int NOT NULL,
+  ADD COLUMN imageid int,
+  ADD COLUMN createdat DATETIME,
+  ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
 ;
 ALTER TABLE favorites
-  ADD COLUMN userId int,
-  ADD COLUMN imageId int,
-  ADD COLUMN createdAt DATETIME,
-  ADD FOREIGN KEY fk_userId (userId)    REFERENCES users (id) ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images(id) ON DELETE CASCADE
+  ADD COLUMN userid int NOT NULL,
+  ADD COLUMN imageid int NOT NULL ,
+  ADD COLUMN createdat DATETIME,
+  ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE CASCADE
 ;
 ALTER TABLE tag2image
-  ADD COLUMN tagId int,
-  ADD COLUMN imageId int,
-  ADD COLUMN createdAt DATETIME,
-  ADD FOREIGN KEY fk_tagId (tagId)      REFERENCES tags (id)  ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageId (imageId)  REFERENCES images (id)ON DELETE CASCADE
+  ADD COLUMN tagid int NOT NULL ,
+  ADD COLUMN imageid int NOT NULL ,
+  ADD COLUMN createdat DATETIME,
+  ADD FOREIGN KEY fk_tagid (tagid)      REFERENCES tags (id)  ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images (id)ON DELETE CASCADE
 ;
