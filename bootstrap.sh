@@ -16,15 +16,9 @@ then
     touch /var/log/databasesetup
 
     #Create tables
-    if [ -f /vagrant/data/documents/ZIMG_CREATE_TABLE.sql ];
-    then
-        mysql -uroot -prootpass zimg < /vagrant/data/documents/ZIMG_CREATE_TABLE.sql
-    fi
+    mysql -udbUser -pdbPass zimg < /vagrant/documents/ZIMG_CREATE_TABLE.sql
 
     #Insert default data
-    if [ -f /vagrant/data/documents/ZIMG_INSERT_DATA.sql ];
-    then
-        mysql -uroot -prootpass zimg < /vagrant/data/documents/ZIMG_INSERT_DATA.sql
-    fi
+    mysql -udbUser -pdbPass zimg < /vagrant/documents/ZIMG_INSERT_DATA.sql
 fi
 
