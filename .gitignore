@@ -44,7 +44,7 @@ local.properties
 
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
-
+*.iml
 
 ## Directory-based project format:
 .idea/
@@ -142,3 +142,8 @@ hs_err_pid*
 
 
 logic/*
+gradle
+*.gradle
+build
+gradlew
+gradlew.bat
