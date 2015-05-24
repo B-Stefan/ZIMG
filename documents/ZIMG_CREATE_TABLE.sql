@@ -67,7 +67,7 @@ ALTER TABLE tags
 ALTER TABLE comments
   ADD COLUMN comment VARCHAR(500) DEFAULT  '',
   ADD COLUMN userid int NOT NULL,
-  ADD COLUMN imageid int NOT NULL,
+  ADD COLUMN imageid int,
   ADD COLUMN createdat DATETIME NOT NULL ,
   ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
   ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
@@ -75,7 +75,7 @@ ALTER TABLE comments
 
 ALTER TABLE upvotes
   ADD COLUMN userid int NOT NULL,
-  ADD COLUMN imageid int NOT NULL,
+  ADD COLUMN imageid int,
   ADD COLUMN createdat DATETIME NOT NULL ,
   ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
   ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
