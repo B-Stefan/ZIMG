@@ -6,12 +6,18 @@ then
     sudo apt-get update
     sudo apt-get -y install mysql-server-5.5
 
+    echo "Updating mysql configs in /etc/mysql/my.cnf."
+	sudo sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+	echo "Updated mysql bind address in /etc/mysql/my.cnf to 0.0.0.0 to allow external connections."
+	sudo service mysql stop
+	sudo service mysql start
+
     echo "Create a User (dbUser) with the Password (dbPass)"
 
-    echo "CREATE USER 'dbUser'@'localhost' IDENTIFIED BY 'dbPass'" | mysql -uroot -prootpass
+    echo "CREATE USER 'dbUser'@'%' IDENTIFIED BY 'dbPass'" | mysql -uroot -prootpass
     echo "CREATE DATABASE zimg" | mysql -uroot -prootpass
-    echo "GRANT ALL ON zimg.* TO 'dbUser'@'localhost'" | mysql -uroot -prootpass
-    echo "GRANT ALL ON *.* TO 'dbUser'@'localhost'" | mysql -uroot -prootpass
+    echo "GRANT ALL ON zimg.* TO 'dbUser'@'%'" | mysql -uroot -prootpass
+    echo "GRANT ALL ON *.* TO 'dbUser'@'%'" | mysql -uroot -prootpass
     echo "flush privileges" | mysql -uroot -prootpass
 
     touch /var/log/databasesetup
