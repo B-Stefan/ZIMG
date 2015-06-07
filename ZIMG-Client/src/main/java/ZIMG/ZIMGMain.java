@@ -33,6 +33,10 @@ public class ZIMGMain {
             session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
+
+            User firstuser  = (User) session.get(User.class, new Integer(1));
+
+            System.out.println(firstuser.getName());
             session.close();
 
         }
@@ -47,6 +51,7 @@ public class ZIMGMain {
 
             configuration.configure();
             configuration.addAnnotatedClass(User.class);
+            // configuration.addAnnotatedClass(Image.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
                     configuration.getProperties()).build();
