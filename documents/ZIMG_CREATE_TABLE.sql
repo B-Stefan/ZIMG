@@ -70,7 +70,7 @@ ALTER TABLE comments
   ADD COLUMN imageid int,
   ADD COLUMN createdat DATETIME NOT NULL ,
   ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
+  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE CASCADE
 ;
 
 ALTER TABLE upvotes
