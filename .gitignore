@@ -147,3 +147,5 @@ gradle
 build
 gradlew
 gradlew.bat
+work
+tomcat.8080
