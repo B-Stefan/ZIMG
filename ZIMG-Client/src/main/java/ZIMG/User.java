@@ -3,7 +3,9 @@ package ZIMG;
 import javax.persistence.*;
 import javax.persistence.Entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -21,11 +23,19 @@ public class User {
 
     private Date createdAt;
 
-    public User() {
+//    private List<Image> images;
 
+    public User() {
     }
 
-    @Column(name="userid", nullable=false)
+    public User(String name, String email, String password, Date createdAt) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.createdAt = createdAt;
+    }
+
+    @Column(name="id", nullable=false)
     public int getId() {
         return id;
     }
@@ -67,4 +77,12 @@ public class User {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+   /* public List<Image> getCommunityMemberships() {
+        return images;
+    }
+
+    public void setCommunityMemberships(List<Image> images) {
+        this.images = images;
+    }*/
 }
