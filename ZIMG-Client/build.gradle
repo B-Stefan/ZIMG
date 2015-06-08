@@ -12,6 +12,8 @@ dependencies {
     compile 'org.apache.tomcat:tomcat-util:7.0.41'
     compile 'org.apache.tomcat.embed:tomcat-embed-core:7.0.41'
     compile 'org.apache.tomcat:jasper:6.0.32'
+    compile 'org.hibernate:hibernate-core:4.3.10.Final'
+    compile 'mysql:mysql-connector-java:5.1.35'
 }
 
 sourceCompatibility = 1.7
