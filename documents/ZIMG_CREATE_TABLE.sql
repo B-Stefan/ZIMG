@@ -56,7 +56,7 @@ ALTER TABLE images
   ADD COLUMN uploaderid int NOT NULL,
   ADD COLUMN filename VARCHAR(500),
   ADD COLUMN createdat DATETIME NOT NULL ,
-  ADD FOREIGN KEY fk_userid (uploaderid) REFERENCES users (id) ON DELETE CASCADE
+  ADD FOREIGN KEY fk_images_userid (uploaderid) REFERENCES users (id) ON DELETE CASCADE
 ;
 
 ALTER TABLE tags
@@ -69,28 +69,28 @@ ALTER TABLE comments
   ADD COLUMN userid int NOT NULL,
   ADD COLUMN imageid int,
   ADD COLUMN createdat DATETIME NOT NULL ,
-  ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE CASCADE
+  ADD FOREIGN KEY fk_comments_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_comments_imageid (imageid)  REFERENCES images(id) ON DELETE CASCADE
 ;
 
 ALTER TABLE upvotes
   ADD COLUMN userid int NOT NULL,
   ADD COLUMN imageid int,
   ADD COLUMN createdat DATETIME NOT NULL ,
-  ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
+  ADD FOREIGN KEY fk_upvotes_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_upvotes_imageid (imageid)  REFERENCES images(id) ON DELETE SET NULL
 ;
 ALTER TABLE favorites
   ADD COLUMN userid int NOT NULL,
   ADD COLUMN imageid int NOT NULL ,
   ADD COLUMN createdat DATETIME NOT NULL,
-  ADD FOREIGN KEY fk_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images(id) ON DELETE CASCADE
+  ADD FOREIGN KEY fk_favorites_userid (userid)    REFERENCES users (id) ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_favorites_imageid (imageid)  REFERENCES images(id) ON DELETE CASCADE
 ;
 ALTER TABLE tag2image
   ADD COLUMN tagid int NOT NULL ,
   ADD COLUMN imageid int NOT NULL ,
   ADD COLUMN createdat DATETIME NOT NULL,
-  ADD FOREIGN KEY fk_tagid (tagid)      REFERENCES tags (id)  ON DELETE CASCADE,
-  ADD FOREIGN KEY fk_imageid (imageid)  REFERENCES images (id)ON DELETE CASCADE
+  ADD FOREIGN KEY fk_tag2image_tagid (tagid)      REFERENCES tags (id)  ON DELETE CASCADE,
+  ADD FOREIGN KEY fk_tag2image_imageid (imageid)  REFERENCES images (id)ON DELETE CASCADE
 ;
