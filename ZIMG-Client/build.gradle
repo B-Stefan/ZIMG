@@ -1,28 +1,21 @@
 apply plugin: 'java'
-apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'jetty'
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
-    compile 'org.eclipse.jetty:jetty-server:9.0.0.RC2'
-    compile 'org.eclipse.jetty:jetty-servlet:9.0.0.RC2'
-    compile 'org.apache.tomcat:tomcat-catalina:7.0.41'
-    compile 'org.apache.tomcat:tomcat-util:7.0.41'
-    compile 'org.apache.tomcat.embed:tomcat-embed-core:7.0.41'
-    compile 'org.apache.tomcat:jasper:6.0.32'
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
     compile 'org.hibernate:hibernate-core:4.3.10.Final'
     compile 'mysql:mysql-connector-java:5.1.35'
+    runtime 'javax.servlet:jstl:1.2'
+    testCompile 'junit:junit:4.12'
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
-
-task(selectServer, dependsOn: 'classes', type: JavaExec) {
-    main = 'Main'
-    classpath = sourceSets.main.runtimeClasspath
-    standardInput= System.in
-}
-
-defaultTasks 'selectServer'
+/** Change context path (base url). otherwise defaults to name of project */
+jettyRun.contextPath = ''
+jettyRunWar.contextPath = ''

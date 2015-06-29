@@ -2,8 +2,10 @@ USE zimg;
 
 CREATE VIEW last_upvotes AS
 	SELECT images.fileName, users.name, upvotes.createdAt
-	FROM images, users, upvotes
-	WHERE images.id = upvotes.imageId AND users.id = upvotes.userId AND upvotes.createdAt > (NOW() - INTERVAL 10 DAY);
+	FROM upvotes
+	INNER JOIN images on images.id = upvotes.imageid
+	INNER JOIN users on users.id = upvotes.userid
+	WHERE upvotes.createdAt > (NOW() - INTERVAL 10 DAY);
 
 CREATE VIEW top_ten_tags AS
 	SELECT COUNT(*) AS tag2image, tags.tag, tags.createdAt
@@ -28,8 +30,8 @@ CREATE VIEW admins AS
 
 CREATE VIEW top_uploader AS
 	SELECT COUNT(*) AS images, users.name
-	FROM images, users
-	WHERE images.uploaderId = users.id
+	FROM images
+	INNER JOIN users on images.uploaderId = users.id
 	GROUP BY users.id
 	ORDER BY COUNT(*) DESC
 	LIMIT 5;
