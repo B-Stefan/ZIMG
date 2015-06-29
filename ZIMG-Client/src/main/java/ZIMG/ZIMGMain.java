@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import web.UserService;
 
 import java.util.Date;
 import java.util.Properties;
@@ -16,9 +17,8 @@ public class ZIMGMain {
     private static ServiceRegistry serviceRegistry = null;
 
     public static void main(String[] args) {
-        System.out.print("dakdhsja");
-        sessionFactory = configureSessionFactory();
 
+        sessionFactory = configureSessionFactory();
 
         for (int i = 0; i < 200; i ++ ) {
             User user = new User();
@@ -42,6 +42,12 @@ public class ZIMGMain {
         }
 
         sessionFactory.close();
+
+        UserService userService = new UserService();
+
+        User user199 = userService.getUserByName("User199");
+
+        System.out.print(user199.getEmail());
 
     }
 
