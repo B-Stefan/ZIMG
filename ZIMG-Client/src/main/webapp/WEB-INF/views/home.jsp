@@ -1,9 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Sample Application</title>
-</head>
-    <body>
+<%@include file="../modules/header.jsp"%>
+
         <h1>Hello, ${name}!</h1>
-    </body>
-</html>
+
+<%@ include file="../modules/footer.jsp" %>
