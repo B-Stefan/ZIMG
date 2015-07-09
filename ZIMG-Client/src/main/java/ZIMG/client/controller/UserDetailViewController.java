@@ -1,5 +1,6 @@
 package ZIMG.client.controller;
 
+import ZIMG.exceptions.MultipleUserForUserNameExistException;
 import ZIMG.models.User;
 import ZIMG.persistence.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,8 @@ public class UserDetailViewController {
 
         try {
             User user =  userService.getUserByName(username);
-
             m.addAttribute("user", user);
-        }catch (Exception e ){
+        }catch (MultipleUserForUserNameExistException e ){
             m.addAttribute("err", e.getMessage());
         }
 
