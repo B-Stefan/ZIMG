@@ -9,17 +9,6 @@ repositories {
     }
 }
 
-buildscript{
-    repositories {
-        mavenCentral()
-        maven { url 'http://dl.bintray.com/vermeulen-mp/gradle-plugins' }
-    }
-    dependencies {
-        classpath 'com.wiredforcode:gradle-heroku-plugin:1.0.0'
-    }
-}
-
-apply plugin: 'heroku'
 
 dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
@@ -38,9 +27,3 @@ jettyRunWar.contextPath = ''
 jettyRun.reload = 'automatic';
 jettyRun.scanIntervalSeconds = 5;
 
-heroku {
-    appName = 'hsb-zimg'
-
-    //get this from heroku
-    apiKey = 'abf83ac5-3003-4593-a340-9fc36aec6320'
-}

@@ -79,5 +79,9 @@
     <mvc:annotation-driven/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
+    <!-- the mvc resources tag does the magic -->
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
+
 
 </beans>

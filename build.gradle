@@ -1,0 +1,19 @@
+buildscript{
+    repositories {
+        mavenCentral()
+        maven { url 'http://dl.bintray.com/vermeulen-mp/gradle-plugins' }
+    }
+    dependencies {
+        classpath 'com.wiredforcode:gradle-heroku-plugin:1.0.0'
+    }
+}
+
+apply plugin: 'heroku'
+
+
+heroku {
+    appName = 'hsb-zimg'
+
+    //get this from heroku
+    apiKey = 'abf83ac5-3003-4593-a340-9fc36aec6320'
+}
