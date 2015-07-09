@@ -16,7 +16,7 @@ public class SampleController {
     @RequestMapping("home")
     public String loadHomePage(Model m) {
 
-        Iterable<User> list = this.userRepository.findAllAdminsFROMZIMG();
+        Iterable<User> list = this.userRepository.findAllAdmins();
         m.addAttribute("userList", list);
         m.addAttribute("name", "asdasdasd");
         return "home";

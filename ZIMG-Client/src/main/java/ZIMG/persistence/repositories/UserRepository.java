@@ -11,5 +11,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     List<User> findByName(String lastName);
 
     @Query("SELECT u from User as u where u.admin = true ")
-    List<User> findAllAdminsFROMZIMG();
+    List<User> findAllAdmins();
 }
