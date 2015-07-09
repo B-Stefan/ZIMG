@@ -1,4 +1,4 @@
-package ZIMG.model;
+package ZIMG.models;
 
 import javax.persistence.*;
 

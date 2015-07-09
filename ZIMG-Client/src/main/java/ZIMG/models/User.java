@@ -1,10 +1,9 @@
-package ZIMG.model;
+package ZIMG.models;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -53,5 +52,13 @@ public class User extends BaseModel {
 
     public List<Image> getImages() {
         return images;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

@@ -1,9 +1,11 @@
 package ZIMG;
 
-import ZIMG.model.Image;
-import ZIMG.model.User;
-import ZIMG.services.ImageService;
-import ZIMG.services.UserService;
+import ZIMG.models.Image;
+import ZIMG.models.User;
+import ZIMG.persistence.services.ImageService;
+import ZIMG.persistence.services.UserService;
+import jdk.nashorn.internal.runtime.ECMAException;
+
 
 import java.util.List;
 
@@ -17,10 +19,11 @@ public class ZIMGMain {
         ImageService imageService = new ImageService();
         UserService userService = new UserService();
 
-        User firstUser = userService.getUserByName("Oklon");
-        List<Image> images = imageService.getByUploader(firstUser);
+        try {
+            User firstUser = userService.getUserByName("Oklon");
+        }catch (Exception e){
 
-        System.out.print( firstUser.getName() + " uploaded "  + images.size() + "images ");
+        }
 
     }
 

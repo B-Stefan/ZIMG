@@ -11,6 +11,6 @@
     <title></title>
 </head>
 <body>
-<h1>Profil for: ${user.getName()}</h1>
+<h1>Profil for: ${user.name}</h1>
 </body>
 </html>

@@ -1,16 +1,11 @@
-package ZIMG.model;
+package ZIMG.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name="comments")
+@Table(name="favorites")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Comment extends BaseModel {
-
-    @Column(length = 500)
-    private String comment;
+public class Favorite extends BaseModel {
 
     @ManyToOne
     @JoinColumn(name = "userid")
