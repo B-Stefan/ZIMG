@@ -9,7 +9,8 @@ CREATE VIEW last_upvotes AS
 
 CREATE VIEW top_ten_tags AS
 	SELECT COUNT(*) AS tag2image, tags.tag, tags.createdAt
-	FROM tag2image, tags
+	FROM tag2image
+	JOIN tags
 	WHERE tags.id = tag2image.tagId
 	GROUP BY tag2image.tagId
 	ORDER BY COUNT(*) DESC
@@ -17,7 +18,8 @@ CREATE VIEW top_ten_tags AS
 
 CREATE VIEW top_ten_images AS
 	SELECT COUNT(*) AS favorites, images.fileName, images.createdAt
-	FROM images, favorites
+	FROM images i
+	INNER JOIN favorites f ON(i.id=f.imageId)
 	WHERE images.id = favorites.imageId
 	GROUP BY favorites.imageId
 	ORDER BY COUNT(*) DESC

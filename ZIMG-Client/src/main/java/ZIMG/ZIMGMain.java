@@ -1,67 +1,30 @@
 package ZIMG;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+import ZIMG.models.Image;
+import ZIMG.models.User;
+import ZIMG.persistence.services.ImageService;
+import ZIMG.persistence.services.UserService;
+import jdk.nashorn.internal.runtime.ECMAException;
 
-import java.util.Date;
-import java.util.Properties;
+
+import java.util.List;
 
 public class ZIMGMain {
 
-    private static SessionFactory sessionFactory = null;
-    private static ServiceRegistry serviceRegistry = null;
 
     public static void main(String[] args) {
-        System.out.print("dakdhsja");
-        sessionFactory = configureSessionFactory();
 
 
-        for (int i = 0; i < 200; i ++ ) {
-            User user = new User();
 
-            user.setName("User" + i);
-            user.setEmail("fjunge@fabimon.org");
-            user.setPassword("hallo123");
-            user.setCreatedAt(new Date());
+        ImageService imageService = new ImageService();
+        UserService userService = new UserService();
 
-            Session session = sessionFactory.openSession();
-
-            session.beginTransaction();
-            session.save(user);
-            session.getTransaction().commit();
-
-            User firstuser  = (User) session.get(User.class, new Integer(1));
-
-            System.out.println(firstuser.getName());
-            session.close();
-
-        }
-
-        sessionFactory.close();
-
-    }
-
-    public static SessionFactory configureSessionFactory() {
         try {
-            Configuration configuration = new Configuration();
-
-            configuration.configure();
-            configuration.addAnnotatedClass(User.class);
-            // configuration.addAnnotatedClass(Image.class);
-
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-                    configuration.getProperties()).build();
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        } catch (HibernateException hbe) {
-
-            hbe.printStackTrace();
+            User firstUser = userService.getUserByName("Oklon");
+        }catch (Exception e){
 
         }
 
-        return sessionFactory;
     }
+
 }

@@ -1,21 +1,29 @@
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'jetty'
-
 repositories {
     mavenCentral()
     jcenter()
+    maven {
+        url 'http://dl.bintray.com/vermeulen-mp/gradle-plugins'
+    }
 }
+
 
 dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
     compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
     compile 'org.hibernate:hibernate-core:4.3.10.Final'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.10.Final'
     compile 'mysql:mysql-connector-java:5.1.35'
+    compile 'org.springframework.data:spring-data-jpa:1.8.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter:1.2.5.RELEASE'
     runtime 'javax.servlet:jstl:1.2'
     testCompile 'junit:junit:4.12'
 }
-
 /** Change context path (base url). otherwise defaults to name of project */
 jettyRun.contextPath = ''
 jettyRunWar.contextPath = ''
+jettyRun.reload = 'automatic';
+jettyRun.scanIntervalSeconds = 5;
+
