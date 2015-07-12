@@ -1,0 +1,278 @@
+% % % % % % % % % % % % % % % % % % % % % %
+%
+%	PREAMBLE
+%
+% % % % % % % % % % % % % % % % % % % % % %
+
+% PAGE STYLE SETTINGS
+	%\documentclass[12pt, oneside, a4paper]{art}		% PDF report style
+	\documentclass[12pt, oneside, a4paper]{article}		% PDF article style
+	%\documentclass[12pt, twoside, a4paper]{report}		% book style
+
+% PACKAGES SETTINGS
+	\usepackage[T1]{fontenc} 							% encoding input T1 codec
+	\usepackage[utf8]{inputenc}							% encoding output
+	\usepackage[ngerman]{babel}							% language settings German
+	%\usepackage[english]{babel}						% language settings English
+	\usepackage{fancyhdr}								% custom header and footer
+	\usepackage{lastpage}								% label (variable) {LastPage}
+	\usepackage[square,sort,comma,numbers]{natbib}		% reference style
+	\usepackage{cite}									% citations
+	\usepackage{listings}								% integration of listings
+	\usepackage{graphicx}								% integration of graphics
+	\usepackage{blindtext}								% generate bt with \blindtext or \blindtext[AMOUNT]
+	\usepackage{microtype}								% justification
+	\usepackage{lettrine}								% initial letter big
+	\usepackage{multicol}								% multi column
+	\usepackage{float}									% for graphics with caption
+	\usepackage{seqsplit}								% for breaks in long titles
+	\usepackage[a4paper, bindingoffset=.508cm, left=2.54cm, right=2.54cm, top=2.54cm, bottom=2.54cm, footskip=.63cm]{geometry}												% for customized margins
+
+% FONTS SETTINGS
+	%\usepackage[sfdefault]{cabin}						% default font
+	%\usepackage[default]{droidserif}					% default font
+	\usepackage{courier}								% font for listings
+
+
+% HEADER AND FOOTER SETTINGS
+	\setlength{\headheight}{0.5291cm}
+	\renewcommand{\headrulewidth}{0.01cm}
+	\pagestyle{fancy}
+	\lhead{\insertauthor}								% top left
+	\chead{}											% top center
+	\rhead{\inserttitle}								% top right
+	\lfoot{August 2015}									% bottom left
+	\cfoot{}											% bottom center
+	\rfoot{\thepage}									% bottom right
+	%\rfoot{Page \thepage \ of \pageref{LastPage}}		% bottom right
+
+% LISTINGS SETTINGS
+	\lstset{
+		basicstyle=\footnotesize\ttfamily,  			% set font Courier
+		captionpos=b, 									% description under listings
+		xleftmargin=0.5cm								% indent listing block
+	}
+
+% REFERENCES SETTINGS
+	\addto\captionsenglish{\renewcommand{\refname}{References}}
+	\bibliographystyle{plain}							% bib style
+
+% TITLE SETTINGS										
+	\title{ZIMG}
+	\author{Christian Pleines, Stefan Bieliauskas, Fabian Junge, Oke Schwien}
+	\date{2015 08 10}
+
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+	\begin{center}
+		\vspace{4cm}
+  		\seqsplit{\Huge{\textbf{\inserttitle}}}
+
+  		\vspace{4cm}
+  		\large{\insertauthor}
+
+  		\vspace{2cm}
+  		\small{Hochschule Bremen -- City University of Applied Sciences}
+
+  		\small{Datenbankbasierte Web-Anwendungen, \insertdate}
+	\end{center}\egroup
+}
+
+\let\inserttitle\@title
+
+\let\insertauthor\@author
+
+\let\insertdate\@date
+
+\makeatother
+
+% TEXT SETTINGS
+	\setlength{\columnsep}{0.8818cm}					% column seperation
+	\setlength{\parindent}{0cm}							% indentation off -> 0cm
+
+% % % % % % % % % % % % % % % % % % % % % %
+%
+%	DOCUMENT
+%
+% % % % % % % % % % % % % % % % % % % % % %
+
+\begin{document}
+
+% TITLE
+\begin{figure}[H]
+	\centering
+ 	\includegraphics[width=6cm]{footage/Hochschule_Bremen_Logo_RGB} 
+	\label{logoofhochschulebremengermany}
+\end{figure}
+
+\maketitle												% print default title
+\thispagestyle{empty}									% disable page numbers
+
+\newpage
+
+% INHALTSVERZEICHNIS
+\tableofcontents
+%\thispagestyle{empty}									% disable page numbers
+
+\newpage
+
+% TEXT
+\section{Spezifikation}
+% 1 Spezifikation
+% In diesem Kapitel sollen die folgenden Punkte erläutert werden:
+% 	- Was leistet die Webanwendung?
+%	- Welchen Mehrwert bietet die Webanwendung für dessen Nutzer?
+\blindtext
+
+\subsection{Anforderungen}
+% 1.1 Anforderungen
+% In diesem Unterkapitel sollen die vorgesehenen und die tatsächlich umgesetzten Anforderungen beschrieben und mit  Hilfe von Use-Case- und Aktivitätsdiagrammen konkretisiert werden.
+\blindtext
+
+\section{Architektur}
+% 2 Architektur
+% In diesem Kapitel soll beschrieben werden, wie das Projekt und die Datenbank strukturiert ist und welche Technologien und Frameworks verwendet werden.
+\blindtext
+
+\subsection{Gesamtarchitektur}
+% 2.1 Gesamtarchitektur
+% In diesem Unterkapitel soll beschrieben werden, wie die Gesamtarchitektur der entwickelten Webanwendung aussieht. Dies kann mit UML Paket- oder Klassendiagrammen unterstützt werden.
+\blindtext
+
+\subsection{Programmabläufe}
+% 2.2 Programmabläufe
+% In diesem Unterkapitel sollte exemplarisch gezeigt werden, wie die typischen Abläufe in der Webanwendung aussehen. Hierfür sollten Aktivitäts-/Sequenzdiagramme genutzt werden.
+\blindtext
+
+\subsection{Persistenz}
+% 2.3 Persistenz
+% In diesem Unterkapitel soll die genutzte Datenbank und der Zugriff auf ihre Daten erläutert werden.
+\blindtext
+
+\subsubsection{Konzeption}
+% 2.3.1 Konzeption
+% In diesem Unterkapitel soll die konzepierte Datenbank nach ER-Diagramm beschrieben werden
+\blindtext
+
+\subsubsection{Umsetzung}
+% 2.3.2 Umsetzung
+% In diesem Unterkapitel soll die Datenbank nach relationalem Modell beschrieben werden. Außerdem sollten anwendungsspezifische Constraints aufgelistet werden, die bei der Implementierung bedacht werden müssen.
+\blindtext
+
+\subsubsection{Zugriff}
+% 2.3.3 Zugriff
+% In diesem Unterkapitel soll beschrieben werden mit welchen Technologien und Frameworks von der Webanwendung auf die Datenbank zugegriffen wird.
+\blindtext
+
+\subsection{Präsentation}
+% 2.4 Präsentation
+% In diesem Unterkapitel soll die Präsentationsschicht der Webanwendung beschrieben werden. Hierzu u.a. die genutzte Technologie/Framework. 
+\blindtext
+
+\section{Installation}
+% 3 Installation
+% In diesem Kapitel soll beschrieben werden, welche Programmierwerkzeuge verwendet wurden und wie die Webanwendung lokal aufgesetzt werden kann
+\blindtext
+
+\subsection{Programmierwerkzeuge}
+% 3.1 Programmierwerkzeuge
+% Auflistung der verwendeten Programmierwerkzeugen mit Vor- und Nachteilen
+\blindtext
+
+\subsection{Installation der Entwicklungsumgebung}
+% 3.2 Installation der Entwicklungsumgebung
+% Detaillierte Erklärung welche Maßnahmen notwendig sind, um die Entwicklungsumgebung aufzusetzen, sodass an dem Projekt mitentwickelt werden kann 
+\blindtext
+
+\subsection{Konfiguration der Datenbank}
+% 3.4 Konfiguration der Datenbank
+% Beschreibung welche Schritte durchgeführt werden müssen, um die Datenbank mitsamt ihrer Struktur und Beispieldaten auf einem lokalen System aufzusetzen
+\blindtext
+
+\subsection{Installation der Anwendung}
+% 3.3 Installation der Anwendung
+% Beschreibung wie die Anwendung auf dem lokalen Rechner gestartet werden kann 
+\blindtext
+
+\end{document}
+
+% % % % % % % % % % % % % % % % % % % % % %
+%	EXAMPLES
+% % % % % % % % % % % % % % % % % % % % % %
+
+% initial letter big, footnotes, dots
+	% \lettrine[lines=2]{H}{}ello\footnote{Hello is a word and it is a nice word; in other languages hello means Hallo, Bonjour, Hoi, \ldots} you, here I am the god and you are the ant.
+
+% different lists
+	% \begin{itemize}
+	% 	\item one item
+	% 	\item another item
+	% 	\begin{itemize}
+	% 		\item one subitem
+	% 		\item another subitem
+	% 	\end{itemize}
+	% \end{itemize}
+
+	% \begin{description}
+	%   \item[girls] Sabrina, Monica, Suzanne
+	%   \item[boys] Peter, Jack, Will
+	%   \item[animals] lion, elephant, monkey
+	% \end{description}
+
+	% \begin{itemize}
+	% 	\item one item
+	% 	\item another item
+	% 	\begin{enumerate}
+	% 		\item first subitem
+	% 		\item second subitem
+	% 	\end{enumerate}
+	% \end{itemize}
+
+% include dividers
+	% \begin{flushleft}
+	% 	\rule{\linewidth}{0.01cm}
+	% \end{flushleft}
+
+% include graphics with caption and label
+	% \begin{figure}[H]
+	% 	\centering
+	% 	\includegraphics[width=\linewidth]{footage/Hochschule_Bremen_Logo} 
+	% 	\caption{Logo of Hochschule Bremen, Germany}
+	%	\label{logoofhochschulebremengermany}
+	% \end{figure}
+  % how to mention this graphic in text
+	% texttextext (Fig. \ref{logoofhochschulebremengermany}) texttexttext.
+
+% quotation -- leading quote
+	% \begin{quote}
+	% \centering Our goal is to design everything so it's beautifully simple. \\
+	% -- Larry Page, Google's July 2013 Q2 earnings call
+	% \end{quote}
+
+% tabular
+%	\begin{table}[h!]
+%	\centering
+%	\scalebox{1.0}{
+%	\begin{tabular}{| p{4cm} | p{10.3cm} | l}
+%	\hline                       
+%	\textbf{Taste} 	& \textbf{Befehl}		\\
+%	\hline
+%	A				& Bewegt den SuperJumperMan nach links	\\
+%	\hline
+%	D				& Bewegt den SuperJumperMan nach rechts	\\
+%	\hline
+%	Leertaste		& Lässt den SuperJumperMan springen \\
+%	\hline
+%	Pfeiltaste Oben & Zoomt die Kamera herein \\
+%	\hline
+%	Pfeiltaste Unten & Zoomt die Kamera heraus \\
+%	\hline
+%	Pfeiltaste Links & Dreht die Kamera nach links \\
+%	\hline
+%	Pfeiltaste Rechts & Dreht die Kamera nach rechts \\
+%	\hline
+%	\end{tabular}
+%	}
+%	\caption{Steuerung von SuperJumperManSupreme}
+%	\label{Steuerung}
+%	\end{table}
