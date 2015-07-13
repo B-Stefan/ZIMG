@@ -49,13 +49,13 @@ public class UploadViewController {
                 image.setUploader(userService.getUserByName("Oklon"));
 
                 imageService.save(image);
-                return "upload";
+                return "redirect:home";
             } catch (Exception e) {
                 log.log(Priority.DEBUG, e.getMessage());
-                return "You failed to upload " + name + " => " + e.getMessage();
+                return "redirect:home";
             }
         } else {
-            return "You failed to upload " + name + " because the file was empty.";
+            return "redirect:home";
         }
     }
 }
