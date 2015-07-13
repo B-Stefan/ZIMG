@@ -3,15 +3,9 @@
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
 
 <zimg:defaultLayout>
-    <jsp:attribute name="header">
-        <p>Header part</p>
-    </jsp:attribute>
-    <jsp:attribute name="footer">
-        <p id="copyright">Footer part</p>
-    </jsp:attribute>
     <jsp:body>
         <!--Header-->
-        <div class="container">
+        <div class="fhio">
             <h1>Hello, ${name}!</h1>
             <!--Images -->
             <c:forEach items="${userList}" var="user">
