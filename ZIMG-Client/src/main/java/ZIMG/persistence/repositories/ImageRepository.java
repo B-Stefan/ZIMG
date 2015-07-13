@@ -10,7 +10,7 @@ public interface ImageRepository extends BaseRepository<Image> {
 
 
     @Query(value = "SELECT * FROM top_ten_images", nativeQuery =  true)
-    List<Image> findTopTen();
+    List<Image> findTopTenImages();
 
 
 }

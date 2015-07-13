@@ -4,6 +4,6 @@
 
 <zimg:defaultLayout>
     <jsp:body>
-        <h1>Top 10 tags</h1>
+        <h1>Top 5 users</h1>
     </jsp:body>
 </zimg:defaultLayout>

@@ -1,16 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fabian
-  Date: 29.06.15
-  Time: 08:56
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
+<%@ page import="ZIMG.models.Image" %>
 
-</body>
-</html>
+<zimg:defaultLayout>
+    <jsp:body>
+        <h1>Top 10 images</h1>
+
+        <c:forEach items="${findTopTenImages}" var="image">
+            <div class="container row">
+                <div class="col-lg-2 col-md-2 col-xs-1">${user.id}</div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <a href ="/user/${user.name}">${user.name}</a>
+                </div>
+            </div>
+        </c:forEach>
+    </jsp:body>
+</zimg:defaultLayout>

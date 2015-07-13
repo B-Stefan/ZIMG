@@ -3,7 +3,6 @@
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
 
 <zimg:defaultLayout>
-
   <jsp:body>
     <!--Header-->
     <div class="container">
