@@ -3,11 +3,10 @@
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
 
 <zimg:defaultLayout>
-
     <jsp:body>
         <!--Header-->
         <div class="container">
-            <h1>Welcome on ZIMG.</h1>
+            <h1>Hello, ${name}!</h1>
             <!--Images -->
             <c:forEach items="${userList}" var="user">
                 <div class="container row">
