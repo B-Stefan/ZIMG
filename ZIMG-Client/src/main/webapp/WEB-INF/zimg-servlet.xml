@@ -91,6 +91,4 @@
     <!-- the mvc resources tag does the magic -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
-
-
 </beans>

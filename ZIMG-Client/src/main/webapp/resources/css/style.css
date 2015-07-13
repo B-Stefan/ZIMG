@@ -1,0 +1,77 @@
+.navbar {
+    border-top-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+
+#overview .overview-entry {
+    margin-bottom: 20px;
+}
+
+#imageDetail #imageLink {
+    position: relative;
+    display: block;
+
+    color: white;
+}
+
+#imageDetail #mark-as-favorite {
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+
+    font-size: 40px;
+    padding: 10px;
+
+    display: none;
+}
+
+#imageDetail .tag {
+    background: #669999;
+    padding: 5px;
+    border-radius: 4px;
+    display: inline-block;
+    color: white;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+#imageDetail .tag span {
+    margin-right: 5px;
+}
+
+#imageDetail #add-tag-textfield {
+    margin-top: 10px;
+}
+
+#imageDetail .comment-entry {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#imageDetail #comment-textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#imageDetail #comment-submit {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#footerbar {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: gray;
+}
+
+#footerbar a {
+    color: gray;
+}
+
+#footerbar #heart {
+    color: #d42b2b;
+}

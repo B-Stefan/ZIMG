@@ -5,9 +5,13 @@
 <zimg:defaultLayout>
     <jsp:body>
         <!--Header-->
-        <div class="container">
+        <div class="container" id="overview">
             <c:forEach items="${imageList}" var="image">
-                <a href="/image/${image.id}" class="thumbnail"><img src="/resources/upload/${image.filename}" /></a>
+                <div class="row">
+                    <div class="col-xs-8 col-md-8">
+                        <a href="/image/${image.id}"><img class="img-responsive img-rounded overview-entry" src="/resources/upload/${image.filename}" /></a>
+                    </div>
+                </div>
             </c:forEach>
 
             <c:forEach items="${userList}" var="user">
