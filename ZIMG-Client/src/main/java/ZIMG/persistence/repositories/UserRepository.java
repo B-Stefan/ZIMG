@@ -9,8 +9,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends BaseRepository<User> {
 
-    @Query("SELECT u FROM User as u JOIN FETCH u.images where u.name = :lastName")
-    List<User> findByName(@Param("lastName") String lastName);
+    @Query("SELECT DISTINCT u FROM User as u JOIN FETCH u.images WHERE u.name =:name")
+    List<User> findByName(@Param("name") String name);
 
     @Query("SELECT u from User as u where u.admin = true ")
     List<User> findAllAdmins();

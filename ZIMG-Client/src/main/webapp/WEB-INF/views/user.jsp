@@ -2,6 +2,7 @@
 <%@ page import="ZIMG.models.Image" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
 
 <zimg:defaultLayout>
@@ -9,6 +10,7 @@
     <!--Header-->
     <div class="container">
       <h1>${user.name}'s Uploads:</h1>
+      <p>${fn:length(user.images)}</p>
       <!--Images -->
       <div class="row">
      <c:forEach items="${images}" var="image">
