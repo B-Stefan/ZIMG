@@ -15,7 +15,7 @@
       <div class="row">
      <c:forEach items="${images}" var="image">
          <div class="col-xs-6 col-md-3">
-            <a href="/image/${image.id}" class="thumbnail"><img src="/resources/img/${image.filename}" /></a>
+            <a href="/image/${image.id}" class="thumbnail"><img src="/resources/upload/${image.filename}" /></a>
          </div>
       </c:forEach>
     </div>

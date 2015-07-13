@@ -12,7 +12,7 @@ public abstract class BaseModel {
 
     @Column(name="createdat", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date createdAt = new Date();
 
     public Date getCreatedAt() {
         return createdAt;

@@ -33,4 +33,11 @@ public class Image extends BaseModel {
         return this.uploader;
     }
 
+    public void setUploader(User uploader) {
+        this.uploader = uploader;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 }
