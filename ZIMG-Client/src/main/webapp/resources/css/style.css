@@ -6,6 +6,7 @@
 
 #overview .overview-entry {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 #imageDetail #imageLink {
@@ -13,6 +14,10 @@
     display: block;
 
     color: white;
+}
+
+#imageDetail img {
+    width: 100%;
 }
 
 #imageDetail #mark-as-favorite {

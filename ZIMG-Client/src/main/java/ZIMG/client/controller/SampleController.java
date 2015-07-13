@@ -30,4 +30,16 @@ public class SampleController {
 
         return "home";
     }
+
+    @RequestMapping("")
+    public String loadLogin(Model m) {
+
+        Iterable<User> list = this.userRepository.findAllAdmins();
+        m.addAttribute("userList", list);
+
+        Iterable<Image> imageList = this.imageRepository.findAll(new Sort(Sort.Direction.DESC, "createdAt"));
+        m.addAttribute("imageList", imageList);
+
+        return "home";
+    }
 }
