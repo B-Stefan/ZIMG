@@ -6,8 +6,10 @@
     <jsp:body>
         <!--Header-->
         <div class="container">
-            <h1>Hello, ${name}!</h1>
-            <!--Images -->
+            <c:forEach items="${imageList}" var="image">
+                <a href="/image/${image.id}" class="thumbnail"><img src="/resources/upload/${image.filename}" /></a>
+            </c:forEach>
+
             <c:forEach items="${userList}" var="user">
                 <div class="container row">
                     <div class="col-lg-2 col-md-2 col-xs-1">${user.id}</div>

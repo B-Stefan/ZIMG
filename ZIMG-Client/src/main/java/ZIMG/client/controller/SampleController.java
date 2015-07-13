@@ -1,7 +1,10 @@
 package ZIMG.client.controller;
 
+import ZIMG.models.Image;
 import ZIMG.models.User;
+import ZIMG.persistence.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +16,18 @@ public class SampleController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    ImageRepository imageRepository;
+
     @RequestMapping("home")
-    public String loadHomePage(Model m) {
+    public String loadOverview(Model m) {
 
         Iterable<User> list = this.userRepository.findAllAdmins();
         m.addAttribute("userList", list);
-        m.addAttribute("name", "asdasdasd");
+
+        Iterable<Image> imageList = this.imageRepository.findAll(new Sort(Sort.Direction.ASC, "createdAt"));
+        m.addAttribute("imageList", imageList);
+
         return "home";
     }
 }

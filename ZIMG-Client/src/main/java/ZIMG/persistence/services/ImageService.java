@@ -1,5 +1,6 @@
 package ZIMG.persistence.services;
 
+import ZIMG.exceptions.MultipleUserForUserNameExistException;
 import ZIMG.models.Image;
 import ZIMG.models.User;
 import ZIMG.persistence.repositories.ImageRepository;
@@ -18,5 +19,10 @@ public class ImageService extends BaseService<Image,ImageRepository> {
         return new ArrayList<Image>();
     }
 
+    public Image getImageById(String id) {
+        List<Image> imageList= this.repository.findById(Integer.parseInt(id));
+
+        return imageList.get(0);
+    }
 
 }
