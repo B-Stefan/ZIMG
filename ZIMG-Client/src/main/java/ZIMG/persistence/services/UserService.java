@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Scope("prototype")
-public class UserService extends  BaseService<UserRepository> {
+public class UserService extends  BaseService<User,UserRepository> {
 
     public User getUserByName(String username) throws MultipleUserForUserNameExistException{
         List<User> usersList= this.repository.findByName(username);
