@@ -18,7 +18,6 @@ public class SampleController {
 
         Iterable<User> list = this.userRepository.findAllAdmins();
         m.addAttribute("userList", list);
-        m.addAttribute("name", "asdasdasd");
         return "home";
     }
 }

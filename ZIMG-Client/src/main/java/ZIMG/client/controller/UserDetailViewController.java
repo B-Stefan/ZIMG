@@ -3,6 +3,7 @@ package ZIMG.client.controller;
 import ZIMG.exceptions.MultipleUserForUserNameExistException;
 import ZIMG.models.User;
 import ZIMG.persistence.services.UserService;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,8 @@ public class UserDetailViewController {
         try {
             User user =  userService.getUserByName(username);
             m.addAttribute("user", user);
+            m.addAttribute("images", user.getImages());
+
         }catch (MultipleUserForUserNameExistException e ){
             m.addAttribute("err", e.getMessage());
         }
