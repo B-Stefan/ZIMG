@@ -1,6 +1,5 @@
 package ZIMG.persistence.repositories;
 
-import ZIMG.models.Image;
 import ZIMG.models.Tag;
 import org.springframework.data.jpa.repository.Query;
 

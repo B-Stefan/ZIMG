@@ -8,7 +8,7 @@ import java.util.List;
 /**
  *
  */
-public class TagService extends  BaseService<Tag,TagRepository> {
+public class TagService extends BaseService<Tag,TagRepository> {
 
     /**
      * Gibt die zehn meist verwendeten Tags als Liste zurück

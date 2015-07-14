@@ -3,7 +3,6 @@ package ZIMG.persistence.repositories;
 import java.util.List;
 
 import ZIMG.models.User;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

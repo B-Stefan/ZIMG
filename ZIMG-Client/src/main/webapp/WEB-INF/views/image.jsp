@@ -8,9 +8,9 @@
 
 <zimg:defaultLayout>
     <jsp:body>
-        <!--Header-->
+        <%-- HEAD --%>
         <div class="container" id="imageDetail">
-            <!--Images -->
+            <%-- IMAGES --%>
             <div class="row">
                 <div class="col-xs-8 col-md-8">
                     <a href="/image/${image.id}" id="imageLink">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
 
-                    <!-- Comment Entry One -->
+                    <%-- COMMENT 1--%>
                     <div class="row comment-entry">
                         <div class="col-xs-2 col-md-2">
                             <p><a href="/user/Fabimon">Fabimon</a></p>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <!-- Comment Entry Two -->
+                    <%-- COMMENT 2 --%>
                     <div class="row comment-entry">
                         <div class="col-xs-2 col-md-2">
                             <p><a href="/user/Oklon">Oklon</a></p>
@@ -49,6 +49,7 @@
                         </div>
                     </div>
 
+                    <%-- COMMENT ENTRY --%>
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
                             <h4>Write a new comment:</h4>
@@ -61,6 +62,8 @@
                         </div>
                     </div>
                 </div>
+
+                <%-- UPLOADER INFO --%>
                 <div class="col-xs-4 col-md-4">
                     <h4>Information</h4>
                     Uploader: <a href="/user/${image.uploader.name}">${image.uploader.name}</a> <br/>

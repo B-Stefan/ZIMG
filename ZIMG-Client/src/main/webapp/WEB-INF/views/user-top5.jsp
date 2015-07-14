@@ -8,11 +8,10 @@
 
         <!--Header-->
         <div class="container">
+            <%-- HEAD --%>
             <h1>Top 5 users</h1>
 
-            <%--<h1>${user.name}'s uploads:</h1>--%>
-            <%--<p>${fn:length(user.images)}</p>--%>
-            <!-- Top 5 user list -->
+            <!-- TOP FIVE USERS -->
             <div class="row">
                 <c:forEach items="${topFiveUserList}" var="user">
                     <div class="container row">

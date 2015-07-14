@@ -4,7 +4,7 @@
 
 <zimg:defaultLayout>
     <jsp:body>
-        <!--Header-->
+        <%-- HEAD --%>
         <div class="container" id="overview">
             <c:forEach items="${imageList}" var="image">
                 <div class="row">

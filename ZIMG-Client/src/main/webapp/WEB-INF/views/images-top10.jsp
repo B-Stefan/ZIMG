@@ -5,6 +5,7 @@
 
 <zimg:defaultLayout>
     <jsp:body>
+        <%-- HEAD --%>
         <h1>Top 10 images</h1>
 
         <c:forEach items="${findTopTenImages}" var="image">

@@ -4,9 +4,10 @@
 
 <zimg:defaultLayout>
     <jsp:body>
-        <!--Header-->
+        <%-- HEAD --%>
+        <h1>Top 10 tags</h1>
+
         <div class="container">
-            <h1>Top 10 tags</h1>
             <!-- Top 10 tags list -->
             <div class="row">
                 <c:forEach items="${topTenTagList}" var="tag">

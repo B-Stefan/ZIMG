@@ -1,7 +1,6 @@
 package ZIMG.persistence.services;
 
 import ZIMG.models.Favorite;
-import ZIMG.models.Image;
 import ZIMG.persistence.repositories.FavoriteRepository;
 
 import java.util.List;
