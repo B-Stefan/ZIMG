@@ -1,5 +1,6 @@
 <%@tag description="Default Nav bar" pageEncoding="UTF-8"%>
 <!--Navbar-->
+<!-- if eingeloggt -->
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
