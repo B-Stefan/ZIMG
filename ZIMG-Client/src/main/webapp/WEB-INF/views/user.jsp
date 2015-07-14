@@ -9,7 +9,7 @@
   <jsp:body>
     <!--Header-->
     <div class="container">
-      <h1>${user.name}'s Uploads:</h1>
+      <h1>${user.name}'s uploads:</h1>
       <p>${fn:length(user.images)}</p>
       <!--Images -->
       <div class="row">

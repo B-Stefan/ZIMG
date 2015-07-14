@@ -9,7 +9,7 @@
       <ul class="nav navbar-nav">
         <li><a href="/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
         <li><a href="/images-top10"><span class="glyphicon glyphicon-picture"></span> Top Images</a></li>
-        <li><a href="/users-top10"><span class="glyphicon glyphicon-user"></span> Top Users</a></li>
+        <li><a href="/user-top5"><span class="glyphicon glyphicon-user"></span> Top Users</a></li>
         <li><a href="/tags-top10"><span class="glyphicon glyphicon-tags"></span> Top Tags</a></li>
 
         <li><a href="/upload"><span class="glyphicon glyphicon-cloud-upload"></span> Upload</a></li>

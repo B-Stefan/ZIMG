@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserDetailViewController {
 
-
     static Logger log = Logger.getLogger(UserDetailViewController.class.getName());
 
     @Autowired
