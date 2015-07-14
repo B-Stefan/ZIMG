@@ -21,17 +21,15 @@
 <body>
 <div id="pageheader">
     <zimg:navbar/>
-    <jsp:invoke fragment="header"/>
 </div>
 <div id="body">
     <jsp:doBody/>
 </div>
 <div id="pagefooter">
-    <div id="footerbar">ZIMG | Copyright © 2015 <br />
-    <a href="http://www.hs-bremen.de/">Made with <span id="heart">&hearts;</span> in Bremen</a>
+    <div id="footerbar">
+        <div>ZIMG | Copyright © 2015</div>
+        <div><a href="http://www.hs-bremen.de/">Made with <span id="heart">&hearts;</span> in Bremen</a></div>
     </div>
-    <%--<zimg:footerbar/>--%>
-    <jsp:invoke fragment="footer"/>
 </div>
 </body>
 </html>

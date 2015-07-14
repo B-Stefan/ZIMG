@@ -33,7 +33,7 @@ public class UploadViewController {
     }
 
     @RequestMapping(value="/upload", method= RequestMethod.POST)
-    public String handleUpload(@RequestParam("uploadname") String name, @RequestParam("file") MultipartFile file, Model m) {
+    public String handleUpload(@RequestParam("file") MultipartFile file, Model m) {
 
         if (!file.isEmpty()) {
             try {
@@ -46,6 +46,8 @@ public class UploadViewController {
 
                 Image image = new Image();
                 image.setFilename(file.getOriginalFilename());
+
+                // @todo: set to current active user
                 image.setUploader(userService.getUserByName("Oklon"));
 
                 imageService.save(image);

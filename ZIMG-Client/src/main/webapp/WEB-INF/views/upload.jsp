@@ -4,14 +4,12 @@
 
 <zimg:defaultLayout>
   <jsp:body>
-    <!--Header-->
-    <div class="container">
+    <div class="container" id="upload">
       <h1>Upload</h1>
       <form method="POST" enctype="multipart/form-data"
             action="/upload">
-        File to upload: <input type="file" name="file"><br /> Name:
-        <input type="text" name="uploadname"><br /> <br />
-        <input type="submit" value="Upload"> Press here to upload the file!
+        <input type="file" name="file">
+        <input type="submit" class="btn btn-default" id ="upload-submit" value="Upload">
       </form>
     </div>
   </jsp:body>

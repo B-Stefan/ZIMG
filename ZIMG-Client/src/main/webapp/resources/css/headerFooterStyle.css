@@ -2,9 +2,3 @@
     color: ivory;
     border-radius: 0px;
 }
-
-#footerbar {
-    display:flex;
-    justify-content:center;
-    align-items:flex-end;
-}
