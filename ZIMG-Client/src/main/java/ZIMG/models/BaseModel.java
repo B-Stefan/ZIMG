@@ -8,7 +8,7 @@ public abstract class BaseModel {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
 
     @Column(name="createdat", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -17,7 +17,15 @@ public abstract class BaseModel {
     public Date getCreatedAt() {
         return createdAt;
     }
-    public int getId(){
+    public long getId(){
         return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

@@ -50,7 +50,7 @@
                 <prop key="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 
                 <!-- Enable Hibernate's automatic session context management -->
-                <prop key="current_session_context_class">thread</prop>
+                <prop key="current_session_context_class">Spring.Data.NHibernate.SpringSessionContext, Spring.Data.NHibernate</prop>
 
                 <!-- Echo all executed SQL to stdout -->
                 <prop key="show_sql">true</prop>

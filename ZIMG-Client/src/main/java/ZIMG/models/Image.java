@@ -1,12 +1,14 @@
 package ZIMG.models;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name="images")
 @Inheritance(strategy=InheritanceType.JOINED)
+@Transactional
 public class Image extends BaseModel {
 
     @ManyToOne
@@ -18,10 +20,13 @@ public class Image extends BaseModel {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable( name = "tag2image",
-                joinColumns = { @JoinColumn(name = "imageid") },
-                inverseJoinColumns = { @JoinColumn(name = "tagid")
-                })
+                joinColumns = @JoinColumn(name = "imageid"),
+                inverseJoinColumns = @JoinColumn(name = "tagid")
+    )
     private List<Tag> tags = new ArrayList<Tag>();
+
+    @OneToMany(mappedBy = "image")
+    private List<Comment> comments = new ArrayList<Comment>();
 
     public String getFilename() {
         return filename;
@@ -39,5 +44,17 @@ public class Image extends BaseModel {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }

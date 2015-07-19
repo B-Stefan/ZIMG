@@ -7,11 +7,13 @@ import ZIMG.persistence.repositories.ImageRepository;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Scope("prototype")
+@Transactional
 public class ImageService extends BaseService<Image,ImageRepository> {
 
     public List<Image> getByUploader(User user) {
@@ -19,10 +21,14 @@ public class ImageService extends BaseService<Image,ImageRepository> {
         return new ArrayList<Image>();
     }
 
+    @Transactional
     public Image getImageById(String id) {
-        List<Image> imageList= this.repository.findById(Integer.parseInt(id));
+        Image image= this.repository.findOne(Long.parseLong(id));
+        // Lazy loading nested lists
+        image.getTags().size();
+        image.getComments().size();
 
-        return imageList.get(0);
+        return image;
     }
 
 }

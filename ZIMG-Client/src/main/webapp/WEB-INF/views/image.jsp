@@ -26,28 +26,17 @@
                         </div>
                     </div>
 
-                    <!-- Comment Entry One -->
-                    <div class="row comment-entry">
-                        <div class="col-xs-2 col-md-2">
-                            <p><a href="/user/Fabimon">Fabimon</a></p>
+                    <c:forEach items="${image.comments}" var="comment">
+                        <!-- Comment Entry One -->
+                        <div class="row comment-entry">
+                            <div class="col-xs-2 col-md-2">
+                                <p><a href="/user/${comment.user.name}">${comment.user.name}</a></p>
+                            </div>
+                            <div class="col-xs-10 col-md-10">
+                                <p>${comment.comment}</p>
+                            </div>
                         </div>
-                        <div class="col-xs-10 col-md-10">
-                            <p>Ich bin allein und freue mich meines Lebens in dieser Gegend, die für solche Seelen
-                                geschaffen ist wie die meine. Ich bin so glücklich, mein Bester, so ganz in dem Gefühle
-                                von ruhigem Dasein versunken, daß meine Kunst darunter leidet.</p>
-                        </div>
-                    </div>
-
-                    <!-- Comment Entry Two -->
-                    <div class="row comment-entry">
-                        <div class="col-xs-2 col-md-2">
-                            <p><a href="/user/Oklon">Oklon</a></p>
-                        </div>
-                        <div class="col-xs-10 col-md-10">
-                            <p>Eine wunderbare Heiterkeit hat meine ganze Seele eingenommen, gleich den süßen
-                                Frühlingsmorgen, die ich mit ganzem Herzen genieße.</p>
-                        </div>
-                    </div>
+                    </c:forEach>
 
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
@@ -69,9 +58,9 @@
                     <h4>Tags</h4>
 
                     <div id="tag-box">
-                        <div class="tag"><span class="glyphicon glyphicon-tag"></span>Moewe</div>
-                        <div class="tag"><span class="glyphicon glyphicon-tag"></span>Toll</div>
-                        <div class="tag"><span class="glyphicon glyphicon-tag"></span>Geil</div>
+                        <c:forEach items="${image.tags}" var="tag">
+                            <div class="tag"><span class="glyphicon glyphicon-tag"></span>${tag.tag}</div>
+                        </c:forEach>
                     </div>
 
                     <input type="text" class="form-control" id="add-tag-textfield" placeholder="Add new Tag ...">

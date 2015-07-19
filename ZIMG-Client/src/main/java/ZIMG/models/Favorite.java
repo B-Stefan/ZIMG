@@ -15,11 +15,20 @@ public class Favorite extends BaseModel {
     @JoinColumn(name = "imageid")
     private Image image;
 
-    public Image getImage(){
-        return this.image;
+
+    public User getUser() {
+        return user;
     }
 
-    public User getUser(){
-        return this.user;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

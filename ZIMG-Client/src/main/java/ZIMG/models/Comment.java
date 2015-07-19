@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Comment extends BaseModel {
 
+
     @Column(length = 500)
     private String comment;
 
@@ -18,11 +19,27 @@ public class Comment extends BaseModel {
     @JoinColumn(name = "imageid")
     private Image image;
 
-    public Image getImage(){
-        return this.image;
+    public Image getImage() {
+        return image;
     }
 
-    public User getUser(){
-        return this.user;
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
