@@ -8,9 +8,9 @@
 
 <zimg:defaultLayout>
     <jsp:body>
-        <%-- HEAD --%>
+        <!--Header-->
         <div class="container" id="imageDetail">
-            <%-- IMAGES --%>
+            <!--Images -->
             <div class="row">
                 <div class="col-xs-8 col-md-8">
                     <a href="/image/${image.id}" id="imageLink">
@@ -27,7 +27,7 @@
                     </div>
 
                     <c:forEach items="${image.comments}" var="comment">
-                        <%-- COMMENT 1--%>
+                        <!-- Comment Entry One -->
                         <div class="row comment-entry">
                             <div class="col-xs-2 col-md-2">
                                 <p><a href="/user/${comment.user.name}">${comment.user.name}</a></p>
@@ -35,34 +35,21 @@
                             <div class="col-xs-10 col-md-10">
                                 <p>${comment.comment}</p>
                             </div>
+                        </div>
                     </c:forEach>
 
-                    <%-- COMMENT 2 --%>
-                    <div class="row comment-entry">
-                        <div class="col-xs-2 col-md-2">
-                            <p><a href="/user/Oklon">Oklon</a></p>
-                        </div>
-                        <div class="col-xs-10 col-md-10">
-                            <p>Eine wunderbare Heiterkeit hat meine ganze Seele eingenommen, gleich den süßen
-                                Frühlingsmorgen, die ich mit ganzem Herzen genieße.</p>
-                        </div>
-                    </div>
-
-                    <%-- COMMENT ENTRY --%>
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
                             <h4>Write a new comment:</h4>
 
-                            <form>
-                                <textarea class="form-control" id="comment-textarea" rows="3"></textarea>
+                            <form method="post" action="/image/${image.id}">
+                                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
 
                                 <button type="submit" class="btn btn-default" id="comment-submit">Submit</button>
                             </form>
                         </div>
                     </div>
                 </div>
-
-                <%-- UPLOADER INFO --%>
                 <div class="col-xs-4 col-md-4">
                     <h4>Information</h4>
                     Uploader: <a href="/user/${image.uploader.name}">${image.uploader.name}</a> <br/>

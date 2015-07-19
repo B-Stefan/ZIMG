@@ -13,6 +13,10 @@ repositories {
 dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
     compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+    compile 'org.springframework.security:spring-security-web:4.0.1.RELEASE'
+    compile 'org.springframework.security:spring-security-core:4.0.1.RELEASE'
+    compile 'org.springframework.security:spring-security-config:4.0.1.RELEASE'
+    compile 'org.springframework.security:spring-security-taglibs:4.0.1.RELEASE'
     compile 'org.hibernate:hibernate-core:4.3.10.Final'
     compile 'org.hibernate:hibernate-entitymanager:4.3.10.Final'
     compile 'mysql:mysql-connector-java:5.1.35'

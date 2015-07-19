@@ -2,12 +2,15 @@ package ZIMG.persistence.services;
 
 import ZIMG.models.Tag;
 import ZIMG.persistence.repositories.TagRepository;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- *
- */
+@Service
+@Scope("prototype")
+@Transactional
 public class TagService extends BaseService<Tag,TagRepository> {
 
     /**

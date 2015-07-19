@@ -18,6 +18,10 @@ public interface UserRepository extends BaseRepository<User> {
     @Query(value = "SELECT * FROM top_ten_tags", nativeQuery =  true)
     List<User> findTopFiveUsers();
 
+    User findOneByEmail(String email);
+
+    User findOneByName(String name);
+
 //    CREATE VIEW top_uploader AS
 //    SELECT COUNT(*) AS images, users.name
 //    FROM images

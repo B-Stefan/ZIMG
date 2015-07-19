@@ -1,10 +1,12 @@
 package ZIMG.client.controller;
 
 import ZIMG.models.Image;
+import ZIMG.persistence.services.CommentService;
 import ZIMG.persistence.services.ImageService;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +17,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.transaction.Transactional;
 
 @Controller
+@EnableWebSecurity
 public class ImageDetailViewController {
 
     static Logger LOG = Logger.getLogger(ImageDetailViewController.class);
     @Autowired
     ImageService imageService;
 
+    @Autowired
+    CommentService commentService;
+
     @RequestMapping(value="/image/{imageId}", method= RequestMethod.GET)
-    public String loadHomePage(@PathVariable String imageId, Model m) {
+    public String getImageDetailPage(@PathVariable String imageId, Model m) {
 
         Image image = imageService.getImageById(imageId);
 
@@ -33,8 +39,10 @@ public class ImageDetailViewController {
     @RequestMapping(value="/image/{imageId}", method= RequestMethod.POST)
     public String addComment(@PathVariable String imageId, @RequestParam("comment") String commentStr, Model m){
 
-        Image img = imageService.getImageById(imageId);
+        LOG.log(Priority.DEBUG,"NEW COMMENTSTR: " + commentStr);
+        LOG.log(Priority.DEBUG,"FOR IMAGEID: " + imageId);
 
-        return "image";
+        commentService.save(commentStr, imageId);
+        return "image"; //this.getImageDetailPage(imageId,m);
     }
 }
