@@ -5,7 +5,6 @@ import ZIMG.models.User;
 import ZIMG.persistence.services.UserService;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

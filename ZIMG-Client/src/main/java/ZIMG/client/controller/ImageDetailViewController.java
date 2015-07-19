@@ -1,9 +1,6 @@
 package ZIMG.client.controller;
 
-import ZIMG.exceptions.MultipleUserForUserNameExistException;
-import ZIMG.models.Comment;
 import ZIMG.models.Image;
-import ZIMG.persistence.repositories.ImageRepository;
 import ZIMG.persistence.services.ImageService;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;

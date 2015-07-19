@@ -4,6 +4,24 @@
 
 <zimg:defaultLayout>
     <jsp:body>
-        <h1>Top 5 users</h1>
+
+
+        <!--Header-->
+        <div class="container">
+            <%-- HEAD --%>
+            <h1>Top 5 users</h1>
+
+            <!-- TOP FIVE USERS -->
+            <div class="row">
+                <c:forEach items="${topFiveUserList}" var="user">
+                    <div class="container row">
+                        <div class="col-lg-3 col-md-3 col-xs-3">
+                            <a href ="/user/${user.name}">${user.name}</a>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-xs-1">${user.images}</div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
     </jsp:body>
 </zimg:defaultLayout>
