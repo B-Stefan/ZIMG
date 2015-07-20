@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
@@ -7,6 +8,8 @@
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="
+        http://www.springframework.org/schema/security
+	     http://www.springframework.org/schema/security/spring-security-4.0.xsd
          http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
          http://www.springframework.org/schema/mvc
@@ -90,5 +93,26 @@
 
     <!-- the mvc resources tag does the magic -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
+
+
+    <sec:http auto-config="true">
+
+        <sec:intercept-url pattern="/resources/**" access="permitAll"/>
+        <sec:intercept-url pattern="/logout" access="permitAll"/>
+        <sec:intercept-url pattern="/login" access="permitAll"/>
+        <sec:intercept-url pattern="/signup" access="permitAll"/>
+        <sec:intercept-url pattern="/about" access="permitAll"/>
+        <sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+
+        <sec:form-login login-page="/login" authentication-failure-url="/login"/>
+        <sec:logout logout-url="/logout" logout-success-url="/home"/> <!-- the logout url we will use in JSP -->
+    </sec:http>
+    <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider user-service-ref="userDetailService" >
+
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+
 
 </beans>

@@ -1,3 +1,4 @@
+<%@ page session="true"%>
 <%@ page import="ZIMG.models.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>

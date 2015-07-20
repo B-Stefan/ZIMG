@@ -1,6 +1,5 @@
 <%@ page import="ZIMG.models.User" %>
 <%@ page import="ZIMG.models.Image" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
@@ -43,6 +42,9 @@
                             <h4>Write a new comment:</h4>
 
                             <form method="post" action="/image/${image.id}">
+                                <input type="hidden"
+                                       name="${_csrf.parameterName}"
+                                       value="${_csrf.token}" />
                                 <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
 
                                 <button type="submit" class="btn btn-default" id="comment-submit">Submit</button>

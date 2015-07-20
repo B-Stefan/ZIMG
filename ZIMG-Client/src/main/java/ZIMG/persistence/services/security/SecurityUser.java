@@ -29,8 +29,10 @@ public class SecurityUser extends User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
 
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("Admin");
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+        SimpleGrantedAuthority authority1 = new SimpleGrantedAuthority("ROLE_ADMIN");
         authorities.add(authority);
+        authorities.add(authority1);
 
         return authorities;
     }

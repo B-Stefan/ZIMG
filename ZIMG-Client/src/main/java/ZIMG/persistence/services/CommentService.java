@@ -16,12 +16,15 @@ public class CommentService extends BaseService<Comment,CommentRepository> {
     @Autowired
     private ImageService imageService;
 
-    public void save(String comment, String imgId){
+    @Autowired
+    private UserService userService;
+
+    public void save(String comment, String imgId) throws SecurityException{
         Image img = imageService.getImageById(imgId);
         Comment newComm  = new Comment();
         newComm.setImage(img);
         newComm.setComment(comment);
-        //@todo set user
+        newComm.setUser(userService.getCurrentUser());
         super.save(newComm);
     }
 

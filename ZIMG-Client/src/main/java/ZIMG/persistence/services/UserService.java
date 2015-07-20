@@ -46,10 +46,8 @@ public class UserService extends  BaseService<User,UserRepository> {
         return this.repository.findOneByName(name);
     }
 
-    public SecurityUser getCurrentUser()
+    public SecurityUser getCurrentUser() throws SecurityException
     {
-        //User loginUser = userService.findUserByEmail("admin@gmail.com");
-        //return new SecurityUser(loginUser);
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails)
@@ -57,8 +55,8 @@ public class UserService extends  BaseService<User,UserRepository> {
             String email = ((UserDetails) principal).getUsername();
             User loginUser = this.findUserByEmail(email);
             return new SecurityUser(loginUser);
+        }else {
+            throw new SecurityException("User is not logged in and you try to get the current user ");
         }
-        return null;
-
     }
 }

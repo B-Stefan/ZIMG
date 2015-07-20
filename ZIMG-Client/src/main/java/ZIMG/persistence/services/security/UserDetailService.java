@@ -17,6 +17,7 @@ public class UserDetailService implements UserDetailsService  {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = this.userService.findUserByName(username);
+
         if(user != null){
             return new SecurityUser(user);
         }

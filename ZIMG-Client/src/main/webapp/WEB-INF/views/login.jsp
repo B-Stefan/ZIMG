@@ -1,3 +1,4 @@
+<%@ page session="true"%>
 <%@ page import="ZIMG.models.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
@@ -13,6 +14,9 @@
           <form method="POST" action="/login">
             <div class="form-group">
               <label for="username">Username</label>
+              <input type="hidden"
+                     name="${_csrf.parameterName}"
+                     value="${_csrf.token}" />
               <input type="text" class="form-control" id="username" name="username" placeholder="Username">
             </div>
             <div class="form-group">
