@@ -1,3 +1,4 @@
+<%@ page session="true"%>
 <%@ page import="ZIMG.models.User" %>
 <%@ page import="ZIMG.models.Image" %>
 

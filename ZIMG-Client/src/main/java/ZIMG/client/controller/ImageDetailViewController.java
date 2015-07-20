@@ -43,6 +43,6 @@ public class ImageDetailViewController {
         LOG.log(Priority.DEBUG,"FOR IMAGEID: " + imageId);
 
         commentService.save(commentStr, imageId);
-        return "image"; //this.getImageDetailPage(imageId,m);
+        return "redirect:/image/" + imageId; //this.getImageDetailPage(imageId,m);
     }
 }

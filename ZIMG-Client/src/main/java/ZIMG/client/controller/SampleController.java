@@ -48,6 +48,11 @@ public class SampleController {
 
         return "login";
     }
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String loadLoginPage(Model m) {
+
+        return "login";
+    }
 
     @RequestMapping(value="/login", method= RequestMethod.POST)
     public String handleLogin(@RequestParam("username") String username,
