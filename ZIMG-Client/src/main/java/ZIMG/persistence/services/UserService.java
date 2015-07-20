@@ -2,7 +2,6 @@ package ZIMG.persistence.services;
 
 import ZIMG.exceptions.MultipleUserForUserNameExistException;
 import ZIMG.models.User;
-import ZIMG.persistence.services.security.SecurityUser;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -46,7 +45,7 @@ public class UserService extends  BaseService<User,UserRepository> {
         return this.repository.findOneByName(name);
     }
 
-    public SecurityUser getCurrentUser()
+    public User getCurrentUser()
     {
         //User loginUser = userService.findUserByEmail("admin@gmail.com");
         //return new SecurityUser(loginUser);
@@ -56,7 +55,7 @@ public class UserService extends  BaseService<User,UserRepository> {
         {
             String email = ((UserDetails) principal).getUsername();
             User loginUser = this.findUserByEmail(email);
-            return new SecurityUser(loginUser);
+            return null;//new SecurityUser(loginUser);
         }
         return null;
 
