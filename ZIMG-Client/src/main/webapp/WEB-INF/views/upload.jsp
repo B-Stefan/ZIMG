@@ -6,11 +6,9 @@
 <zimg:defaultLayout>
     <jsp:body>
         <%-- HEAD --%>
-        <h1>Top 10 tags</h1>
-
         <div class="container" id="upload">
             <h1>Upload</h1>
-            <form method="POST" enctype="multipart/form-data" action="/upload">
+            <form method="POST" enctype="multipart/form-data" action="/upload?${_csrf.parameterName}=${_csrf.token}">
                 <input type="file" name="file">
                 <input type="submit" class="btn btn-default" id ="upload-submit" value="Upload">
             </form>
