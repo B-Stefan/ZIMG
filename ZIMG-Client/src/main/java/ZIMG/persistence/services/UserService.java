@@ -2,6 +2,7 @@ package ZIMG.persistence.services;
 
 import ZIMG.exceptions.MultipleUserForUserNameExistException;
 import ZIMG.models.User;
+import ZIMG.persistence.services.security.SecurityUser;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
