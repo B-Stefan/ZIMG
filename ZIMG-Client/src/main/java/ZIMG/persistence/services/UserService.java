@@ -27,7 +27,7 @@ public class UserService extends  BaseService<User,UserRepository> {
     public User getUserByName(String username) throws MultipleUserForUserNameExistException{
         List<User> usersList = this.repository.findByName(username);
         if(usersList.size() > 1){
-            throw new MultipleUserForUserNameExistException(username,usersList);
+            throw new MultipleUserForUserNameExistException(username, usersList);
         }
         return usersList.get(0);
     }
@@ -46,16 +46,14 @@ public class UserService extends  BaseService<User,UserRepository> {
         return this.repository.findOneByName(name);
     }
     
-    public SecurityUser getCurrentUser() throws SecurityException
-    {
+    public SecurityUser getCurrentUser() throws SecurityException {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails)
-        {
+        if (principal instanceof UserDetails) {
             String email = ((UserDetails) principal).getUsername();
             User loginUser = this.findUserByEmail(email);
             return new SecurityUser(loginUser);
-        }else {
+        } else {
             throw new SecurityException("User is not logged in and you try to get the current user ");
         }
     }

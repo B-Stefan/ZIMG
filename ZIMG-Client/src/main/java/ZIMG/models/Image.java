@@ -57,4 +57,8 @@ public class Image extends BaseModel {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+    public void addTag(Tag tag) {
+        this.tags.add(tag);
+    }
 }

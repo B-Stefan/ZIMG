@@ -8,12 +8,12 @@
 
 <zimg:defaultLayout>
     <jsp:body>
-        <%-- HEAD --%>
-        <h1>${user.name}'s uploads:</h1>
-
-        <%-- IMAGES --%>
         <div class="container">
-            <p>${fn:length(user.images)}</p>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <h1>${user.name}'s uploads:</h1>
+                </div>
+            </div>
             <div class="row">
                 <c:forEach items="${images}" var="image">
                     <div class="col-xs-6 col-md-3">

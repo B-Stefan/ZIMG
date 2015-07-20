@@ -20,9 +20,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-md-12">
-                            <!-- <h3>No Comments</h3>-->
-                            <!-- <h3>1 Comment</h3>-->
-                            <h3>2 Comments</h3>
+                            <h3>${CommentHeadline}</h3>
                         </div>
                     </div>
 
@@ -42,11 +40,11 @@
                         <div class="col-xs-12 col-md-12">
                             <h4>Write a new comment:</h4>
 
-                            <form method="post" action="/image/${image.id}">
+                            <form method="post" action="/image/${image.id}/comment">
                                 <input type="hidden"
                                        name="${_csrf.parameterName}"
                                        value="${_csrf.token}" />
-                                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                <textarea class="form-control" id="comment-textarea" name="comment" rows="3"></textarea>
 
                                 <button type="submit" class="btn btn-default" id="comment-submit">Submit</button>
                             </form>
