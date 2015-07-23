@@ -61,12 +61,21 @@
         </property>
     </bean>
 
+    <!-- Local MySQL Server-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/zimg" />
         <property name="username" value="dbUser" />
         <property name="password" value="dbPass" />
     </bean>
+
+    <!-- HS-Bremen Server-->
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+        <!--<property name="url" value="jdbc:mysql://195.37.176.178:11336/dbwebanw_sose15_12" />-->
+        <!--<property name="username" value="dbweb_user_12" />-->
+        <!--<property name="password" value="woaXUKYsWP" />-->
+    <!--</bean>-->
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
