@@ -90,7 +90,6 @@ ALTER TABLE favorites
 ALTER TABLE tag2image
   ADD COLUMN tagid int NOT NULL ,
   ADD COLUMN imageid int NOT NULL ,
-  ADD COLUMN createdat DATETIME NOT NULL,
   ADD FOREIGN KEY fk_tag2image_tagid (tagid)      REFERENCES tags (id)  ON DELETE CASCADE,
   ADD FOREIGN KEY fk_tag2image_imageid (imageid)  REFERENCES images (id)ON DELETE CASCADE
 ;
