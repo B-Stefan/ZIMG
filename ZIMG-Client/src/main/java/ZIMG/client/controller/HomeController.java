@@ -4,6 +4,7 @@ import ZIMG.models.Image;
 import ZIMG.models.User;
 import ZIMG.persistence.repositories.ImageRepository;
 import ZIMG.persistence.services.UserService;
+import com.sun.javafx.sg.prism.NGShape;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +25,17 @@ public class HomeController {
     ImageRepository imageRepository;
 
     @RequestMapping("home")
-    public String loadOverview(Model m) {
+    public String homePage(Model m) {
 
         Iterable<Image> imageList = this.imageRepository.findAll(new Sort(Sort.Direction.DESC, "createdAt"));
         m.addAttribute("imageList", imageList);
 
         return "home";
+    }
+
+    @RequestMapping("")
+    public String defaultPage(Model m){
+        return this.homePage(m);
     }
 
 }

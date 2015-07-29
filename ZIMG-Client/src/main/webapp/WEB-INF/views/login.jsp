@@ -12,20 +12,21 @@
         <div class="col-xs-4 col-md-4">
           <img src="/resources/img/WDB_ZIMG_logo.png" id="logo">
           <c:if test='${errMsg != null}'>
-            <c:set value="animate shake animated" var="cssClass"/>
+            <c:set value="animate shake animated" var="cssShakeClass"/>
+            <c:set value="has-error" var="cssFormGroupErrorClass"/>
           </c:if>
-          <div class="well ${cssClass}">
+          <div class="well ${cssShakeClass}">
             <h2>Login</h2>
             <br/>
             <form method="POST" action="/login">
-              <div class="form-group">
+              <div class="form-group ${cssFormGroupErrorClass}">
                 <label for="username">Username</label>
                 <input type="hidden"
                        name="${_csrf.parameterName}"
                        value="${_csrf.token}" />
                 <input type="text" class="form-control" id="username" name="username" placeholder="Username">
               </div>
-              <div class="form-group">
+              <div class="form-group ${cssFormGroupErrorClass}">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
               </div>

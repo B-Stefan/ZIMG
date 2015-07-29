@@ -24,7 +24,8 @@
 
 <body>
 <div id="pageheader">
-    <zimg:navbar/>
+        <zimg:navbar/>
+
 </div>
 <div id="body" class="animate fadeIn animated">
     <c:if test='${errMsg != null}'>
