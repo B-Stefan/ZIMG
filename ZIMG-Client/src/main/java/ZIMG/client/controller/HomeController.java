@@ -31,7 +31,7 @@ public class HomeController {
     @RequestMapping("home")
     public String homePage(Model m) {
 
-        Pageable pageable = new PageRequest(1,5,new Sort(Sort.Direction.DESC, "createdAt"));
+        Pageable pageable = new PageRequest(0,10,new Sort(Sort.Direction.DESC, "createdAt"));
         Page<Image> imagePage = this.imageService.findAll(pageable);
         m.addAttribute("imagePage", imagePage);
 

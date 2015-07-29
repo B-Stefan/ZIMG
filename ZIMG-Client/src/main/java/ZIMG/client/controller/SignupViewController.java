@@ -56,6 +56,6 @@ public class SignupViewController extends BaseController {
                     JSP_PAGE_NAME);
         }
 
-        return "signup";
+        return "redirect:" + LoginViewController.JSP_PAGE_NAME;
     }
 }

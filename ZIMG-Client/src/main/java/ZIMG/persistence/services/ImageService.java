@@ -1,6 +1,7 @@
 package ZIMG.persistence.services;
 
 import ZIMG.models.Image;
+import ZIMG.models.Tag;
 import ZIMG.models.User;
 import ZIMG.persistence.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,13 @@ public class ImageService extends BaseService<Image,ImageRepository> {
         image.setUploader(userService.getCurrentUser());
         return super.create(image);
     }
-
+    public void addTag(Tag tag, String imageId){
+        this.addTag(tag,this.getImageById(imageId));
+    }
+    public void addTag(Tag tag, Image image){
+        image.addTag(tag);
+        this.save(image);
+    }
     public List<Image> getTopTenImages() {
         return this.repository.findTopTenImages();
     }

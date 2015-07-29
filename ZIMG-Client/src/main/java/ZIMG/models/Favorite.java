@@ -31,4 +31,18 @@ public class Favorite extends BaseModel {
     public void setImage(Image image) {
         this.image = image;
     }
+
+    @Override
+    public boolean equals(Object other){
+
+        if(other instanceof Favorite){
+            Favorite otherFav = (Favorite) other;
+            if(this.getImage() == null && otherFav.getImage() == null && this.getImage().getId() != otherFav.getImage().getId() ){
+                return  false;
+            }
+
+            return !(this.getUser() == null && otherFav.getUser() == null && this.getUser().getId() != otherFav.getUser().getId());
+        }
+        return super.equals(other);
+    }
 }

@@ -86,13 +86,13 @@ public class UserService extends  BaseService<User,UserRepository> {
 
         return this.repository.save(newUser);
     }
-    public SecurityUser getCurrentUser() throws SecurityException {
+    public User getCurrentUser() throws SecurityException {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             String email = ((UserDetails) principal).getUsername();
             User loginUser = this.findUserByEmail(email);
-            return new SecurityUser(loginUser);
+            return loginUser;
         } else {
             throw new SecurityException("User is not logged in and you try to get the current user ");
         }
