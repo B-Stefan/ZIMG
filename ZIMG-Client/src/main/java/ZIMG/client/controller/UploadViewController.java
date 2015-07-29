@@ -1,6 +1,7 @@
 package ZIMG.client.controller;
 
 import ZIMG.exceptions.FiletypeNotAcceptedException;
+import ZIMG.exceptions.SpringRuntimeExceptionForUser;
 import ZIMG.models.Image;
 import ZIMG.persistence.services.ImageService;
 import ZIMG.persistence.services.UserService;
@@ -18,9 +19,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 @Controller
-public class UploadViewController {
+public class UploadViewController extends BaseController {
 
-    static Logger log = Logger.getLogger(UserDetailViewController.class.getName());
+    public static final String JSP_PAGE_NAME = "upload";
+
+    private static Logger log = Logger.getLogger(UserDetailViewController.class.getName());
 
     @Autowired
     private ImageService imageService;
@@ -31,13 +34,13 @@ public class UploadViewController {
     @Autowired
     private ServletContext servletContext;
 
-    @RequestMapping(value="/upload", method= RequestMethod.GET)
+    @RequestMapping(value=JSP_PAGE_NAME, method= RequestMethod.GET)
     public String uploadPage(Model m) {
 
-        return "upload";
+        return JSP_PAGE_NAME;
     }
 
-    @RequestMapping(value="/upload", method= RequestMethod.POST)
+    @RequestMapping(value=JSP_PAGE_NAME, method= RequestMethod.POST)
     public String handleUpload(@RequestParam("file") MultipartFile file, Model m) {
 
         if (!file.isEmpty()) {
@@ -60,21 +63,17 @@ public class UploadViewController {
                 stream.write(bytes);
                 stream.close();
 
-                Image image = new Image();
-                image.setFilename(file.getOriginalFilename());
+                imageService.create(file);
 
-                image.setUploader(userService.getCurrentUser());
-
-                imageService.save(image);
                 return "redirect:home";
             } catch (FiletypeNotAcceptedException e) {
-                return "redirect:upload?error=yes";
+                throw new SpringRuntimeExceptionForUser(e, SpringRuntimeExceptionForUser.TYPE.ERROR,JSP_PAGE_NAME);
             } catch (Exception e) {
                 log.log(Priority.DEBUG, e.getMessage());
-                return "redirect:home";
+                throw new SpringRuntimeExceptionForUser(e);
             }
         } else {
-            return "redirect:home";
+            throw new SpringRuntimeExceptionForUser("Your file is empty", SpringRuntimeExceptionForUser.TYPE.ERROR,JSP_PAGE_NAME);
         }
     }
 }

@@ -19,8 +19,11 @@ public abstract class BaseService<M extends BaseModel ,G extends BaseRepository<
             throw  new NotFoundException("The id " + id + "  in service " + this.getClass().getName()  + " is not a valid id ");
         }
     }
-    public void save(M item){
-        this.repository.saveAndFlush(item);
+    public M create(M item){
+        return this.save(item);
+    }
+    public M save(M item){
+        return this.repository.saveAndFlush(item);
     }
     public void update(M item){
         this.repository.saveAndFlush(item);

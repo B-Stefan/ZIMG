@@ -3,10 +3,13 @@ package ZIMG.persistence.services;
 import ZIMG.models.Image;
 import ZIMG.models.User;
 import ZIMG.persistence.repositories.ImageRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +17,9 @@ import java.util.List;
 @Scope("prototype")
 @Transactional
 public class ImageService extends BaseService<Image,ImageRepository> {
+
+    @Autowired
+    private UserService userService;
 
     public List<Image> getByUploader(User user) {
         return new ArrayList<Image>();
@@ -27,6 +33,14 @@ public class ImageService extends BaseService<Image,ImageRepository> {
         image.getComments().size();
 
         return image;
+    }
+    public Image create(MultipartFile file){
+
+        Image image = new Image();
+        image.setFilename(file.getOriginalFilename());
+
+        image.setUploader(userService.getCurrentUser());
+        return super.create(image);
     }
 
     public List<Image> getTopTenImages() {
