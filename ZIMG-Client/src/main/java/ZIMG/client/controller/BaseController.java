@@ -12,8 +12,8 @@ import javax.annotation.PostConstruct;
 
 public abstract class BaseController {
 
-    @ExceptionHandler(SpringRuntimeExceptionForUser.class)
-    public ModelAndView handleCustomException(SpringRuntimeExceptionForUser ex) {
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleAllException(SpringRuntimeExceptionForUser ex) {
 
         ModelAndView model = new ModelAndView(ex.getJspPageName());
         model.addObject("errType", ex.getType());
