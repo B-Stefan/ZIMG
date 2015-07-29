@@ -46,7 +46,7 @@ public class UploadViewController extends BaseController {
         if (!file.isEmpty()) {
             try {
 
-                String path = servletContext.getRealPath("/resources/upload/" + file.getOriginalFilename());
+                String path = servletContext.getRealPath("/uploads/" + file.getOriginalFilename());
 
                 if (file.getContentType().equals("image/jpeg") ||
                         file.getContentType().equals("image/gif") ||

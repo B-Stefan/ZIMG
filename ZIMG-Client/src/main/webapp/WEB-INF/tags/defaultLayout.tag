@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="resources/css/headerFooterStyle.css">
-    <link rel="stylesheet" href="resources/css/animate.css">
+    <link rel="stylesheet" href="/resources/css/headerFooterStyle.css">
+    <link rel="stylesheet" href="/resources/css/animate.css">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <script src="<c:url value="/resources/js/script.js" />"></script>
 </head>

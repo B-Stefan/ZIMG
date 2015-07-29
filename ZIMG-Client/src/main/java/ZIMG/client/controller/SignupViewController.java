@@ -1,7 +1,6 @@
 package ZIMG.client.controller;
 
-import ZIMG.exceptions.SpringRuntimeExceptionForUser;
-import ZIMG.exceptions.UserEmailAlreadyInUseException;
+import ZIMG.exceptions.*;
 import ZIMG.models.BaseModel;
 import ZIMG.persistence.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,28 @@ public class SignupViewController extends BaseController {
                            @RequestParam("password") String password) {
 
         try {
+
             this.userService.register(userEmail,password,username);
+
         }catch (UserEmailAlreadyInUseException e){
+
             throw new SpringRuntimeExceptionForUser("An User with this email address might already exist",
+                    SpringRuntimeExceptionForUser.TYPE.ERROR,
+                    JSP_PAGE_NAME);
+        }catch (UserPasswordConstrainsException e){
+
+            throw new SpringRuntimeExceptionForUser(e,
+                    SpringRuntimeExceptionForUser.TYPE.ERROR,
+                    JSP_PAGE_NAME);
+        }
+        catch (EmailNotValidException e){
+
+            throw new SpringRuntimeExceptionForUser("Your email address is not valid, please signup with a valid email adress",
+                    SpringRuntimeExceptionForUser.TYPE.ERROR,
+                    JSP_PAGE_NAME);
+        }
+        catch (UserNameConstrainsException e){
+            throw new SpringRuntimeExceptionForUser(e,
                     SpringRuntimeExceptionForUser.TYPE.ERROR,
                     JSP_PAGE_NAME);
         }

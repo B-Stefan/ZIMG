@@ -9,17 +9,17 @@ public class SpringRuntimeExceptionForUser extends RuntimeException {
     private static String DEFAULT_JSP_NAME = "error";
     private final TYPE type;
     private final String jspPageName;
-    public SpringRuntimeExceptionForUser(Exception e){
+    public SpringRuntimeExceptionForUser(Throwable e){
         super(e);
         this.type = TYPE.ERROR;
         this.jspPageName = DEFAULT_JSP_NAME;
     }
-    public SpringRuntimeExceptionForUser(Exception e, TYPE type){
+    public SpringRuntimeExceptionForUser(Throwable e, TYPE type){
         super(e);
         this.type = type;
         this.jspPageName = DEFAULT_JSP_NAME;
     }
-    public SpringRuntimeExceptionForUser(Exception e, TYPE type, String useJSPPage){
+    public SpringRuntimeExceptionForUser(Throwable e, TYPE type, String useJSPPage){
         super(e);
         this.type = type;
         this.jspPageName = useJSPPage;

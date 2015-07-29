@@ -53,4 +53,16 @@ $(document).ready(function() {
 
         return false;
     });
+
+    $("img.overview-entry").each(function(index,el){
+        var $el = $(el);
+        if($el.attr("file-name").indexOf(".gif") > -1){
+            $el.mouseenter(function(){
+                $(this).attr("src","/uploads/" + $(this).attr("file-name"));
+            });
+            $el.mouseleave(function(){
+                $(this).attr("src","/thumbnail/" + $(this).attr("image-id"));
+            });
+        }
+    })
 });

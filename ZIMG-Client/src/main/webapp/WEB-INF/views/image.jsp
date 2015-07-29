@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xs-8 col-md-8">
                     <a href="/image/${image.id}" id="imageLink">
-                        <img class="img-responsive img-rounded" src="/resources/upload/${image.filename}"/>
+                        <img class="img-responsive img-rounded" src="/uploads/${image.filename}"/>
                         <div id="mark-as-favorite"><span class="glyphicon glyphicon-star"></div>
                     </a>
 
@@ -28,7 +28,7 @@
                         <!-- Comment Entry One -->
                         <div class="row comment-entry">
                             <div class="col-xs-2 col-md-2">
-                                <p><a href="/user/${comment.user.name}">${comment.user.name}</a></p>
+                                <p><a href="/user/${comment.user.id}">${comment.user.name}</a></p>
                             </div>
                             <div class="col-xs-10 col-md-10">
                                 <p>${comment.comment}</p>

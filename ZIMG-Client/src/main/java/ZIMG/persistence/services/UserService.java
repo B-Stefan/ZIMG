@@ -1,12 +1,13 @@
 package ZIMG.persistence.services;
 
-import ZIMG.exceptions.MultipleUserForUserNameExistException;
-import ZIMG.exceptions.UserEmailAlreadyInUseException;
+import ZIMG.exceptions.*;
 import ZIMG.models.User;
 import ZIMG.persistence.services.security.SecurityUser;
+import ZIMG.utils.EmailValidator;
+import javassist.NotFoundException;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
-import org.hibernate.exception.ConstraintViolationException;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,21 +27,17 @@ public class UserService extends  BaseService<User,UserRepository> {
      */
     private static final Logger LOG  = Logger.getLogger(UserService.class);
 
-    /**
-     * Gibt User zurueck, dessen Username angegeben wird,
-     * wenn mehrere User gefunden werden, wird MultipleUserForUserNameExistException geworfen
-     * @param username
-     * @return User
-     * @throws MultipleUserForUserNameExistException
-     */
-    public User getUserByName(String username) throws MultipleUserForUserNameExistException{
-        List<User> usersList = this.repository.findByName(username);
-        if(usersList.size() > 1){
-            throw new MultipleUserForUserNameExistException(username, usersList);
-        }
-        return usersList.get(0);
-    }
+    private static final int PASSWORD_MIN_LENGTH = 5;
 
+    private static final int USERNAME_MIN_LENGTH = 3;
+
+
+    @Transactional
+    public User getUserWithImages(String userId) throws NotFoundException{
+        User  u = super.getById(userId);
+        u.getImages().size();
+        return u;
+    }
     /**
      * Gibt die fuenf User als Liste zurück, die aktuell die meisten Uploads haben
      * @return List<User>
@@ -51,16 +48,28 @@ public class UserService extends  BaseService<User,UserRepository> {
     public User findUserByEmail(String email){
         return this.repository.findOneByEmail(email);
     }
-    public User findUserByName (String name){
+
+    public User findUserByName (String name) {
         return this.repository.findOneByName(name);
     }
 
-    public User register(String userEmail, String password, String userName) throws UserEmailAlreadyInUseException {
+    public User register(String userEmail, String password, String userName) throws UserEmailAlreadyInUseException,UserPasswordConstrainsException,EmailNotValidException,UserNameConstrainsException{
+        if(userName.length() < USERNAME_MIN_LENGTH){
+            throw new UserNameConstrainsException(userName,USERNAME_MIN_LENGTH);
+        }
         User u = this.register(userEmail, password);
-                u.setName(userName);
+        u.setName(userName);
         return this.repository.save(u);
     }
-    public User register(final String userEmail,final String password) throws UserEmailAlreadyInUseException {
+    public User register(final String userEmail,final String password) throws UserEmailAlreadyInUseException, UserPasswordConstrainsException,EmailNotValidException{
+
+        if(password.length() < PASSWORD_MIN_LENGTH ){
+                throw new UserPasswordConstrainsException(password,PASSWORD_MIN_LENGTH );
+        }
+        EmailValidator validEmail = new EmailValidator();
+        if(!validEmail.validate(userEmail)) {
+            throw new EmailNotValidException(userEmail);
+        }
 
         final User existing = this.findUserByEmail(userEmail);
         if(existing != null){

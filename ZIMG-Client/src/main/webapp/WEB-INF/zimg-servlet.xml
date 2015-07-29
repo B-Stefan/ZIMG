@@ -102,6 +102,7 @@
 
     <!-- the mvc resources tag does the magic -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/uploads/**" location="/uploads/" />
 
 
     <sec:http auto-config="true">

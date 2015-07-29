@@ -3,11 +3,15 @@ package ZIMG.client.controller;
 import ZIMG.models.Image;
 import ZIMG.models.User;
 import ZIMG.persistence.repositories.ImageRepository;
+import ZIMG.persistence.services.ImageService;
 import ZIMG.persistence.services.UserService;
 import com.sun.javafx.sg.prism.NGShape;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.stereotype.Controller;
@@ -22,13 +26,14 @@ import org.springframework.web.multipart.MultipartFile;
 public class HomeController {
 
     @Autowired
-    ImageRepository imageRepository;
+    ImageService imageService;
 
     @RequestMapping("home")
     public String homePage(Model m) {
 
-        Iterable<Image> imageList = this.imageRepository.findAll(new Sort(Sort.Direction.DESC, "createdAt"));
-        m.addAttribute("imageList", imageList);
+        Pageable pageable = new PageRequest(1,5,new Sort(Sort.Direction.DESC, "createdAt"));
+        Page<Image> imagePage = this.imageService.findAll(pageable);
+        m.addAttribute("imagePage", imagePage);
 
         return "home";
     }
