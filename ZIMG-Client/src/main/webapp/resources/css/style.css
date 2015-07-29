@@ -113,3 +113,11 @@
 #footerbar #heart {
     color: #d42b2b;
 }
+
+
+.bg-danger {
+    background-color: #f2dede!important;
+}
+.bg-warning {
+    background-color: #fcf8e3;!important;
+}

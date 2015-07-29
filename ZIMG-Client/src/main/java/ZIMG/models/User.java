@@ -11,6 +11,7 @@ import java.util.List;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class User extends BaseModel {
 
+    @Column(unique = true)
     private String email;
 
     private String name;

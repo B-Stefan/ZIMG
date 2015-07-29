@@ -1,0 +1,20 @@
+package ZIMG.client.controller;
+
+
+import ZIMG.exceptions.SpringRuntimeExceptionForUser;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
+
+public abstract class BaseController {
+
+    @ExceptionHandler(SpringRuntimeExceptionForUser.class)
+    public ModelAndView handleCustomException(SpringRuntimeExceptionForUser ex) {
+
+        ModelAndView model = new ModelAndView(ex.getJspPageName());
+        model.addObject("errType", ex.getType());
+        model.addObject("errMsg", ex.getMessage());
+
+        return model;
+
+    }
+}

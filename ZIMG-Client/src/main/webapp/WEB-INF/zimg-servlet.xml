@@ -107,19 +107,22 @@
     <sec:http auto-config="true">
 
         <sec:intercept-url pattern="/resources/**" access="permitAll"/>
-        <sec:intercept-url pattern="/logout" access="permitAll"/>
         <sec:intercept-url pattern="/login" access="permitAll"/>
         <sec:intercept-url pattern="/signup" access="permitAll"/>
         <sec:intercept-url pattern="/about" access="permitAll"/>
         <sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
         <sec:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 
-        <sec:form-login login-page="/login" authentication-failure-url="/login"/>
-        <sec:logout logout-url="/logout" logout-success-url="/home"/> <!-- the logout url we will use in JSP -->
+        <sec:form-login login-page="/login"
+                        authentication-failure-url="/login?error"/>
+        <sec:logout logout-url="/logout"
+                    logout-success-url="/home"/> <!-- the logout url we will use in JSP -->
     </sec:http>
     <sec:authentication-manager alias="authenticationManager">
-        <sec:authentication-provider user-service-ref="userDetailService" >
-
+        <sec:authentication-provider
+                user-service-ref="userDetailService"
+                >
+            <sec:password-encoder hash="bcrypt" />
         </sec:authentication-provider>
     </sec:authentication-manager>
 
