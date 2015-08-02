@@ -5,6 +5,7 @@ $(document).ready(function() {
 
     var urlForTags = document.URL + "/tag";
     var urlForFavorites = document.URL + "/favorite";
+    var urlUnForFavorites = document.URL + "/unfavorite";
 
     $("#add-tag-textfield").keypress(function (e) {
         // Enter is 13
@@ -40,15 +41,25 @@ $(document).ready(function() {
     });
 
     $("#mark-as-favorite").click(function(){
+
+        var url = $("#mark-as-favorite").hasClass("marked") ? urlUnForFavorites : urlForFavorites;
+
         $.ajax({
             method: "POST",
-            url: urlForFavorites,
+            url: url,
             headers: {
                 "X-CSRF-TOKEN": token
             }
         }).done(function( msg ) {
-            console.log("added to favorites.");
-            $("#mark-as-favorite").addClass("marked");
+
+            if($("#mark-as-favorite").hasClass("marked")) {
+                console.log("remove to favorites.");
+                $("#mark-as-favorite").removeClass("marked");
+            } else {
+                console.log("added to favorites.");
+                $("#mark-as-favorite").addClass("marked");
+            }
+
         });
 
         return false;

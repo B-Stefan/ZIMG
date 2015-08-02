@@ -20,6 +20,7 @@ public class UserDetailViewController extends BaseController{
     static Logger log = Logger.getLogger(UserDetailViewController.class.getName());
 
     public static final String JSP_PAGE_NAME = "user";
+
     @Autowired
     private UserService userService;
 

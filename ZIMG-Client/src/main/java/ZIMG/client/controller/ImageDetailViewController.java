@@ -44,12 +44,15 @@ public class ImageDetailViewController extends BaseController {
     @Autowired
     FavoriteService favoriteService;
 
+    @Autowired
+    UserService userService;
+
     @RequestMapping(value="/"+JSP_PAGE_NAME+"/{imageId}", method= RequestMethod.GET)
     public String getImageDetailPage(@PathVariable String imageId, Model m) {
 
         Image image = imageService.getImageById(imageId);
+        User user =  userService.getCurrentUser();
 
-    //    LOG.log(Priority.DEBUG,"Size of image tags " +  image.getTags().size());
         m.addAttribute("image", image);
 
         if(image.getComments().size() == 0) {
@@ -58,6 +61,14 @@ public class ImageDetailViewController extends BaseController {
             m.addAttribute("CommentHeadline", "1 Comment");
         } else {
             m.addAttribute("CommentHeadline", image.getComments().size() + " Comments");
+        }
+
+        if(favoriteService.isFavorite(image, user)) {
+            m.addAttribute("isFavorite", true);
+            LOG.log(Priority.DEBUG, "IS FAV");
+        } else {
+            m.addAttribute("isFavorite", false);
+            LOG.log(Priority.DEBUG, "IS FAV NO");
         }
 
         return JSP_PAGE_NAME;
@@ -98,7 +109,6 @@ public class ImageDetailViewController extends BaseController {
                 throw new SpringRuntimeExceptionForUser(e);
             }
 
-
         } else if(action.equals("favorite")) {
             try{
                 favoriteService.addFavorite(imageId);
@@ -106,6 +116,13 @@ public class ImageDetailViewController extends BaseController {
                 throw new SpringRuntimeExceptionForUser(e, SpringRuntimeExceptionForUser.TYPE.WARNING,JSP_PAGE_NAME);
             }
             catch (NotFoundException e){
+                throw new SpringRuntimeExceptionForUser(e);
+            }
+
+        } else if(action.equals("unfavorite")) {
+            try {
+                favoriteService.removeFavorite(imageId);
+            } catch (NotFoundException e) {
                 throw new SpringRuntimeExceptionForUser(e);
             }
         }
