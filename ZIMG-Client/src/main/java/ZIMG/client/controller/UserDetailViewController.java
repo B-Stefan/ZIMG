@@ -24,16 +24,17 @@ public class UserDetailViewController extends BaseController{
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value=JSP_PAGE_NAME  + "/{userId}", method= RequestMethod.GET)
-    public String loadHomePage(@PathVariable String userId, Model m) {
+    @RequestMapping(value=JSP_PAGE_NAME  + "/{userName}", method= RequestMethod.GET)
+    public String loadHomePage(@PathVariable String userName, Model m) {
 
         try {
-            User user =  userService.getUserWithImages(userId);
+            User user = userService.getUserByNameWithImages(userName);
+
             m.addAttribute("user", user);
             m.addAttribute("images", user.getImages());
 
-        }catch (NotFoundException e ){
-            throw new SpringRuntimeExceptionForUser(e);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
         }
 
         return JSP_PAGE_NAME;

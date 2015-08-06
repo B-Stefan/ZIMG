@@ -32,6 +32,7 @@ public class ImageService extends BaseService<Image,ImageRepository> {
         // Lazy loading nested lists
         image.getTags().size();
         image.getComments().size();
+        image.getUpvotes().size();
 
         return image;
     }

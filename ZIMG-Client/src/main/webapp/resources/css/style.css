@@ -31,6 +31,12 @@
     width: 100%;
 }
 
+#overview .spacer,
+#imageDetail .spacer {
+    display: inline-block;
+    width: 75px;
+}
+
 #imageDetail #imageLink {
     position: relative;
     display: block;
@@ -90,6 +96,23 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+.upvote-button {
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upvote-button:hover {
+    background-color: #669999;
+    color: white;
+}
+
+.marked {
+    background-color: #60a7a7;
+    color: white;
 }
 
 #upload #upload-submit {

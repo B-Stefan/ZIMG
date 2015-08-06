@@ -38,6 +38,13 @@ public class UserService extends  BaseService<User,UserRepository> {
         u.getImages().size();
         return u;
     }
+
+    @Transactional
+    public User getUserByNameWithImages (String name) throws NotFoundException{
+        User  u = this.repository.findOneByName(name);
+        u.getImages().size();
+        return u;
+    }
     /**
      * Gibt die fuenf User als Liste zurück, die aktuell die meisten Uploads haben
      * @return List<User>
@@ -47,10 +54,6 @@ public class UserService extends  BaseService<User,UserRepository> {
     }
     public User findUserByEmail(String email){
         return this.repository.findOneByEmail(email);
-    }
-
-    public User findUserByName (String name) {
-        return this.repository.findOneByName(name);
     }
 
     public User register(String userEmail, String password, String userName) throws UserEmailAlreadyInUseException,UserPasswordConstrainsException,EmailNotValidException,UserNameConstrainsException{

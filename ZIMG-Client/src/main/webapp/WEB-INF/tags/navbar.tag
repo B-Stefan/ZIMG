@@ -31,7 +31,6 @@
               <sec:authentication property="principal.username" />
               <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="/user/<sec:authentication property="principal.id" />">My Profil</a></li>
               <li><a href="/favorites">My Favorites</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="/logout">Logout</a></li>

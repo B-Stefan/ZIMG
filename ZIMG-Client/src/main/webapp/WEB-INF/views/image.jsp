@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <zimg:defaultLayout>
     <jsp:body>
@@ -28,10 +28,11 @@
                         <!-- Comment Entry One -->
                         <div class="row comment-entry">
                             <div class="col-xs-2 col-md-2">
-                                <p><a href="/user/${comment.user.id}">${comment.user.name}</a></p>
+                                <p><a href="/user/${comment.user.name}">${comment.user.name}</a></p>
                             </div>
                             <div class="col-xs-10 col-md-10">
                                 <p>${comment.comment}</p>
+                                <hr />
                             </div>
                         </div>
                     </c:forEach>
@@ -52,19 +53,28 @@
                     </div>
                 </div>
                 <div class="col-xs-4 col-md-4">
-                    <h4>Information</h4>
-                    Uploader: <a href="/user/${image.uploader.name}">${image.uploader.name}</a> <br/>
-                    Date: ${image.createdAt}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <span class="spacer">Uploader:</span><a href="/user/${image.uploader.name}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ${image.uploader.name}</a> <br/>
+                            <hr />
+                            <span class="spacer">Date:</span><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <fmt:formatDate value="${image.createdAt}" pattern="dd.MM.yyyy - HH:mm" />
 
-                    <h4>Tags</h4>
+                            <hr />
 
-                    <div id="tag-box">
-                        <c:forEach items="${image.tags}" var="tag">
-                            <div class="tag"><span class="glyphicon glyphicon-tag"></span>${tag.tag}</div>
-                        </c:forEach>
+                            <div class="upvote-button">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <span class="upvote-count">${fn:length(image.upvotes)}</span> Upvotes
+                            </div>
+
+                            <hr />
+                            <div id="tag-box">
+                                <c:forEach items="${image.tags}" var="tag">
+                                    <div class="tag"><span class="glyphicon glyphicon-tag"></span>${tag.tag}</div>
+                                </c:forEach>
+                            </div>
+
+                            <input type="text" class="form-control" id="add-tag-textfield" placeholder="Add new Tag ...">
+                        </div>
                     </div>
-
-                    <input type="text" class="form-control" id="add-tag-textfield" placeholder="Add new Tag ...">
                 </div>
             </div>
 
