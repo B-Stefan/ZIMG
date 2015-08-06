@@ -61,12 +61,21 @@
         </property>
     </bean>
 
+    <!-- Local MySQL Server-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/zimg" />
         <property name="username" value="dbUser" />
         <property name="password" value="dbPass" />
     </bean>
+
+    <!-- HS-Bremen Server-->
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+        <!--<property name="url" value="jdbc:mysql://195.37.176.178:11336/dbwebanw_sose15_12" />-->
+        <!--<property name="username" value="dbweb_user_12" />-->
+        <!--<property name="password" value="woaXUKYsWP" />-->
+    <!--</bean>-->
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -93,24 +102,28 @@
 
     <!-- the mvc resources tag does the magic -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/uploads/**" location="/uploads/" />
 
 
     <sec:http auto-config="true">
 
         <sec:intercept-url pattern="/resources/**" access="permitAll"/>
-        <sec:intercept-url pattern="/logout" access="permitAll"/>
         <sec:intercept-url pattern="/login" access="permitAll"/>
         <sec:intercept-url pattern="/signup" access="permitAll"/>
         <sec:intercept-url pattern="/about" access="permitAll"/>
         <sec:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
         <sec:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
 
-        <sec:form-login login-page="/login" authentication-failure-url="/login"/>
-        <sec:logout logout-url="/logout" logout-success-url="/home"/> <!-- the logout url we will use in JSP -->
+        <sec:form-login login-page="/login"
+                        authentication-failure-url="/login?error"/>
+        <sec:logout logout-url="/logout"
+                    logout-success-url="/home"/> <!-- the logout url we will use in JSP -->
     </sec:http>
     <sec:authentication-manager alias="authenticationManager">
-        <sec:authentication-provider user-service-ref="userDetailService" >
-
+        <sec:authentication-provider
+                user-service-ref="userDetailService"
+                >
+            <sec:password-encoder hash="bcrypt" />
         </sec:authentication-provider>
     </sec:authentication-manager>
 

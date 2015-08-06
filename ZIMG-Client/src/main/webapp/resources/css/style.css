@@ -31,6 +31,12 @@
     width: 100%;
 }
 
+#overview .spacer,
+#imageDetail .spacer {
+    display: inline-block;
+    width: 75px;
+}
+
 #imageDetail #imageLink {
     position: relative;
     display: block;
@@ -92,6 +98,23 @@
     display: block;
 }
 
+.upvote-button {
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upvote-button:hover {
+    background-color: #669999;
+    color: white;
+}
+
+.marked {
+    background-color: #60a7a7;
+    color: white;
+}
+
 #upload #upload-submit {
     margin-top: 20px;
 }
@@ -112,4 +135,12 @@
 
 #footerbar #heart {
     color: #d42b2b;
+}
+
+
+.bg-danger {
+    background-color: #f2dede!important;
+}
+.bg-warning {
+    background-color: #fcf8e3;!important;
 }

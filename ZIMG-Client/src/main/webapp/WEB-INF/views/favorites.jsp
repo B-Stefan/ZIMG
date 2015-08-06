@@ -17,7 +17,7 @@
       <div class="row">
         <c:forEach items="${favorites}" var="favorite">
           <div class="col-xs-6 col-md-3">
-            <a href="/image/${favorite.image.id}" class="thumbnail"><img src="/resources/upload/${favorite.image.filename}" /></a>
+            <zimg:imagePreview className="thumbnail" image="${favorite.image}"/>
           </div>
         </c:forEach>
       </div>

@@ -1,10 +1,16 @@
 package ZIMG.client.controller;
 
+import ZIMG.exceptions.CommentConstrainsException;
+import ZIMG.exceptions.FavoriteAlreadyExistException;
+import ZIMG.exceptions.SpringRuntimeExceptionForUser;
+import ZIMG.exceptions.TagConstrainsException;
 import ZIMG.models.Favorite;
 import ZIMG.models.Image;
 import ZIMG.models.Tag;
 import ZIMG.models.User;
 import ZIMG.persistence.services.*;
+import com.mysql.fabric.FabricCommunicationException;
+import javassist.NotFoundException;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +28,9 @@ import java.util.List;
 
 @Controller
 @EnableWebSecurity
-public class ImageDetailViewController {
+public class ImageDetailViewController extends BaseController {
 
+    public static final String JSP_PAGE_NAME = "image";
     static Logger LOG = Logger.getLogger(ImageDetailViewController.class);
     @Autowired
     ImageService imageService;
@@ -32,20 +39,20 @@ public class ImageDetailViewController {
     CommentService commentService;
 
     @Autowired
-    UserService userService;
-
-    @Autowired
     TagService tagService;
 
     @Autowired
     FavoriteService favoriteService;
 
-    @RequestMapping(value="/image/{imageId}", method= RequestMethod.GET)
+    @Autowired
+    UserService userService;
+
+    @RequestMapping(value="/"+JSP_PAGE_NAME+"/{imageId}", method= RequestMethod.GET)
     public String getImageDetailPage(@PathVariable String imageId, Model m) {
 
         Image image = imageService.getImageById(imageId);
+        User user =  userService.getCurrentUser();
 
-    //    LOG.log(Priority.DEBUG,"Size of image tags " +  image.getTags().size());
         m.addAttribute("image", image);
 
         if(image.getComments().size() == 0) {
@@ -56,9 +63,17 @@ public class ImageDetailViewController {
             m.addAttribute("CommentHeadline", image.getComments().size() + " Comments");
         }
 
-        return "image";
+        if(favoriteService.isFavorite(image, user)) {
+            m.addAttribute("isFavorite", true);
+            LOG.log(Priority.DEBUG, "IS FAV");
+        } else {
+            m.addAttribute("isFavorite", false);
+            LOG.log(Priority.DEBUG, "IS FAV NO");
+        }
+
+        return JSP_PAGE_NAME;
     }
-    @RequestMapping(value="/image/{imageId}/{action}", method= RequestMethod.POST)
+    @RequestMapping(value="/"+JSP_PAGE_NAME+"/{imageId}/{action}", method= RequestMethod.POST)
     public String addComment(@PathVariable String imageId,
                              @PathVariable String action,
                              @RequestParam(value = "comment", required = false) String commentStr,
@@ -71,11 +86,12 @@ public class ImageDetailViewController {
             LOG.log(Priority.DEBUG, "NEW COMMENTSTR: " + commentStr);
             LOG.log(Priority.DEBUG, "FOR IMAGEID: " + imageId);
 
-            if (!commentStr.isEmpty()) {
+            try {
                 commentService.save(commentStr, imageId);
-            } else {
-                // @todo: show error message, because comment is to short.
+            }catch (CommentConstrainsException e){
+                throw new SpringRuntimeExceptionForUser(e);
             }
+
         } else if(action.equals("tag")) {
         // handle new tag here
             LOG.log(Priority.DEBUG, "NEW TAG: " + tagStr);
@@ -84,44 +100,33 @@ public class ImageDetailViewController {
             Tag tag;
 
             try {
-                tag = tagService.getTagByTag(tagStr);
+                tag = tagService.saveOrCreate(tagStr,imageId);
 
                 LOG.log(Priority.DEBUG, "AlREADY TAG: " + tag);
-            } catch (Exception e) {
+            } catch (NotFoundException e) {
                 LOG.log(Priority.DEBUG, "NEW TAG: " + tagStr);
-                e.printStackTrace();
-
-                if(!tagStr.isEmpty()) {
-                    tagService.save(tagStr, imageId);
-                } else {
-                    // @todo: show error message, because tag is to short.
-                }
+            }catch (TagConstrainsException e){
+                throw new SpringRuntimeExceptionForUser(e);
             }
 
-            try {
-                tag = tagService.getTagByTag(tagStr);
-
-                Image image = imageService.getImageById(imageId);
-
-                List<Tag> tags = image.getTags();
-                tags.add(tag);
-                image.setTags(tags);
-
-                imageService.save(image);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         } else if(action.equals("favorite")) {
-            User currentUser = userService.getCurrentUser();
-            Image image = imageService.getImageById(imageId);
+            try{
+                favoriteService.addFavorite(imageId);
+            }catch (FavoriteAlreadyExistException e){
+                throw new SpringRuntimeExceptionForUser(e, SpringRuntimeExceptionForUser.TYPE.WARNING,JSP_PAGE_NAME);
+            }
+            catch (NotFoundException e){
+                throw new SpringRuntimeExceptionForUser(e);
+            }
 
-            Favorite favorite = new Favorite();
-            favorite.setUser(currentUser);
-            favorite.setImage(image);
-
-            favoriteService.save(favorite);
+        } else if(action.equals("unfavorite")) {
+            try {
+                favoriteService.removeFavorite(imageId);
+            } catch (NotFoundException e) {
+                throw new SpringRuntimeExceptionForUser(e);
+            }
         }
 
-        return "redirect:/image/" + imageId;
+        return "redirect:/"+JSP_PAGE_NAME+"/" + imageId;
     }
 }

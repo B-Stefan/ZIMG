@@ -16,14 +16,6 @@ public class ZIMGMain {
 
 
 
-        ImageService imageService = new ImageService();
-        UserService userService = new UserService();
-
-        try {
-            User firstUser = userService.getUserByName("Oklon");
-        }catch (Exception e){
-
-        }
 
     }
 

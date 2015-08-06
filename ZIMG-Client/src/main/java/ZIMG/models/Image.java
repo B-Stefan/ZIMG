@@ -28,6 +28,9 @@ public class Image extends BaseModel {
     @OneToMany(mappedBy = "image")
     private List<Comment> comments = new ArrayList<Comment>();
 
+    @OneToMany(mappedBy = "image")
+    private List<Upvote> upvotes = new ArrayList<Upvote>();
+
     public String getFilename() {
         return filename;
     }
@@ -60,5 +63,13 @@ public class Image extends BaseModel {
 
     public void addTag(Tag tag) {
         this.tags.add(tag);
+    }
+
+    public List<Upvote> getUpvotes() {
+        return upvotes;
+    }
+
+    public void setUpvotes(List<Upvote> upvotes) {
+        this.upvotes = upvotes;
     }
 }
