@@ -12,7 +12,7 @@
       <sec:authorize access="isAnonymous()">
         <ul class="nav navbar-nav ">
           <li><a href="/login"><span class="glyphicon glyphicon-home"></span> Login</a></li>
-          <li><a href="/signup"><span class="glyphicon glyphicon-picture"></span> Signup</a></li>
+          <li><a href="/signup"><span class="glyphicon glyphicon-plus"></span> Signup</a></li>
         </ul>
 
       </sec:authorize>
