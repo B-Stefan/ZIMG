@@ -1,4 +1,4 @@
-package ZIMG.persistence.services;
+package ZIMG.services;
 
 import ZIMG.exceptions.FavoriteAlreadyExistException;
 import ZIMG.models.Favorite;

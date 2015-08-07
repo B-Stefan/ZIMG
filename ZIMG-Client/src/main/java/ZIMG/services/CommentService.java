@@ -1,4 +1,4 @@
-package ZIMG.persistence.services;
+package ZIMG.services;
 
 import ZIMG.exceptions.CommentConstrainsException;
 import ZIMG.models.Comment;

@@ -1,7 +1,7 @@
-package ZIMG.persistence.services.security;
+package ZIMG.services.security;
 
 import ZIMG.models.User;
-import ZIMG.persistence.services.UserService;
+import ZIMG.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

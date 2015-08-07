@@ -1,4 +1,4 @@
-package ZIMG.persistence.services;
+package ZIMG.services;
 
 import ZIMG.models.Image;
 import ZIMG.models.Tag;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 

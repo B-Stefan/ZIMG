@@ -1,7 +1,7 @@
 package ZIMG.client.controller;
 
 import ZIMG.models.Image;
-import ZIMG.persistence.services.ImageService;
+import ZIMG.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

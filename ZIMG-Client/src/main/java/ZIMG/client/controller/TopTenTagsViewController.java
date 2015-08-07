@@ -1,7 +1,7 @@
 package ZIMG.client.controller;
 
 import ZIMG.models.Tag;
-import ZIMG.persistence.services.TagService;
+import ZIMG.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

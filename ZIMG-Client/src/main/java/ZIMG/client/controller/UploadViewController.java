@@ -2,9 +2,8 @@ package ZIMG.client.controller;
 
 import ZIMG.exceptions.FiletypeNotAcceptedException;
 import ZIMG.exceptions.SpringRuntimeExceptionForUser;
-import ZIMG.models.Image;
-import ZIMG.persistence.services.ImageService;
-import ZIMG.persistence.services.UserService;
+import ZIMG.services.ImageService;
+import ZIMG.services.UserService;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;

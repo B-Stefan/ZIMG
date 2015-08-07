@@ -1,13 +1,10 @@
-package ZIMG.persistence.services;
+package ZIMG.services;
 
 import ZIMG.exceptions.*;
 import ZIMG.models.User;
-import ZIMG.persistence.services.security.SecurityUser;
 import ZIMG.utils.EmailValidator;
 import javassist.NotFoundException;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

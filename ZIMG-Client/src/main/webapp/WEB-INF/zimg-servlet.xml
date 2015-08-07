@@ -96,7 +96,7 @@
     <jpa:repositories base-package="ZIMG.persistence.repositories"/>
     <context:annotation-config/>
     <context:component-scan base-package="ZIMG.client"/>
-    <context:component-scan base-package="ZIMG.persistence.services"/>
+    <context:component-scan base-package="ZIMG.services"/>
     <mvc:annotation-driven/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 

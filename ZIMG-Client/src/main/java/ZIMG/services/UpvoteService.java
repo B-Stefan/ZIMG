@@ -1,16 +1,12 @@
-package ZIMG.persistence.services;
+package ZIMG.services;
 
-import ZIMG.exceptions.FavoriteAlreadyExistException;
 import ZIMG.exceptions.UpvoteAlreadyExistException;
-import ZIMG.models.Favorite;
 import ZIMG.models.Image;
 import ZIMG.models.Upvote;
 import ZIMG.models.User;
-import ZIMG.persistence.repositories.FavoriteRepository;
 import ZIMG.persistence.repositories.UpvoteRepository;
 import javassist.NotFoundException;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

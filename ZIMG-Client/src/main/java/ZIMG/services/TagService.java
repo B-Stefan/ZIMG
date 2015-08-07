@@ -1,11 +1,8 @@
-package ZIMG.persistence.services;
+package ZIMG.services;
 
-import ZIMG.exceptions.MultipleUserForUserNameExistException;
 import ZIMG.exceptions.TagConstrainsException;
-import ZIMG.models.Comment;
 import ZIMG.models.Image;
 import ZIMG.models.Tag;
-import ZIMG.models.User;
 import ZIMG.persistence.repositories.TagRepository;
 import javassist.NotFoundException;
 import org.apache.log4j.Logger;

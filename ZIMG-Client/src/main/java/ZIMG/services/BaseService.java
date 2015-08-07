@@ -1,15 +1,12 @@
-package ZIMG.persistence.services;
+package ZIMG.services;
 
 
 import ZIMG.models.BaseModel;
 import ZIMG.persistence.repositories.BaseRepository;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public abstract class BaseService<M extends BaseModel ,G extends BaseRepository<M>> {
 

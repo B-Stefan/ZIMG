@@ -1,12 +1,9 @@
 package ZIMG.client.controller;
 
-import ZIMG.exceptions.SpringRuntimeExceptionForUser;
 import ZIMG.models.Image;
-import ZIMG.persistence.services.ImageService;
-import com.mortennobel.imagescaling.DimensionConstrain;
+import ZIMG.services.ImageService;
 import com.mortennobel.imagescaling.ResampleOp;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +16,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 @Controller
 public class ThumbnailController extends BaseController {
