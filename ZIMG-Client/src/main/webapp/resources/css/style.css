@@ -60,7 +60,7 @@
     display: none;
 }
 
-#imageDetail .marked {
+#imageDetail .fav-marked {
     color: #669999;
 }
 
@@ -110,7 +110,7 @@
     color: white;
 }
 
-.marked {
+.upvote-marked {
     background-color: #60a7a7;
     color: white;
 }

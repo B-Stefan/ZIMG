@@ -1,9 +1,6 @@
 package ZIMG.client.controller;
 
-import ZIMG.exceptions.CommentConstrainsException;
-import ZIMG.exceptions.FavoriteAlreadyExistException;
-import ZIMG.exceptions.SpringRuntimeExceptionForUser;
-import ZIMG.exceptions.TagConstrainsException;
+import ZIMG.exceptions.*;
 import ZIMG.models.Favorite;
 import ZIMG.models.Image;
 import ZIMG.models.Tag;
@@ -45,6 +42,9 @@ public class ImageDetailViewController extends BaseController {
     FavoriteService favoriteService;
 
     @Autowired
+    UpvoteService upvoteService;
+
+    @Autowired
     UserService userService;
 
     @RequestMapping(value="/"+JSP_PAGE_NAME+"/{imageId}", method= RequestMethod.GET)
@@ -65,10 +65,14 @@ public class ImageDetailViewController extends BaseController {
 
         if(favoriteService.isFavorite(image, user)) {
             m.addAttribute("isFavorite", true);
-            LOG.log(Priority.DEBUG, "IS FAV");
         } else {
             m.addAttribute("isFavorite", false);
-            LOG.log(Priority.DEBUG, "IS FAV NO");
+        }
+
+        if(upvoteService.hasAlreadyUpvoted(image, user)) {
+            m.addAttribute("isUpvoted", true);
+        } else {
+            m.addAttribute("isUpvoted", false);
         }
 
         return JSP_PAGE_NAME;
@@ -122,6 +126,23 @@ public class ImageDetailViewController extends BaseController {
         } else if(action.equals("unfavorite")) {
             try {
                 favoriteService.removeFavorite(imageId);
+            } catch (NotFoundException e) {
+                throw new SpringRuntimeExceptionForUser(e);
+            }
+
+        } else if(action.equals("upvote")) {
+            try{
+                upvoteService.addUpvote(imageId);
+            }catch (UpvoteAlreadyExistException e){
+                throw new SpringRuntimeExceptionForUser(e, SpringRuntimeExceptionForUser.TYPE.WARNING,JSP_PAGE_NAME);
+            }
+            catch (NotFoundException e){
+                throw new SpringRuntimeExceptionForUser(e);
+            }
+
+        } else if(action.equals("unupvote")) {
+            try {
+                upvoteService.removeUpvote(imageId);
             } catch (NotFoundException e) {
                 throw new SpringRuntimeExceptionForUser(e);
             }

@@ -5,7 +5,9 @@ $(document).ready(function() {
 
     var urlForTags = document.URL + "/tag";
     var urlForFavorites = document.URL + "/favorite";
-    var urlUnForFavorites = document.URL + "/unfavorite";
+    var urlForUnFavorites = document.URL + "/unfavorite";
+    var urlForUpvote = document.URL + "/upvote";
+    var urlForUnUpvote = document.URL + "/unupvote";
 
     $("#add-tag-textfield").keypress(function (e) {
         // Enter is 13
@@ -42,7 +44,7 @@ $(document).ready(function() {
 
     $("#mark-as-favorite").click(function(){
 
-        var url = $("#mark-as-favorite").hasClass("marked") ? urlUnForFavorites : urlForFavorites;
+        var url = $("#mark-as-favorite").hasClass("fav-marked") ? urlForUnFavorites : urlForFavorites;
 
         $.ajax({
             method: "POST",
@@ -52,12 +54,40 @@ $(document).ready(function() {
             }
         }).done(function( msg ) {
 
-            if($("#mark-as-favorite").hasClass("marked")) {
-                console.log("remove to favorites.");
-                $("#mark-as-favorite").removeClass("marked");
+            if($("#mark-as-favorite").hasClass("fav-marked")) {
+                console.log("unfav the image");
+                $("#mark-as-favorite").removeClass("fav-marked");
             } else {
-                console.log("added to favorites.");
-                $("#mark-as-favorite").addClass("marked");
+                console.log("fav the image");
+                $("#mark-as-favorite").addClass("fav-marked");
+            }
+
+        });
+
+        return false;
+    });
+
+
+    $(".upvote-button").click(function(){
+
+        var url = $(".upvote-button").hasClass("upvote-marked") ? urlForUnUpvote : urlForUpvote;
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            headers: {
+                "X-CSRF-TOKEN": token
+            }
+        }).done(function( msg ) {
+
+            if($(".upvote-button").hasClass("upvote-marked")) {
+                console.log("unupvote the image");
+                $(".upvote-count").html(parseInt($(".upvote-count").html()) - 1);
+                $(".upvote-button").removeClass("upvote-marked");
+            } else {
+                console.log("upvote the image");
+                $(".upvote-count").html(parseInt($(".upvote-count").html()) + 1);
+                $(".upvote-button").addClass("upvote-marked");
             }
 
         });
