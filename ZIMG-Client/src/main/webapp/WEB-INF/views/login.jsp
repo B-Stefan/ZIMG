@@ -20,11 +20,17 @@
             <br/>
             <form method="POST" action="/login">
               <div class="form-group ${cssFormGroupErrorClass}">
-                <label for="username">Username</label>
+                <label for="username">User-Emailaddress</label>
                 <input type="hidden"
                        name="${_csrf.parameterName}"
                        value="${_csrf.token}" />
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                <!--
+                  Why id="username" and name="username" ?
+                  id="username" and name="username" is because the spring SecurityUser requires the unique "username" and in our case the Spring-Sec.-UserName is the emailaddress of the user.
+                  @see services.security.SecurityUser
+
+                -->
+                <input type="text" class="form-control" id="username" name="username" placeholder="Email-Address">
               </div>
               <div class="form-group ${cssFormGroupErrorClass}">
                 <label for="password">Password</label>
