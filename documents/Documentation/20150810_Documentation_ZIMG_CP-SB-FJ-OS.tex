@@ -122,27 +122,49 @@
 % In diesem Kapitel sollen die folgenden Punkte erläutert werden:
 % 	- Was leistet die Webanwendung?
 %	- Welchen Mehrwert bietet die Webanwendung für dessen Nutzer?
-Im Rahmen des Moduls Datenbankbasierte Web-Anwedungen an der Hochschule Bremen im Sommersemester 2015 bei Steve Liedtke entstand das Web-Imageboard ZIMG. ZIMG ist eine Plattform zum Austausch von Bildern und Gifs über das Internet. Zur Zielgruppe für diese Plattform gehören diejenigen Studierenden, die der Fakultät 4 angehören und den Standort ZIMT (Zentrum für Informatik und Medientechnologien) besuchen. \\
-Die Studierenden können sich einloggen (WENN EINGETRAGEN) und Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert, durch Tags kategorisiert und kommentiert werden. \\
+
+Im Rahmen des Moduls Datenbankbasierte Web-Anwedungen an der Hochschule Bremen im Sommersemester 2015 bei Steve Liedtke entstand das Web-Imageboard ZIMG. ZIMG ist eine Plattform zum Betrachten von Bildern und Gifs über das Internet. Zur Zielgruppe für diese Plattform gehören diejenigen Studierenden, die der Fakultät 4 angehören und den Standort ZIMT (Zentrum für Informatik und Medientechnologien) der Hochschule Bremen besuchen. \\
+Die Studierenden können sich einloggen, Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert, durch Tags kategorisiert, bewertet und kommentiert werden. \\
 ZIMG bietet außerdem die Möglichkeit die Top Ten Tags, Top Ten Bilder und Top Five User zu begutachten. \\
 Diese Funktionen machen ZIMG zu einem Ort des Austausches zwischen Studierenden, die beispielsweise ihre Erlebnisse im Semester oder Auslandssemester mit ihren Kommilitonen teilen wollen.
-
-Einloggen (nicht registrieren) > uploaden > favorisieren > taggen > kommentieren > Top Ten bilder > top ten tags > top 5 uploader
 
 \subsection{Anforderungen}
 % 1.1 Anforderungen
 % In diesem Unterkapitel sollen die vorgesehenen und die tatsächlich umgesetzten Anforderungen beschrieben und mit Hilfe von Use-Case- und Aktivitätsdiagrammen konkretisiert werden.
-\blindtext
+
+Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIMGUseCaseDiagram}):
+
+\begin{itemize}
+	\item Als User möchte ich Bilder auf die Imageboardplattform hochladen, um diese teilen zu können.
+	\item Als User möchte ich Bilder markieren, um diese meinen Favoriten hinzuzufügen.
+	\item Als User möchte ich Bilder mit Schlagworten versehen, um diese zu kategorisieren.
+	\item Als User möchte ich Bilder mit einem Punktesystem bewerten können, um Bilder in ihrer Beliebtheit zu steigern.
+	\item Als User möchte ich Bilder kommentieren können, um meine Meinung zum Bild äußern zu können.
+\end{itemize}
+
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=\linewidth]{footage/ZIMG_UseCaseDiagram} 
+ 	\caption{ZIMG Use-Case-Diagramm}
+	\label{ZIMGUseCaseDiagram}
+ \end{figure}
+
+ Es wurden alle Anforderungen an das System umgesetzt. Das bedeutet, dass ein eingeloggter User Bilder hochladen und somit teilen, Bilder favorisieren, Bilder bewerten, Bilder mit Schlagwörtern versehen (taggen) und Kommentare zu einzelnen Bildern verfassen kann.
 
 \section{Architektur}
 % 2 Architektur
-% In diesem Kapitel soll beschrieben werden, wie das Projekt und die Datenbank strukturiert ist und welche Technologien und Frameworks verwendet werden.
-\blindtext
+% In diesem Kapitel soll beschrieben werden, wie das Projekt und die Datenbank strukturiert sind und welche Technologien und Frameworks verwendet werden.
 
 \subsection{Gesamtarchitektur}
 % 2.1 Gesamtarchitektur
 % In diesem Unterkapitel soll beschrieben werden, wie die Gesamtarchitektur der entwickelten Webanwendung aussieht. Dies kann mit UML Paket- oder Klassendiagrammen unterstützt werden.
-\blindtext
+
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=\linewidth]{footage/ZIMG_Klassendiagramm} 
+ 	\caption{ZIMG Klassendiagramm}
+	\label{ZIMGClassDiagram}
+ \end{figure}
 
 \subsection{Programmabläufe}
 % 2.2 Programmabläufe
@@ -156,7 +178,7 @@ Einloggen (nicht registrieren) > uploaden > favorisieren > taggen > kommentieren
 
 \subsubsection{Konzeption}
 % 2.3.1 Konzeption
-% In diesem Unterkapitel soll die konzepierte Datenbank nach ER-Diagramm beschrieben werden
+% In diesem Unterkapitel soll die konzipierte Datenbank nach ER-Diagramm beschrieben werden
 \blindtext
 
 \subsubsection{Umsetzung}
@@ -177,27 +199,86 @@ Einloggen (nicht registrieren) > uploaden > favorisieren > taggen > kommentieren
 \section{Installation}
 % 3 Installation
 % In diesem Kapitel soll beschrieben werden, welche Programmierwerkzeuge verwendet wurden und wie die Webanwendung lokal aufgesetzt werden kann
-\blindtext
+
+%Um am Projekt ZIMG strukturiert zusammen arbeiten zu können wurden folgende Tools genutzt, die ein verteiltes, aber weiterhin effizientes Arbeiten ermöglichen:
+
+%\begin{description}
+%	\item[Git] Die Versionsverwaltungssoftware wird genutzt, um u. a. den Source-Code auf dem Filehostingdienst Github in einem privaten Repository zu teilen und zu sichern
+%	\item[Gradle] Als Build-Management-Automatisierungstool wird Gradle verwendet, um das Bauen des Projekts simpler zu gestalten
+%	\item[Vagrant] Vagrant dient zur Erstellung einer separierten Entwicklungsumgebung, indem es eine lokale, virtuelle Maschine (eine Box) erstellt, die eine vorkonfiguerierte Testumgebung für die Entwicklung und darin enthaltene Infrastruktur-Komponenten (bspw. eine Datenbank) bereitstellt
+%\end{description}
 
 \subsection{Programmierwerkzeuge}
 % 3.1 Programmierwerkzeuge
-% Auflistung der verwendeten Programmierwerkzeugen mit Vor- und Nachteilen
-\blindtext
+% Auflistung der verwendeten Programmierwerkzeuge mit Vor- und Nachteilen
+
+\begin{table}[h!]
+\centering
+\scalebox{1.0}{
+\begin{tabular}{| p{4cm} | p{5.15cm} | p{5.15cm} | l}
+\hline                       
+\textbf{Programmierwerkzeug}	& \textbf{Vorteile}	& \textbf{Nachteile}	\\
+\hline
+IntelliJ	& Schnelle Autovervollständigung, Übersichtlich, viele Shortcut-Funktionen, positive Erfahrung mit IntelliJ war vorhanden	& weniger verfügbare Plug-Ins als bspw. bei Eclipse vorhanden, unterstützt in der kostenfreien Version weniger Sprachen	\\
+\hline
+Vagrant	& Automatisiert den Entwicklungsumgebungserstellungsprozess und vereinfacht dadurch verteiltes Arbeiten	& Extra Einarbeitungs- und Konfigurationsphase	\\
+\hline
+Git	& lokal und somit schnell, vereinfacht dezentrale Zusammenarbeit via Internet, Sicherung der Daten durch Remote-Repository auf Filehostingdienst Github	& Extra Konfigurationsphase	(ware jedoch sehr kurz, da gute Kenntinsse im Team vorhanden)	\\
+\hline
+Jetty	& Geringe Größe, einfache Architektur, Einbindung ohne benötigten Webcontainer & Nicht so verbreitet wie TomCat	\\
+\hline
+MySQL	& Weit Verbreitet, unterstützt gängige Plattformen	& Bei Plattformen, die mehr Skalierbarkeit erfordern und bei der sehr große Datenmengen verwaltet werden müssen, biten andere Datenbankensysteme mit nicht-relationalen Ansätzen (NoSQL) eventuell mehr Performance \\
+\hline
+Gradle	& Baut nur die veränderten Teile der Software, zum Großteil konfigurierbar, \glqqDas Beste aus Ant und Maven\grqq	& Oft sind im Vergleich zu Maven keine definitiven Vorteile zu erkennen	\\
+\hline
+Hibernate	& Starke Abgrenzung von Präsentationsschicht vom Datenzugriff, Vereinfachung auf Datenzugriff, macht Datenbanksystem leicht austauschbar	& Extra Einarbeitungsphase \\
+\hline
+Spring	& Gute Objektverwaltung in Programmlogik, wenn einmal korrekt implementiert bietet Spring eine simple Nutzungstruktur	& Für kleine Projekte sehr groß und komplex \\
+\hline
+\end{tabular}
+}
+\caption{Programmierwerkzeuge mit Vor- und Nachteilen}
+\label{ProgrammierwerkzeugeMitVor-undNachteilen}
+\end{table}
 
 \subsection{Installation der Entwicklungsumgebung}
 % 3.2 Installation der Entwicklungsumgebung
 % Detaillierte Erklärung welche Maßnahmen notwendig sind, um die Entwicklungsumgebung aufzusetzen, sodass an dem Projekt mitentwickelt werden kann 
-\blindtext
+
+Folgende Schritte müssen durchgeführt werden, um die komplette Entwicklungsumgebung aufzusetzen:
+
+\begin{enumerate}
+	\item Installation Java Development Kit (Version 1.8.0_05)
+	\item Installation Git (Version 1.9.3)
+	\item Installation IntelliJ (Version 14.1.3)
+	\item Installation VirtualBox (Version 4.3.26)
+	\item Installation Vagrant (Version 1.7.2)
+	\item Installation Gradle (Version 2.2)
+	\item Das Github-Repository https://github.com/B-Stefan/ZIMG forken (bzw. als Contributor hinzugefügt werden und das Repository einfach klonen und einen neuen Branch erstellen)
+	\item Das geforkte (oder geklonte) Projekt in IntelliJ öffnen
+\end{enumerate}
 
 \subsection{Konfiguration der Datenbank}
 % 3.4 Konfiguration der Datenbank
 % Beschreibung welche Schritte durchgeführt werden müssen, um die Datenbank mitsamt ihrer Struktur und Beispieldaten auf einem lokalen System aufzusetzen
-\blindtext
+
+Um die Datenbank lokal aufzusetzen müssen folgende Schritte durchgeführt werden:
+
+\begin{enumerate}
+	\item Im Terminal in das geforkte Verzeichnis navigieren und mit \glqqvagrant up\grqq die virtuelle Maschine, die die Datenbank enthält, starten/erstellen
+\end{enumerate}
 
 \subsection{Installation der Anwendung}
 % 3.3 Installation der Anwendung
 % Beschreibung wie die Anwendung auf dem lokalen Rechner gestartet werden kann 
-\blindtext
+
+Das lokale Starten der Web-Andwendung benötigt die Durchführung folgender Schritte:
+
+\begin{enumerate}
+	\item Im Terminal in das geforkte Verzeichnis navigieren und mit \glqqvagrant up\grqq die virtuelle Maschine, die die Datenbank enthält, starten/erstellen
+	\item In IntelliJ mithilfe von Gradle die Anwendung bauen und den Jetty-Server starten
+	\item In einem Web-Browser folgende Adresse eingeben: localhost:8080/login
+\end{enumerate}
 
 \end{document}
 
