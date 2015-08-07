@@ -25,6 +25,16 @@
                     </div>
                 </div>
             </c:forEach>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <nav>
+                        <ul class="pager">
+                            <li class="previous ${pagePreviousDisable ? "disabled" : "" }"><a href="/home/${pagePrevious}">Previous</a></li>
+                            <li class="next ${pageNextDisable ? "disabled" : "" }"><a href="/home/${pageNext}">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </jsp:body>
 </zimg:defaultLayout>
