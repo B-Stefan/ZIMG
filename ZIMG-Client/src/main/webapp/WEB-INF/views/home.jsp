@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="zimg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <zimg:defaultLayout>
     <jsp:body>
@@ -19,10 +20,6 @@
                                 <span class="spacer">Uploader:</span><a href="/user/${image.uploader.name}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  ${image.uploader.name}</a> <br/>
                                 <hr />
                                 <span class="spacer">Date:</span><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <fmt:formatDate value="${image.createdAt}" pattern="dd.MM.yyyy - HH:mm" />
-                                <hr />
-                                <div class="upvote-button">
-                                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 400 Upvotes
-                                </div>
                             </div>
                         </div>
                     </div>

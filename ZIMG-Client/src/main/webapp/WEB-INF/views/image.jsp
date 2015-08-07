@@ -15,7 +15,7 @@
                 <div class="col-xs-8 col-md-8">
                     <a href="/image/${image.id}" id="imageLink">
                         <img class="img-responsive img-rounded" src="/uploads/${image.filename}"/>
-                        <div id="mark-as-favorite" ${isFavorite ? "class=\"marked\"" : "" }><span class="glyphicon glyphicon-star"></span></div>
+                        <div id="mark-as-favorite" ${isFavorite ? "class=\"fav-marked\"" : "" }><span class="glyphicon glyphicon-star"></span></div>
                     </a>
 
                     <div class="row">
@@ -61,7 +61,7 @@
 
                             <hr />
 
-                            <div class="upvote-button">
+                            <div class="upvote-button ${isUpvoted ? "upvote-marked" : "" }">
                                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <span class="upvote-count">${fn:length(image.upvotes)}</span> Upvotes
                             </div>
 
