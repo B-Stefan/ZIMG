@@ -1,6 +1,1 @@
 include 'ZIMG-Client'
-
-include 'ZIMG-Commons'
-
-include 'ZIMG-Logic'
-
