@@ -68,13 +68,20 @@
 		\vspace{4cm}
   		\seqsplit{\Huge{\textbf{\inserttitle}}}
 
-  		\vspace{4cm}
-  		\large{\insertauthor}
+  		\vspace{0.4cm}
+  		\Large{Das Imageboard für's ZIMT}
 
   		\vspace{2cm}
+  		\small{entstanden im Rahmen des Moduls \textit{Datenbankbasierte Web-Anwendungen} im Sommersemester 2015}
+
+  		\vspace{2cm}
+  		\large{\insertauthor}
+
+  		\vspace{8cm}
+  		\small{\insertdate}
+
   		\small{Hochschule Bremen -- City University of Applied Sciences}
 
-  		\small{Datenbankbasierte Web-Anwendungen, \insertdate}
 	\end{center}\egroup
 }
 
@@ -124,7 +131,7 @@
 %	- Welchen Mehrwert bietet die Webanwendung für dessen Nutzer?
 
 Im Rahmen des Moduls Datenbankbasierte Web-Anwedungen an der Hochschule Bremen im Sommersemester 2015 bei Steve Liedtke entstand das Web-Imageboard ZIMG. ZIMG ist eine Plattform zum Betrachten von Bildern und Gifs über das Internet. Zur Zielgruppe für diese Plattform gehören diejenigen Studierenden, die der Fakultät 4 angehören und den Standort ZIMT (Zentrum für Informatik und Medientechnologien) der Hochschule Bremen besuchen. \\
-Die Studierenden können sich einloggen, Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert, durch Tags kategorisiert, bewertet und kommentiert werden. \\
+Die Studierenden können sich einloggen, Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert (bewertet), durch Tags kategorisiert und kommentiert werden. \\
 ZIMG bietet außerdem die Möglichkeit die Top Ten Tags, Top Ten Bilder und Top Five User zu begutachten. \\
 Diese Funktionen machen ZIMG zu einem Ort des Austausches zwischen Studierenden, die beispielsweise ihre Erlebnisse im Semester oder Auslandssemester mit ihren Kommilitonen teilen wollen.
 
@@ -144,12 +151,12 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 
 \begin{figure}[H]
  	\centering
- 	\includegraphics[width=\linewidth]{footage/ZIMG_UseCaseDiagram} 
+ 	\includegraphics[width=8cm]{footage/ZIMG_UseCaseDiagram} 
  	\caption{ZIMG Use-Case-Diagramm}
 	\label{ZIMGUseCaseDiagram}
  \end{figure}
 
- Es wurden alle Anforderungen an das System umgesetzt. Das bedeutet, dass ein eingeloggter User Bilder hochladen und somit teilen, Bilder favorisieren, Bilder bewerten, Bilder mit Schlagwörtern versehen (taggen) und Kommentare zu einzelnen Bildern verfassen kann.
+ Es wurden alle Anforderungen an das System umgesetzt. Das bedeutet, dass ein eingeloggter User Bilder hochladen und somit teilen, Bilder favorisieren und somit bewerten, Bilder mit Schlagwörtern versehen (taggen) und Kommentare zu einzelnen Bildern verfassen kann.
 
 \section{Architektur}
 % 2 Architektur
@@ -159,12 +166,12 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 % 2.1 Gesamtarchitektur
 % In diesem Unterkapitel soll beschrieben werden, wie die Gesamtarchitektur der entwickelten Webanwendung aussieht. Dies kann mit UML Paket- oder Klassendiagrammen unterstützt werden.
 
-\begin{figure}[H]
- 	\centering
- 	\includegraphics[width=\linewidth]{footage/ZIMG_Klassendiagramm} 
- 	\caption{ZIMG Klassendiagramm}
-	\label{ZIMGClassDiagram}
- \end{figure}
+%\begin{figure}[H]
+ %	\centering
+ %	\includegraphics[width=\linewidth]{footage/ZIMG_Klassendiagramm} 
+ %	\caption{ZIMG Klassendiagramm}
+%	\label{ZIMGClassDiagram}
+ %\end{figure}
 
 \subsection{Programmabläufe}
 % 2.2 Programmabläufe
@@ -196,6 +203,8 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 % In diesem Unterkapitel soll die Präsentationsschicht der Webanwendung beschrieben werden. Hierzu u.a. die genutzte Technologie/Framework. 
 \blindtext
 
+\newpage
+
 \section{Installation}
 % 3 Installation
 % In diesem Kapitel soll beschrieben werden, welche Programmierwerkzeuge verwendet wurden und wie die Webanwendung lokal aufgesetzt werden kann
@@ -212,12 +221,13 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 % 3.1 Programmierwerkzeuge
 % Auflistung der verwendeten Programmierwerkzeuge mit Vor- und Nachteilen
 
-\begin{table}[h!]
+Folgende Programmierwerkzeuge wurden unter Berücksichtigung ihrer Vor- und Nachteile eingesetzt, um für sie bestimmte Aufgaben zu erfüllen:
+
+\begin{table}[ht!]
 \centering
-\scalebox{1.0}{
-\begin{tabular}{| p{4cm} | p{5.15cm} | p{5.15cm} | l}
+\begin{tabular}{| p{1.9cm} | p{6.2cm} | p{6.2cm} | l}
 \hline                       
-\textbf{Programmierwerkzeug}	& \textbf{Vorteile}	& \textbf{Nachteile}	\\
+\textbf{Werkzeug}	& \textbf{Vorteile}	& \textbf{Nachteile}	\\
 \hline
 IntelliJ	& Schnelle Autovervollständigung, Übersichtlich, viele Shortcut-Funktionen, positive Erfahrung mit IntelliJ war vorhanden	& weniger verfügbare Plug-Ins als bspw. bei Eclipse vorhanden, unterstützt in der kostenfreien Version weniger Sprachen	\\
 \hline
@@ -227,19 +237,20 @@ Git	& lokal und somit schnell, vereinfacht dezentrale Zusammenarbeit via Interne
 \hline
 Jetty	& Geringe Größe, einfache Architektur, Einbindung ohne benötigten Webcontainer & Nicht so verbreitet wie TomCat	\\
 \hline
-MySQL	& Weit Verbreitet, unterstützt gängige Plattformen	& Bei Plattformen, die mehr Skalierbarkeit erfordern und bei der sehr große Datenmengen verwaltet werden müssen, biten andere Datenbankensysteme mit nicht-relationalen Ansätzen (NoSQL) eventuell mehr Performance \\
+MySQL	& Weit Verbreitet, unterstützt gängige Plattformen	& Bei Plattformen, die mehr Skalierbarkeit erfordern und bei der sehr große Datenmengen verwaltet werden müssen, bieten andere Datenbankensysteme mit nicht-relationalen Ansätzen (NoSQL) eventuell mehr Performance \\
 \hline
-Gradle	& Baut nur die veränderten Teile der Software, zum Großteil konfigurierbar, \glqqDas Beste aus Ant und Maven\grqq	& Oft sind im Vergleich zu Maven keine definitiven Vorteile zu erkennen	\\
+Gradle	& Baut nur die veränderten Teile der Software, zum Großteil konfigurierbar	& Oft sind im Vergleich zu Maven keine definitiven Vorteile zu erkennen	\\
 \hline
 Hibernate	& Starke Abgrenzung von Präsentationsschicht vom Datenzugriff, Vereinfachung auf Datenzugriff, macht Datenbanksystem leicht austauschbar	& Extra Einarbeitungsphase \\
 \hline
 Spring	& Gute Objektverwaltung in Programmlogik, wenn einmal korrekt implementiert bietet Spring eine simple Nutzungstruktur	& Für kleine Projekte sehr groß und komplex \\
 \hline
 \end{tabular}
-}
 \caption{Programmierwerkzeuge mit Vor- und Nachteilen}
-\label{ProgrammierwerkzeugeMitVor-undNachteilen}
+\label{ProgrammierwerkzeugeMitVorUndNachteilen}
 \end{table}
+
+\newpage
 
 \subsection{Installation der Entwicklungsumgebung}
 % 3.2 Installation der Entwicklungsumgebung
@@ -248,13 +259,13 @@ Spring	& Gute Objektverwaltung in Programmlogik, wenn einmal korrekt implementie
 Folgende Schritte müssen durchgeführt werden, um die komplette Entwicklungsumgebung aufzusetzen:
 
 \begin{enumerate}
-	\item Installation Java Development Kit (Version 1.8.0_05)
+	\item Installation Java Development Kit (Version 1.8.0\_05)
 	\item Installation Git (Version 1.9.3)
 	\item Installation IntelliJ (Version 14.1.3)
 	\item Installation VirtualBox (Version 4.3.26)
 	\item Installation Vagrant (Version 1.7.2)
 	\item Installation Gradle (Version 2.2)
-	\item Das Github-Repository https://github.com/B-Stefan/ZIMG forken (bzw. als Contributor hinzugefügt werden und das Repository einfach klonen und einen neuen Branch erstellen)
+	\item Das Github-Repository \textit{https://github.com/B-Stefan/ZIMG} forken (bzw. als Contributor hinzugefügt werden und das Repository einfach klonen und einen neuen Branch erstellen)
 	\item Das geforkte (oder geklonte) Projekt in IntelliJ öffnen
 \end{enumerate}
 
@@ -265,7 +276,7 @@ Folgende Schritte müssen durchgeführt werden, um die komplette Entwicklungsumg
 Um die Datenbank lokal aufzusetzen müssen folgende Schritte durchgeführt werden:
 
 \begin{enumerate}
-	\item Im Terminal in das geforkte Verzeichnis navigieren und mit \glqqvagrant up\grqq die virtuelle Maschine, die die Datenbank enthält, starten/erstellen
+	\item Im Terminal in das geforkte Verzeichnis navigieren und mit \textit{vagrant up} die virtuelle Maschine, die die Datenbank enthält, starten/erstellen
 \end{enumerate}
 
 \subsection{Installation der Anwendung}
@@ -275,7 +286,7 @@ Um die Datenbank lokal aufzusetzen müssen folgende Schritte durchgeführt werde
 Das lokale Starten der Web-Andwendung benötigt die Durchführung folgender Schritte:
 
 \begin{enumerate}
-	\item Im Terminal in das geforkte Verzeichnis navigieren und mit \glqqvagrant up\grqq die virtuelle Maschine, die die Datenbank enthält, starten/erstellen
+	\item Im Terminal in das geforkte Verzeichnis navigieren und mit \textit{vagrant up} die virtuelle Maschine, die die Datenbank enthält, starten/erstellen
 	\item In IntelliJ mithilfe von Gradle die Anwendung bauen und den Jetty-Server starten
 	\item In einem Web-Browser folgende Adresse eingeben: localhost:8080/login
 \end{enumerate}
