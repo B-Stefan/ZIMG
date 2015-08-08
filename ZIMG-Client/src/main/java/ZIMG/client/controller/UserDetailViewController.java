@@ -1,5 +1,6 @@
 package ZIMG.client.controller;
 
+import ZIMG.exceptions.SpringRuntimeExceptionForUser;
 import ZIMG.models.User;
 import ZIMG.services.UserService;
 import javassist.NotFoundException;
@@ -31,7 +32,7 @@ public class UserDetailViewController extends BaseController{
             m.addAttribute("images", user.getImages());
 
         } catch (NotFoundException e) {
-            e.printStackTrace();
+            throw new SpringRuntimeExceptionForUser(e);
         }
 
         return JSP_PAGE_NAME;
