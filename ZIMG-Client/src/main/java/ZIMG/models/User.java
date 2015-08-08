@@ -20,6 +20,9 @@ public class User extends BaseModel {
 
     private boolean admin;
 
+    @Transient
+    private List<Image> lastFiveImages;
+
     @OneToMany(mappedBy = "uploader")
     private List<Image> images = new ArrayList<Image>();
 
@@ -77,5 +80,13 @@ public class User extends BaseModel {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public List<Image> getLastFiveImages() {
+        return lastFiveImages;
+    }
+
+    public void setLastFiveImages(List<Image> lastFiveImages) {
+        this.lastFiveImages = lastFiveImages;
     }
 }

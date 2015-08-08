@@ -6,23 +6,70 @@
 <zimg:defaultLayout>
     <jsp:body>
 
-
-        <!--Header-->
-        <div class="container">
+        <div class="container topUsers">
             <%-- HEAD --%>
             <h1>Top 5 users</h1>
 
-            <!-- TOP FIVE USERS -->
-            <div class="row">
-                <c:forEach items="${topFiveUserList}" var="user">
-                    <div class="container row">
-                        <div class="col-lg-3 col-md-3 col-xs-3">
-                            <a href ="/user/${user.name}">${user.name}</a>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-xs-1">${user.images}</div>
-                    </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Last 5 images</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${topFiveUserList}" varStatus="loop" var="user">
+                    <c:set value="carousel-${carouselId}" var="carouselId"/>
+                    <tr>
+                        <td>${loop.index+1}</td>
+                        <td>${user.name}</td>
+                        <td>
+                            <div class="centered">
+                                <div id="${carouselId}" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <c:forEach items="${user.images}" var="image" varStatus="imgLoop" begin="0" end="3">
+                                            <li data-target="#${carouselId}" data-slide-to="${imgLoop.index}" class="active"></li>
+                                        </c:forEach>
+                                    </ol>
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+                                        <c:forEach items="${user.images}" var="image" varStatus="imgLoop" begin="0" end="3">
+                                        <c:if test="${imgLoop.index == 0}">
+                                            <c:set var="activeCSS" value="active"/>
+                                        </c:if>
+                                        <c:if test="${imgLoop.index != 0}">
+                                            <c:set var="activeCSS" value=""/>
+                                        </c:if>
+
+                                            <div class="item ${activeCSS}">
+                                                <img src="/thumbnail/${image.id}" alt="aasd"/>
+                                            </div>
+                                        </c:forEach>
+
+                                    </div>
+
+                                    <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#${carouselId}" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#${carouselId}" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
                 </c:forEach>
-            </div>
+
+                </tbody>
+            </table>
+
         </div>
     </jsp:body>
 </zimg:defaultLayout>

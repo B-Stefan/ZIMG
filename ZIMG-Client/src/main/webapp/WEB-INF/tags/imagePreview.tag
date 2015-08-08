@@ -8,8 +8,12 @@
 
 <a href="/image/${image.id}">
 
-    <img file-name="${image.filename}"
-         image-id="${image.id}"
-         class="img-responsive img-rounded overview-entry ${className}"
-         src="/thumbnail/${image.id}"/>
+    <div class="overview-entry ">
+
+        <img file-name="${image.filename}"
+             image-id="${image.id}"
+             class="img-responsive img-rounded loading ${className}"
+             image-src="/thumbnail/${image.id}"
+             src="/resources/img/loader.gif"/>
+    </div>
 </a>

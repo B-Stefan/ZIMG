@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,7 +32,10 @@ public class TagService extends BaseService<Tag,TagRepository> {
      * @return List<Tag>
      */
     public List<Tag> getTopTenTags() {
-        return this.repository.findTopTenTags();
+        final PageRequest request= new PageRequest(0,10);
+        final List<Tag> list =  this.repository.findTopTenTags(request).getContent();
+        list.forEach(tag->tag.getImages().size());
+        return list;
     }
 
     public Tag getTagByTag(String tag) throws NotFoundException {

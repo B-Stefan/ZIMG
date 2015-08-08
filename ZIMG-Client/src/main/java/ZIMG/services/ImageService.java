@@ -6,6 +6,7 @@ import ZIMG.models.User;
 import ZIMG.persistence.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,6 +36,10 @@ public class ImageService extends BaseService<Image,ImageRepository> {
 
         return image;
     }
+
+    public List<Image> getLastFiveImages(User u){
+        return this.repository.findTopFiveByUploaderOrderByCreatedAtDesc(u);
+    }
     public Image create(MultipartFile file){
 
         Image image = new Image();
@@ -50,8 +55,9 @@ public class ImageService extends BaseService<Image,ImageRepository> {
         image.addTag(tag);
         this.save(image);
     }
-    public List<Image> getTopTenImages() {
-        return this.repository.findTopTenImages();
+    public List<Image> getTopTenUpvotedImages() {
+        final PageRequest p =  new PageRequest(0,10);
+        return this.repository.findTopUpvotedImages(p).getContent();
     }
 
 }

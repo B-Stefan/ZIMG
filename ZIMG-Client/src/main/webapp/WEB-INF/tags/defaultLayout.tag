@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/flat-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/3.1.1/jquery.waypoints.js"></script>
     <link rel="stylesheet" href="/resources/css/headerFooterStyle.css">
     <link rel="stylesheet" href="/resources/css/animate.css">
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">

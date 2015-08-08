@@ -5,6 +5,7 @@ import ZIMG.models.User;
 import ZIMG.utils.EmailValidator;
 import javassist.NotFoundException;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,17 +43,38 @@ public class UserService extends  BaseService<User,UserRepository> {
         u.getImages().size();
         return u;
     }
+
+
     /**
-     * Gibt die fuenf User als Liste zurück, die aktuell die meisten Uploads haben
+     * Gibt die fuenf User als Liste zurück, die aktuell die meisten Uploads haben und läd seine bilder mit
      * @return List<User>
      */
-    public List<User> getTopFiveUsers() {
-        return this.repository.findTopFiveUsers();
+    public List<User> getTopFiveByUploadsUsers() {
+        List<User> l =  this.repository.findTopUsers();
+        l.forEach(user -> user.getImages().size());
+        return this.repository.findTopUsers();
     }
+
+    /**
+     * Get the user by there emal address
+     * @param email
+     * @return
+     */
     public User findUserByEmail(String email){
         return this.repository.findOneByEmail(email);
     }
 
+    /**
+     * Mehtod for register new user with string
+     * @param userEmail
+     * @param password
+     * @param userName
+     * @return
+     * @throws UserEmailAlreadyInUseException
+     * @throws UserPasswordConstrainsException
+     * @throws EmailNotValidException
+     * @throws UserNameConstrainsException
+     */
     public User register(String userEmail, String password, String userName) throws UserEmailAlreadyInUseException,UserPasswordConstrainsException,EmailNotValidException,UserNameConstrainsException{
         if(userName.length() < USERNAME_MIN_LENGTH){
             throw new UserNameConstrainsException(userName,USERNAME_MIN_LENGTH);
@@ -61,6 +83,16 @@ public class UserService extends  BaseService<User,UserRepository> {
         u.setName(userName);
         return this.repository.save(u);
     }
+
+    /**
+     * Heigh level mehtod for new user
+     * @param userEmail
+     * @param password
+     * @return
+     * @throws UserEmailAlreadyInUseException
+     * @throws UserPasswordConstrainsException
+     * @throws EmailNotValidException
+     */
     public User register(final String userEmail,final String password) throws UserEmailAlreadyInUseException, UserPasswordConstrainsException,EmailNotValidException{
 
         if(password.length() < PASSWORD_MIN_LENGTH ){
@@ -86,6 +118,12 @@ public class UserService extends  BaseService<User,UserRepository> {
 
         return this.repository.save(newUser);
     }
+
+    /**
+     * Return the current user or null if the user not logged in
+     * @return
+     * @throws SecurityException
+     */
     public User getCurrentUser() throws SecurityException {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

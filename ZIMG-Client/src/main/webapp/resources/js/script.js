@@ -95,8 +95,20 @@ $(document).ready(function() {
         return false;
     });
 
-    $("img.overview-entry").each(function(index,el){
+    $(".overview-entry").find("img").each(function(index,el){
         var $el = $(el);
+        var img = new Image();
+        img.src = $el.attr("image-src");
+        img.onload = function(){
+            $el.fadeOut(500,function(){
+                $el.removeClass("loading");
+                $el.attr("src",img.src);
+            })
+        };
+        $el.on("load", function(){
+            $el = $(this);
+            $el.fadeIn(1000)
+        });
         if($el.attr("file-name").indexOf(".gif") > -1){
             $el.mouseenter(function(){
                 $(this).attr("src","/uploads/" + $(this).attr("file-name"));

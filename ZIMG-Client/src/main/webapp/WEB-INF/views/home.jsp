@@ -15,13 +15,7 @@
                        <zimg:imagePreview image="${image}"/>
                     </div>
                     <div class="col-xs-4 col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <span class="spacer">Uploader:</span><a href="/user/${image.uploader.name}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  ${image.uploader.name}</a> <br/>
-                                <hr />
-                                <span class="spacer">Date:</span><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <fmt:formatDate value="${image.createdAt}" pattern="dd.MM.yyyy - HH:mm" />
-                            </div>
-                        </div>
+                        <zimg:imageInfoBox image="${image}"/>
                     </div>
                 </div>
             </c:forEach>

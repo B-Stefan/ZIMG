@@ -26,9 +26,26 @@
     margin-right: auto;
 }
 
+#overview .overview-entry img{
+    margin-bottom: 20px;
+    width: 100%;
+}
 #overview .overview-entry {
     margin-bottom: 20px;
     width: 100%;
+}
+
+#overview .overview-entry .loading {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    align-self: center;
+    width: 50px;
+    height: 50px;
+}
+.glyphicon{
+    padding-left: 10px;
 }
 
 #overview .spacer,
@@ -143,4 +160,28 @@
 }
 .bg-warning {
     background-color: #fcf8e3;!important;
+}
+
+.lastImages {
+    list-style:none; border:0;
+}
+.lastImages img{
+    width: 100%;
+}
+.lastImages li{
+   margin:0; padding:0; border:0;
+}
+.topUsers .centered {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.topUsers .carousel {
+    margin: auto;
+    align-self: center;
+    max-width: 500px!important;
+}
+.topUsers .carousel img {
+    width: 100%;
 }

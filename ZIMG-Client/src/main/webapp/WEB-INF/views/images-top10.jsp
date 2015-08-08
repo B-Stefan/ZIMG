@@ -7,15 +7,18 @@
 <zimg:defaultLayout>
     <jsp:body>
         <%-- HEAD --%>
-        <h1>Top 10 images</h1>
-
-        <c:forEach items="${findTopTenImages}" var="image">
-            <div class="container row">
-                <div class="col-lg-2 col-md-2 col-xs-1">${user.id}</div>
-                <div class="col-lg-3 col-md-3 col-xs-3">
-                    <a href ="/user/${user.name}">${user.name}</a>
+        <div class="container" id="overview">
+            <h1>Top 10 images</h1>
+            <c:forEach items="${images}" var="image">
+                <div class="row">
+                    <div class="col-xs-8 col-md-8">
+                        <zimg:imagePreview image="${image}"/>
+                    </div>
+                    <div class="col-xs-4 col-md-4">
+                     <zimg:imageInfoBox image="${image}"/>
+                    </div>
                 </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
     </jsp:body>
 </zimg:defaultLayout>
