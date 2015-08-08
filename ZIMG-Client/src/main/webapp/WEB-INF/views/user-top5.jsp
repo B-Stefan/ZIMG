@@ -15,7 +15,7 @@
                 <tr>
                     <th>#</th>
                     <th>Username</th>
-                    <th>Last 5 images</th>
+                    <th>Last 3 images</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,14 +29,14 @@
                                 <div id="${carouselId}" class="carousel slide" data-interval="false" data-ride="carousel">
                                     <!-- Indicators -->
                                     <ol class="carousel-indicators">
-                                        <c:forEach items="${user.images}" var="image" varStatus="imgLoop" begin="0" end="3">
+                                        <c:forEach items="${user.images}" var="image" varStatus="imgLoop" begin="0" end="2">
                                             <li data-target="#${carouselId}" data-slide-to="${imgLoop.index}" class="active"></li>
                                         </c:forEach>
                                     </ol>
 
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner" role="listbox">
-                                        <c:forEach items="${user.images}" var="image" varStatus="imgLoop" begin="0" end="3">
+                                        <c:forEach items="${user.images}" var="image" varStatus="imgLoop" begin="0" end="2">
                                         <c:if test="${imgLoop.index == 0}">
                                             <c:set var="activeCSS" value="active"/>
                                         </c:if>
