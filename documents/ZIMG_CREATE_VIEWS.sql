@@ -1,6 +1,6 @@
 USE zimg;
 
-CREATE VIEW last_upvotes AS
+CREATE OR REPLACE  VIEW last_upvotes AS
   SELECT
     images.fileName,
     users.name,
@@ -10,7 +10,7 @@ CREATE VIEW last_upvotes AS
     INNER JOIN users ON users.id = upvotes.userid
   WHERE upvotes.createdAt > (NOW() - INTERVAL 10 DAY);
 
-CREATE VIEW top_ten_tags AS
+CREATE OR REPLACE  VIEW top_ten_tags AS
   SELECT
     COUNT(*) AS tag2image,
     tags.tag,
@@ -22,7 +22,7 @@ CREATE VIEW top_ten_tags AS
   ORDER BY COUNT(*) DESC
   LIMIT 10;
 
-CREATE VIEW top_ten_images AS
+CREATE OR REPLACE VIEW top_ten_images AS
   SELECT
     COUNT(*) AS favorites,
     filename,
@@ -34,7 +34,7 @@ CREATE VIEW top_ten_images AS
   ORDER BY COUNT(*) DESC
   LIMIT 10;
 
-CREATE VIEW admins AS
+CREATE OR REPLACE  VIEW admins AS
   SELECT
     users.id,
     users.name,
@@ -44,7 +44,7 @@ CREATE VIEW admins AS
   FROM users
   WHERE users.admin = 1;
 
-CREATE VIEW top_uploader AS
+CREATE OR REPLACE  VIEW top_uploader AS
   SELECT
     COUNT(*) AS images,
     users.name
