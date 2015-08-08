@@ -1,17 +1,32 @@
 USE zimg;
 
 INSERT INTO `users` (`name`, `email`, `password`, `createdat`, `admin`) VALUES
-  ('Oklon', 'nischiwe@stud.hs-bremen.de', 'hallo123', NOW(), TRUE),
-  ('Fabimon', 'fabimon@fabimon.org', 'password', NOW(), TRUE),
-  ('SBI', 'stefan.bie@live.de', 'qwertz', NOW(), TRUE),
-  ('ChrisLaDiDa', 'cpleines@stud.hs-bremen.de', 'werderbremen', NOW(), TRUE);
+  ('Oklon', 'okeschwien@gmail.com', '$2a$10$3kauVegeThAtuCWLzeZ3IO2HNpiQyEa0s7RkOfoNaBf2gwuc0cj2C', NOW(), TRUE),
+  ('faBimon', 'fabimon@fabimon.org', '$2a$10$7MXD/vxUqxfQuImDrrKZ/ezmsDScUXzZPxTY9p20Gql8wlxI.YsN6', NOW(), TRUE),
+  ('SBI', 'stefan.bie@live.de', '$2a$10$79TI9jfXK/xpQoiEPdzMBOt1OzXSH4WaW8z8d/r5z5rPjs3o7Uzby', NOW(), TRUE),
+  ('ChrisLaDiDa', 'cpleines@stud.hs-bremen.de', '$2a$10$lYE/gshYNVsdYrUpLj7qGOzCGXZubVn5RW4BNARZof7p4EKVY1qAq', NOW(), TRUE);
+
+# Oklon Password: hallo123
+# faBimon Password: hallo123
+# SBI Password: qwertz
+# ChrisLaDiDa Password: werderbremen
 
 INSERT INTO `images` (`uploaderid`, `filename`, `createdat`) VALUES
   (1, 'not_nsfw_pic.jpg', NOW()),
+  (1, 'a09wM0d_460s.jpg', NOW()),
   (2, 'suesse_robbenbabys_im_soester_zoo.jpg', NOW()),
+  (2, '8cb9378cef976172.jpg', NOW()),
+  (2, 'ac69ce80c5312a7c.png', NOW()),
+  (2, 'ae3Ne1j_460sa_v1.gif', NOW()),
+  (2, 'f34a379bf37409b1.gif', NOW()),
+  (2, 'fb50eee5b838e376.jpg', NOW()),
+  (2, 'i6l7yli.gif', NOW()),
   (3, 'Pokemon_asdbdnd.jpg', NOW()),
+  (3, '1236796_621682624530210_1560674262_n.jpg', NOW()),
   (4, 'maidemo.jpg', NOW()),
-  (3, 'werderhulls.jpg', NOW());
+  (4, '10557310_792640010767803_7157748472305996283_n.jpg', NOW()),
+  (3, 'werderhulls.jpg', NOW()),
+  (3, 'open-poster-small.png', NOW());
 
 INSERT INTO `tags` (`tag`, `createdat`) VALUES
   ('cool', NOW()),
