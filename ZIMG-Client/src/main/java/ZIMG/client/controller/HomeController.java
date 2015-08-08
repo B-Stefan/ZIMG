@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    static int imagesPerSite = 3;
-
+    static final int imagesPerSite = 3;
+    static final String JSP_PAGE_NAME = "home";
     @Autowired
     ImageService imageService;
 
-    @RequestMapping("home")
+    @RequestMapping(JSP_PAGE_NAME)
     public String loadHomepage(Model m) {
 
         Pageable pageable = new PageRequest(0, imagesPerSite, new Sort(Sort.Direction.DESC, "createdAt"));
@@ -31,7 +31,7 @@ public class HomeController {
         return this.loadHomepagePage("0", m);
     }
 
-    @RequestMapping(value="/home/{page}", method= RequestMethod.GET)
+    @RequestMapping(value="/"+JSP_PAGE_NAME+"/{page}", method= RequestMethod.GET)
     public String loadHomepagePage(@PathVariable String page, Model m) {
 
         int pageNumber = Integer.parseInt(page);
@@ -57,7 +57,7 @@ public class HomeController {
             m.addAttribute("pageNextDisable", false);
         }
 
-        return "home";
+        return JSP_PAGE_NAME;
     }
 
 

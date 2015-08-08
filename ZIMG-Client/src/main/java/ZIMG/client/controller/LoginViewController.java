@@ -20,10 +20,17 @@ public class LoginViewController extends BaseController {
 
     @RequestMapping(value = JSP_PAGE_NAME, method = RequestMethod.GET)
     public String getView(@RequestParam(value = "error", required = false) Optional<String> errorMsg, Model m) {
-        if(errorMsg.isPresent()){
-            throw new SpringRuntimeExceptionForUser("We can't find an existing user for your email/password combination", SpringRuntimeExceptionForUser.TYPE.ERROR,JSP_PAGE_NAME);
+        try {
+            userService.getCurrentUser();
+        }catch (SecurityException e){
+            //if user not logged in
+            if(errorMsg.isPresent()){
+                throw new SpringRuntimeExceptionForUser("We can't find an existing user for your email/password combination", SpringRuntimeExceptionForUser.TYPE.ERROR,JSP_PAGE_NAME);
+            }
+            return JSP_PAGE_NAME;
         }
-        return JSP_PAGE_NAME;
+        return "redirect:/" + HomeController.JSP_PAGE_NAME;
+
     }
 
 }

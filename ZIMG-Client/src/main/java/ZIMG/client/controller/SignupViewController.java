@@ -19,7 +19,14 @@ public class SignupViewController extends BaseController {
 
     @RequestMapping(value = JSP_PAGE_NAME, method = RequestMethod.GET)
     public String getView(Model m) {
-        return "signup";
+        try {
+            userService.getCurrentUser();
+        }catch (SecurityException e){
+
+            return "signup";
+        }
+        return "redirect:/" + HomeController.JSP_PAGE_NAME;
+
     }
 
     @RequestMapping(value=JSP_PAGE_NAME, method= RequestMethod.POST)
@@ -27,9 +34,10 @@ public class SignupViewController extends BaseController {
                            @RequestParam("username") String username,
                            @RequestParam("password") String password) {
 
+
         try {
 
-            this.userService.register(userEmail,password,username);
+            this.userService.register(userEmail, password, username);
 
         }catch (UserEmailAlreadyInUseException e){
 
