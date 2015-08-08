@@ -9,7 +9,10 @@
         <%-- HEAD --%>
         <div class="container" id="overview">
             <h1>Top 10 images</h1>
-            <c:forEach items="${images}" var="image">
+            <c:forEach items="${images}" varStatus="loop" var="image">
+                <div class="row col-lg-12 col-md-12 col-sd-12">
+                    <h4># ${loop.index+1}</h4>
+                </div>
                 <div class="row">
                     <div class="col-xs-8 col-md-8">
                         <zimg:imagePreview image="${image}"/>
