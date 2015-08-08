@@ -2,6 +2,7 @@ package ZIMG.services;
 
 import ZIMG.exceptions.*;
 import ZIMG.models.User;
+import ZIMG.services.security.SecurityUser;
 import ZIMG.utils.EmailValidator;
 import javassist.NotFoundException;
 import org.apache.log4j.Logger;
@@ -124,13 +125,13 @@ public class UserService extends  BaseService<User,UserRepository> {
      * @return
      * @throws SecurityException
      */
-    public User getCurrentUser() throws SecurityException {
+    public SecurityUser getCurrentUser() throws SecurityException {
 
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             String email = ((UserDetails) principal).getUsername();
             User loginUser = this.findUserByEmail(email);
-            return loginUser;
+            return new SecurityUser(loginUser);
         } else {
             throw new SecurityException("User is not logged in and you try to get the current user ");
         }

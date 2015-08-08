@@ -28,4 +28,12 @@ public abstract class BaseModel {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public boolean equals(Object other){
+        if(other instanceof BaseModel){
+            return  this.id == ((BaseModel) other).getId();
+        }
+        return super.equals(other);
+    }
 }

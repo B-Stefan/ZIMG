@@ -1,6 +1,8 @@
 package ZIMG.services.security;
 
 import ZIMG.models.User;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
@@ -20,6 +22,7 @@ public class SecurityUser extends User implements UserDetails {
             this.setName(user.getName());
             this.setEmail(user.getEmail());
             this.setPassword(user.getPassword());
+            this.setAdmin(user.getAdmin());
         }
     }
 
@@ -27,14 +30,26 @@ public class SecurityUser extends User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
 
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-        SimpleGrantedAuthority authority1 = new SimpleGrantedAuthority("ROLE_ADMIN");
-        authorities.add(authority);
-        authorities.add(authority1);
+        SimpleGrantedAuthority userRole = new SimpleGrantedAuthority("ROLE_USER");
+        authorities.add(userRole);
+
+        if(this.getAdmin()){
+            SimpleGrantedAuthority admin = new SimpleGrantedAuthority("ROLE_ADMIN");
+            authorities.add(admin);
+        }
 
         return authorities;
     }
 
+    public boolean isUserInRolePresent(String role) {
+        boolean isRolePresent = false;
+        for (GrantedAuthority grantedAuthority : this.getAuthorities()) {
+            isRolePresent = grantedAuthority.getAuthority().equals(role);
+            Logger.getLogger(SecurityUser.class).log(Priority.DEBUG,"ROLE:::=> " + grantedAuthority.getAuthority());
+            if (isRolePresent) break;
+        }
+        return isRolePresent;
+    }
 
     @Override
     public String getPassword() {

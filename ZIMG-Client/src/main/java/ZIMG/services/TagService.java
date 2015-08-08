@@ -3,13 +3,16 @@ package ZIMG.services;
 import ZIMG.exceptions.TagConstrainsException;
 import ZIMG.models.Image;
 import ZIMG.models.Tag;
+import ZIMG.models.User;
 import ZIMG.persistence.repositories.TagRepository;
+import ZIMG.services.security.SecurityUser;
 import javassist.NotFoundException;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,6 +29,20 @@ public class TagService extends BaseService<Tag,TagRepository> {
 
     @Autowired
     private ImageService imageService;
+
+
+    @Autowired
+    private UserService userService;
+
+
+    public void delete(final Tag t){
+        final SecurityUser currentUser = this.userService.getCurrentUser();
+        if(currentUser!= null && currentUser.isUserInRolePresent("ROLE_ADMIN")){
+            super.delete(t);
+        }else {
+            throw new SecurityException("You have no permissions for deleting a tag");
+        }
+    }
 
     /**
      * Gibt die zehn meist verwendeten Tags als Liste zurück
@@ -45,6 +62,12 @@ public class TagService extends BaseService<Tag,TagRepository> {
             throw new NotFoundException("Tag '"+tag+"' not found.");
         }
         return tagList.get(0);
+    }
+    @Transactional
+    public Tag getTagByTagAndLoadImages(String tag) throws  NotFoundException{
+        final Tag t = this.getTagByTag(tag);
+        t.getImages().size();
+        return t;
     }
 
     public Tag saveOrCreate(String tagStr, String imageId) throws NotFoundException,TagConstrainsException{

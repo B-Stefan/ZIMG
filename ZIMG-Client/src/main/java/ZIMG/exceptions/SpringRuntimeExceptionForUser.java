@@ -6,7 +6,7 @@ public class SpringRuntimeExceptionForUser extends RuntimeException {
         WARNING,
         ERROR,
     }
-    private static String DEFAULT_JSP_NAME = "error";
+    public final static String DEFAULT_JSP_NAME = "error";
     private final TYPE type;
     private final String jspPageName;
     public SpringRuntimeExceptionForUser(Throwable e){

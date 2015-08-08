@@ -20,14 +20,20 @@
                                 <th>#</th>
                                 <th>Tag</th>
                                 <th>Number of images</th>
+                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <th>Actions</th>
+                                </sec:authorize>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${topTenTagsList}" varStatus="loop" var="tag">
                                 <tr>
                                     <td>${loop.index+1}</td>
-                                    <td>${tag.tag}</td>
+                                    <td><a href="/tag/${tag.tag}">${tag.tag}</a> </td>
                                     <td>${fn:length(tag.images)} </td>
+                                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                        <td><a href="/tags-top10/delete/${tag.id}" class="btn btn-danger">Delete</a></td>
+                                    </sec:authorize>
                                 </tr>
                             </c:forEach>
 
