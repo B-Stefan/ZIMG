@@ -56,7 +56,7 @@ public class ThumbnailController extends BaseController {
             int width=(int)(img.getWidth() * 0.5);
             int height=(int)(img.getHeight() * 0.5);
 
-            if(this.getImageType(path).equals("gif")){
+            if(this.getImageType(path).equals("gif") ||this.getImageType(path).equals("png") ){
                 return getDataFromBufferedImage(img,path);
             }else {
                 ResampleOp resampleOp = new ResampleOp(width,height);
