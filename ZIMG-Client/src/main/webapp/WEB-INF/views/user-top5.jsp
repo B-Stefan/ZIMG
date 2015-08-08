@@ -23,10 +23,10 @@
                     <c:set value="carousel-${carouselId}" var="carouselId"/>
                     <tr>
                         <td>${loop.index+1}</td>
-                        <td>${user.name}</td>
+                        <td><a href="/user/${user.name}">${user.name}</a></td>
                         <td>
                             <div class="centered">
-                                <div id="${carouselId}" class="carousel slide" data-ride="carousel">
+                                <div id="${carouselId}" class="carousel slide" data-interval="false" data-ride="carousel">
                                     <!-- Indicators -->
                                     <ol class="carousel-indicators">
                                         <c:forEach items="${user.images}" var="image" varStatus="imgLoop" begin="0" end="3">
@@ -45,7 +45,7 @@
                                         </c:if>
 
                                             <div class="item ${activeCSS}">
-                                                <img src="/thumbnail/${image.id}" alt="aasd"/>
+                                                <img src="/thumbnail/${image.id}" alt="${image.filename}"/>
                                             </div>
                                         </c:forEach>
 
