@@ -47,15 +47,5 @@ public class TagServiceTest {
         tagService.save("","asdasd");
 
     }
-    @Test
-    public void add1000Tags(){
-
-        for(int i = 0; i != 100; i++){
-
-            final Tag t = new Tag();
-            t.setTag("tag-" + i);
-            this.tagService.create(t);
-        }
-    }
 
 }
