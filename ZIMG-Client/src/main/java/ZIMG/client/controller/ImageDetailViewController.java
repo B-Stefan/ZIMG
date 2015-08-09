@@ -1,5 +1,5 @@
 /*
- * ZIMG-JAVA - Game, Copyright 2014  Nils Oke S., Fabian J., Chris P., Stefan Bieliauskas  -  All Rights Reserved.
+ * ZIMG-JAVA - Game, Copyright 2015  Nils Oke S., Fabian J., Chris P., Stefan Bieliauskas  -  All Rights Reserved.
  * Hochschule Bremen - University of Applied Sciences
  *
  *
