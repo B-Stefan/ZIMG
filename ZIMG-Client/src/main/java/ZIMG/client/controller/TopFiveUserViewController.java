@@ -1,3 +1,4 @@
+
 package ZIMG.client.controller;
 
 import ZIMG.models.User;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+/**
+ * Display the to ten images
+ */
 @Controller
 @EnableWebSecurity
 public class TopFiveUserViewController extends BaseController {
@@ -17,8 +21,13 @@ public class TopFiveUserViewController extends BaseController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Top ten images get method
+     * @param m
+     * @return
+     */
     @RequestMapping("user-top5")
-    public String loadHomePage(Model m) {
+    public String loadPage(Model m) {
 
         List<User> topFiveUserList =  userService.getTopFiveByUploadsUsers();
         m.addAttribute("topFiveUserList", topFiveUserList);

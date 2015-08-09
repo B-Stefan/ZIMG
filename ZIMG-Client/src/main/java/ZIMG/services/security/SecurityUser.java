@@ -12,10 +12,17 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+/**
+ * The sec. user for the spring security module
+ */
 public class SecurityUser extends User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Create a new user from an existing user
+     * @param user
+     */
     public SecurityUser(User user) {
         if (user != null) {
             this.setId(user.getId());
@@ -26,6 +33,10 @@ public class SecurityUser extends User implements UserDetails {
         }
     }
 
+    /**
+     * Geter for roeles for this user
+     * @return
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
@@ -41,6 +52,11 @@ public class SecurityUser extends User implements UserDetails {
         return authorities;
     }
 
+    /**
+     * Check a roles for this user
+     * @param role
+     * @return
+     */
     public boolean isUserInRolePresent(String role) {
         boolean isRolePresent = false;
         for (GrantedAuthority grantedAuthority : this.getAuthorities()) {

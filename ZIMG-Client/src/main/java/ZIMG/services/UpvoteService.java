@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Service for upvote a image
+ */
 @Service
 @Scope("prototype")
 @Transactional
@@ -37,6 +40,12 @@ public class UpvoteService extends  BaseService<Upvote, UpvoteRepository>  {
         return this.addUpvote(image, currentUser);
     }
 
+    /**
+     * Remove an upvote
+     * @param imageId The image id
+     * @throws NotFoundException of id not found
+     * @throws SecurityException if user notted logged in
+     */
     public void removeUpvote(String imageId) throws NotFoundException, SecurityException {
         final User currentUser = this.userService.getCurrentUser();
         final Image image = this.imageService.getById(imageId);
@@ -47,6 +56,12 @@ public class UpvoteService extends  BaseService<Upvote, UpvoteRepository>  {
         this.removeUpvote(image, currentUser);
     }
 
+    /**
+     * Check if the user has already upvoated
+     * @param image The image
+     * @param user The user
+     * @return
+     */
     public Boolean hasAlreadyUpvoted(Image image, User user) {
         List<Upvote> imagesUpvotes = image.getUpvotes();
 
@@ -60,6 +75,13 @@ public class UpvoteService extends  BaseService<Upvote, UpvoteRepository>  {
         return false;
     }
 
+    /**
+     * Add the upvoate for a user and image
+     * @param image Image class
+     * @param user User class
+     * @return
+     * @throws UpvoteAlreadyExistException
+     */
     private Upvote addUpvote(Image image, User user) throws UpvoteAlreadyExistException {
 
         Upvote upvote = new Upvote();
@@ -77,6 +99,11 @@ public class UpvoteService extends  BaseService<Upvote, UpvoteRepository>  {
         return super.save(upvote);
     }
 
+    /**
+     * Remove the upvoate
+     * @param image
+     * @param user
+     */
     private void removeUpvote(Image image, User user) {
 
         List<Upvote> imagesUpvote = image.getUpvotes();

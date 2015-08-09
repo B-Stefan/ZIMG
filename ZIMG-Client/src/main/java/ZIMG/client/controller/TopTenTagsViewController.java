@@ -14,14 +14,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+/**
+ * Top ten tags
+ */
 @Controller
 @EnableWebSecurity
 public class TopTenTagsViewController extends BaseController {
 
     public final static String JSP_PAGE_NAME = "tags-top10";
+
     @Autowired
     private TagService tagService;
 
+    /**
+     * Render the top ten tags
+     * @param m
+     * @return
+     */
     @RequestMapping(value = JSP_PAGE_NAME,method= RequestMethod.GET)
     public String loadPage(Model m) {
         List<Tag> topTenTagsList = tagService.getTopTenTags();
@@ -29,6 +38,13 @@ public class TopTenTagsViewController extends BaseController {
 
         return "tags-top10";
     }
+
+    /**
+     * Method for delete a tag
+     * @param tagId The id of the tag
+     * @param m
+     * @return
+     */
     @RequestMapping(value=JSP_PAGE_NAME+ "/delete/{tagId}", method= RequestMethod.GET)
     public String deleteTag(@PathVariable String tagId, Model m) {
         try {

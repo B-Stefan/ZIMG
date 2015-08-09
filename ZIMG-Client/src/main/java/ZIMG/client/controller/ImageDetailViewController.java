@@ -1,3 +1,26 @@
+/*
+ * ZIMG-JAVA - Game, Copyright 2014  Nils Oke S., Fabian J., Chris P., Stefan Bieliauskas  -  All Rights Reserved.
+ * Hochschule Bremen - University of Applied Sciences
+ *
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+ * Web:
+ *     https://github.com/B-Stefan/ZIMG
+ *
+ */
 package ZIMG.client.controller;
 
 import ZIMG.exceptions.*;
@@ -17,12 +40,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller for the image detail page
+ */
 @Controller
 @EnableWebSecurity
 public class ImageDetailViewController extends BaseController {
 
+    /**
+     * The name of the JSP page
+     */
     public static final String JSP_PAGE_NAME = "image";
+
+    /**
+     * Logger instance
+     */
     static Logger LOG = Logger.getLogger(ImageDetailViewController.class);
+
+
     @Autowired
     ImageService imageService;
 
@@ -41,6 +76,12 @@ public class ImageDetailViewController extends BaseController {
     @Autowired
     UserService userService;
 
+    /**
+     * The method to render one image on the detail page
+     * @param imageId the id of the image
+     * @param m the model of the view
+     * @return
+     */
     @RequestMapping(value="/"+JSP_PAGE_NAME+"/{imageId}", method= RequestMethod.GET)
     public String getImageDetailPage(@PathVariable String imageId, Model m) {
 
@@ -71,6 +112,16 @@ public class ImageDetailViewController extends BaseController {
 
         return JSP_PAGE_NAME;
     }
+
+    /**
+     * The method for post a new comment or add a tag or set the image to favorites
+     * @param imageId the id  of the image
+     * @param action comment | tag | unfavorite | favorite | upvote | unupvote
+     * @param commentStr The comment string only filled if action = comment
+     * @param tagStr The name of the new tag, only filled if the action equals tag
+     * @param m
+     * @return
+     */
     @RequestMapping(value="/"+JSP_PAGE_NAME+"/{imageId}/{action}", method= RequestMethod.POST)
     public String addComment(@PathVariable String imageId,
                              @PathVariable String action,

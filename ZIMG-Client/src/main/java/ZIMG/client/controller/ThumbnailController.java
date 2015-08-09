@@ -1,3 +1,4 @@
+
 package ZIMG.client.controller;
 
 import ZIMG.models.Image;
@@ -17,16 +18,25 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Controller for creating thumbnails for the imagePreview.tag
+ */
 @Controller
 public class ThumbnailController extends BaseController {
 
     final static Logger LOG = Logger.getLogger(ThumbnailController.class);
+
     @Autowired
     ImageService imageService;
 
     @Autowired
     private ServletContext servletContext;
 
+    /**
+     * Get the type of the image
+     * @param path The total file path with the file name in it
+     * @return The file type (jpg | png | gif)
+     */
     private String getImageType(String path){
         final String type;
         if(path.contains(".gif")){
@@ -38,6 +48,13 @@ public class ThumbnailController extends BaseController {
         }
         return type;
     }
+
+    /**
+     * The get mehtod to render a high res image into a thumbnail
+     * @param imageId the id of the image
+     * @param response the http response object
+     * @return
+     */
     @RequestMapping(value = "thumbnail/{imageId}", method = { RequestMethod.GET })
     @ResponseBody
     public byte[] getImageThumbnail(@PathVariable("imageId") String imageId, HttpServletResponse response) {
@@ -69,6 +86,13 @@ public class ThumbnailController extends BaseController {
         }
     }
 
+    /**
+     * Convert a image into a byte array
+     * @param thumbnail The image for converting
+     * @param path The total path with file name
+     * @return A array of bytes to render this into html
+     * @throws IOException
+     */
     private byte[] getDataFromBufferedImage(BufferedImage thumbnail,String path) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         try {

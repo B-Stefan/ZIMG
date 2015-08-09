@@ -5,19 +5,32 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class for the image entries
+ */
 @Entity
 @Table(name="images")
 @Inheritance(strategy=InheritanceType.JOINED)
 @Transactional
 public class Image extends BaseModel {
 
+    /**
+     * The uploader user
+     */
     @ManyToOne
     @JoinColumn(name = "uploaderid")
     private User uploader;
 
+    /**
+     * The name of the image in the server file system.
+     * This name has to be the same as the name of the image in the server file system!
+     */
     @Column(nullable=false)
     private String filename;
 
+    /**
+     * List of tags for this image
+     */
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable( name = "tag2image",
                 joinColumns = @JoinColumn(name = "imageid"),
@@ -25,9 +38,15 @@ public class Image extends BaseModel {
     )
     private List<Tag> tags = new ArrayList<Tag>();
 
+    /**
+     * All comments for this image
+     */
     @OneToMany(mappedBy = "image")
     private List<Comment> comments = new ArrayList<Comment>();
 
+    /**
+     * All upvotes for this image
+     */
     @OneToMany(mappedBy = "image")
     private List<Upvote> upvotes = new ArrayList<Upvote>();
 
