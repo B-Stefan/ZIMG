@@ -9,7 +9,7 @@
 	\documentclass[12pt, oneside, a4paper]{article}		% PDF article style
 	%\documentclass[12pt, twoside, a4paper]{report}		% book style
 
-% PACKAGES SETTINGS
+% PACKAGES SETTINGS 
 	\usepackage[T1]{fontenc} 							% encoding input T1 codec
 	\usepackage[utf8]{inputenc}							% encoding output
 	\usepackage[ngerman]{babel}							% language settings German
@@ -131,7 +131,7 @@
 %	- Welchen Mehrwert bietet die Webanwendung für dessen Nutzer?
 
 Im Rahmen des Moduls Datenbankbasierte Web-Anwedungen an der Hochschule Bremen im Sommersemester 2015 bei Steve Liedtke entstand das Web-Imageboard ZIMG. ZIMG ist eine Plattform zum Betrachten von Bildern und Gifs über das Internet. Zur Zielgruppe für diese Plattform gehören diejenigen Studierenden, die der Fakultät 4 angehören und den Standort ZIMT (Zentrum für Informatik und Medientechnologien) der Hochschule Bremen besuchen. \\
-Die Studierenden können sich einloggen, Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert (bewertet), durch Tags kategorisiert und kommentiert werden. \\
+Die Studierenden können sich einloggen, Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert, bewertet, durch Tags kategorisiert und kommentiert werden. \\
 ZIMG bietet außerdem die Möglichkeit die Top Ten Tags, Top Ten Bilder und Top Five User zu begutachten. \\
 Diese Funktionen machen ZIMG zu einem Ort des Austausches zwischen Studierenden, die beispielsweise ihre Erlebnisse im Semester oder Auslandssemester mit ihren Kommilitonen teilen wollen.
 
@@ -156,7 +156,7 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 	\label{ZIMGUseCaseDiagram}
  \end{figure}
 
- Es wurden alle Anforderungen an das System umgesetzt. Das bedeutet, dass ein eingeloggter User Bilder hochladen und somit teilen, Bilder favorisieren und somit bewerten, Bilder mit Schlagwörtern versehen (taggen) und Kommentare zu einzelnen Bildern verfassen kann.
+ Es wurden alle Anforderungen an das System umgesetzt. Das bedeutet, dass ein eingeloggter User Bilder hochladen und somit teilen, Bilder favorisieren, bewerten, mit Schlagwörtern versehen (taggen) und Kommentare zu einzelnen Bildern verfassen kann.
 
 \section{Architektur}
 % 2 Architektur
@@ -166,12 +166,28 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 % 2.1 Gesamtarchitektur
 % In diesem Unterkapitel soll beschrieben werden, wie die Gesamtarchitektur der entwickelten Webanwendung aussieht. Dies kann mit UML Paket- oder Klassendiagrammen unterstützt werden.
 
-%\begin{figure}[H]
- %	\centering
- %	\includegraphics[width=\linewidth]{footage/ZIMG_Klassendiagramm} 
- %	\caption{ZIMG Klassendiagramm}
-%	\label{ZIMGClassDiagram}
- %\end{figure}
+Die Gesamtarchitektur der Anwendung ZIMG ist eine Art Schichtenarchitektur (Abb. \ref{ArchitectureScheme}). Angefangen in der Präsentationsschicht (Views, Controller) über die Logikschicht (Controller, Services, Repository) bis zur Persistenzschicht (MySQL DB on a Vagrant VM). Wird also eine View angefordert so läuft diese Anfrage von oben nach unten durch die erwähnten Schichtenelemente. Die Antwort auf diese Anfrage läuft dann von unten nach oben, bis die Antwort in der Präsentationsschicht dargestellt wird.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{footage/ZIMG_ProjektArchitektur} 
+	\caption{Architekturschema}
+	\label{ArchitectureScheme}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{footage/ZIMG_ClassDiagram_Models}
+	\caption{Klassendiagramm Models}
+	\label{ClassDiagramModels}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{footage/ZIMG_ClassDiagram_Services} 
+	\caption{Klassendiagramm Services}
+	\label{ClassDiagramServices}
+\end{figure}
 
 \subsection{Programmabläufe}
 % 2.2 Programmabläufe
@@ -181,10 +197,33 @@ Exemplarisch für die typischen Anwendungen steht der Login-Vorgang, der sinngem
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{footage/ZIMG_ActivityDiagram_Login} 
+	\includegraphics[width=10cm]{footage/ZIMG_ActivityDiagram_Login} 
 	\caption{Aktivitätsdiagramm Login}
 	\label{AcitivityDiagramLogin}
 \end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{footage/ZIMG_ActivityDiagram_Overview} 
+	\caption{Aktivitätsdiagramm Overview}
+	\label{AcitivityDiagramOverview}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{footage/ZIMG_ActivityDiagram_ImageDetailview} 
+	\caption{Aktivitätsdiagramm Image Detailansicht}
+	\label{AcitivityDiagramImageDetailview}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm10cm]{footage/ZIMG_ActivityDiagram_topUploader} 
+	\caption{Aktivitätsdiagramm Top Uploader}
+	\label{AcitivityDiagramTopUploader}
+\end{figure}
+
+\newpage
 
 \subsection{Persistenz}
 % 2.3 Persistenz
@@ -194,13 +233,20 @@ Exemplarisch für die typischen Anwendungen steht der Login-Vorgang, der sinngem
 % 2.3.1 Konzeption
 % In diesem Unterkapitel soll die konzipierte Datenbank nach ER-Diagramm beschrieben werden
 
-In Abb \ref{ERDiagramDatabase} ist das Entity-Relationship-Diagramm von ZIMG zu sehen.
+In Abb. \ref{ERDiagramDatabase} ist das Entity-Relationship-Diagramm von ZIMG zu sehen.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{footage/ZIMG_ERDiagram_Database} 
 	\caption{ER-Diagramm der Datenbank}
 	\label{ERDiagramDatabase}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{footage/ZIMG_RDiagram} 
+	\caption{Datenbank nach relationalem Modell}
+	\label{DBrelationalModel}
 \end{figure}
 
 \subsubsection{Umsetzung}
@@ -286,19 +332,18 @@ Die aufgelisteten Relationen unterliegen folgenden anwendungsspezifischen Constr
 	\item \textbf{Upvote}
 	\begin{itemize}
 		\item Wenn eine Relation Upvote angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
-		\item Wenn eine Relation Upvote angelegt wird, muss das Attribut createdAt auf die aktuellen Datum (DD.MM.YYYY HH:mm:SS) gesetzt werden.
+		\item Wenn eine Relation Upvote angelegt wird, muss das Attribut createdAt auf das aktuelle Datum (DD.MM.YYYY HH:mm:SS) gesetzt werden.
 	\end{itemize}
 	\item \textbf{Tag}
 	\begin{itemize}
 		\item Wenn eine Relation Tag angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
-		\item Wenn eine Relation Tag angelegt wird, muss das Attribut createdAt auf die aktuellen Datum (DD.MM.YYYY HH:mm:SS) gesetzt werden.
+		\item Wenn eine Relation Tag angelegt wird, muss das Attribut createdAt auf das aktuelle Datum (DD.MM.YYYY HH:mm:SS) gesetzt werden.
 	\end{itemize}
-	\item \textbf{Tag2Iamge}
+	\item \textbf{Tag2Image}
 	\begin{itemize}
 		\item Wenn eine Relation Tag2Image angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
 		\item Wenn eine Relation Tag2Image angelegt/geupdatet wird, muss das Attribut tagId eine Id enthalten der einer Relation Tag.id zuzuordnen ist.
 		\item Wenn eine Relation Tag2Image angelegt/geupdatet wird, muss das Attribut imageId eine Id enthalten der einer Relation Image.id zuzuordnen ist.
-		\item Wenn eine Relation Tag2Image angelegt wird, muss das Attribut createdAt auf das aktuelle Datum(DD.MM.YYYY HH:mm:SS) gesetzt werden.
 	\end{itemize}
 \end{itemize}
 
@@ -307,15 +352,15 @@ Die aufgelisteten Relationen unterliegen folgenden anwendungsspezifischen Constr
 % In diesem Unterkapitel soll beschrieben werden mit welchen Technologien und Frameworks von der Webanwendung auf die Datenbank zugegriffen wird.
 
 Vorgabe für das Projekt war es, eine MySQL-Datenbank, also ein quelloffenes, relationales Datenbanksystem, zu nutzen. In der Regel erfolgt der Zugriff auf diese Datenbanken über sogenannte Queries, die in der Structured Query Language (SQL) verfasst werden. In diesem Projekt war jedoch zusätzlich die Idee da datenbankunabhängig zu modellieren, also fiel die Entscheidung Hibernate als ORM-Framework zu nutzen. Dieses Framework dient als Vermittler zwischen Anwendungslogik und Datenbanksystem. Letzteres ist durch Hibernate austauschbar, da Hibernate je nach Datenbanksystem verschiedene SQL-Dialekte nutzen kann.
-Hibernate wurde als OR-Mapper vom Spring Framework, genauer von Spring Data genutzt. Spring nutzt Dependency Injection um so den verwendeten Objekten ihre Ressourcen zu zuweisen und vereinfacht so die Entwicklung von Java EE Projekten.
+Hibernate wurde als OR-Mapper vom Spring Framework, genauer von Spring Data genutzt. Spring nutzt Dependency Injection um so den verwendeten Objekten ihre Ressourcen zuzuweisen und vereinfacht so die Entwicklung von Java EE Projekten.
 
 \subsection{Präsentation}
 % 2.4 Präsentation
 % In diesem Unterkapitel soll die Präsentationsschicht der Webanwendung beschrieben werden. Hierzu u.a. die genutzte Technologie/Framework. 
 
 Für die Präsentationsschicht wurde die Technologie JavaServer Pages (JSP) genutzt. Diese Technologie ermöglicht es Java-Code in HTML-Dokumente einzubinden. Zusätzlich wurde die JSP-Tag-Library genutzt, um z. B. Page-Header und -Footer effizient in die Präsentationsschicht einzubinden. \\
-\\
-Die Präsentationsschichte ist folgendermaßen aufgebaut:	
+
+Das URL-Design der Präsentationsschicht ist folgendermaßen aufgebaut:	
 
 \begin{table}[ht!]
 \centering
@@ -325,25 +370,27 @@ Die Präsentationsschichte ist folgendermaßen aufgebaut:
 \hline
 login	& Wenn der User nicht eingeloggt ist, wird eine Loginmaske angezeigt.	& host.de/login \\
 \hline
-home	& Wenn der User eingeloggt ist, werden ihm die letzen 50 Bilder angezeigt. Durch eine Schaltfläche Page n wird die jeweilige Seite angezeigt.	& host.de/home \\
+home	& Wenn der User eingeloggt ist, werden ihm die letzen 3 Bilder angezeigt. Durch die Schaltflächen \textit{Previous, Next} können weitere Bilder angezeigt werden.	& host.de/home \\
 \hline
-user	& Zeigt alle hochgeladenen Bilder, Kommentare und Favoriten und die Gesamtanzahl der Upvotes an.	& host.de/user/\${username} \\
+user	& Zeigt alle hochgeladenen Bilder des Users.	& host.de/user/\${username} \\
 \hline
 image	& Zeigt ein Bild mit den zugehörigen Tags und Kommentaren an. Ebenfalls wird der Count der Upvotes des Bildes angezeigt.	& host.de/image/\${imageid} \\
 \hline
-images-top10	& Zeigt die zehn Bilder mit den meisten Upvotes.	& host.de/top10-images \\
+images-top10	& Zeigt die zehn Bilder mit den meisten Upvotes.	& host.de/images-top10 \\
 \hline
-tags-top10	& Zeigt die zehn meist verwendeten Tags.	& host.de/top10-tags \\
+tags-top10	& Zeigt die zehn meist verwendeten Tags.	& host.de/tags-top10 \\
 \hline
-users-top5	& Zeigt die fünf aktivsten User	& host.de/top5-users \\
+users-top5	& Zeigt die fünf aktivsten User	& host.de/user-top5 \\
+\hline
+upload	& Zeigt die Upload-Ansicht, die zum hochladen von Bildern genutzt wird	& host.de/user-top5 \\
 \hline
 \end{tabular}
 \caption{Struktur der Präsentationsschicht}
 \label{StructurePresentationlayer}
 \end{table}
 
-\newpage
 
+\newpage
 \section{Installation}
 % 3 Installation
 % In diesem Kapitel soll beschrieben werden, welche Programmierwerkzeuge verwendet wurden und wie die Webanwendung lokal aufgesetzt werden kann
@@ -380,7 +427,7 @@ MySQL	& Weit Verbreitet, unterstützt gängige Plattformen	& Bei Plattformen, di
 \hline
 Gradle	& Baut nur die veränderten Teile der Software, zum Großteil konfigurierbar	& Oft sind im Vergleich zu Maven keine definitiven Vorteile zu erkennen	\\
 \hline
-Hibernate	& Starke Abgrenzung von Präsentationsschicht vom Datenzugriff, Vereinfachung auf Datenzugriff, macht Datenbanksystem leicht austauschbar	& Extra Einarbeitungsphase \\
+Hibernate	& Starke Abgrenzung von Präsentationsschicht vom Datenzugriff, Vereinfachung des Datenzugriffs, macht Datenbanksystem leicht austauschbar	& Extra Einarbeitungsphase \\
 \hline
 Spring	& Gute Objektverwaltung in Programmlogik, wenn einmal korrekt implementiert bietet Spring eine simple Nutzungstruktur	& Für kleine Projekte sehr groß und komplex \\
 \hline
