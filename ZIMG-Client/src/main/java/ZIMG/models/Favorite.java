@@ -1,5 +1,5 @@
 /*
- * RISIKO-JAVA - Game, Copyright 2014  Chris P., Stefan B.,  Nils-Oke S., Fabian J.  -  All Rights Reserved.
+ * ZIMG-JAVA - Game, Copyright 2015  Nils Oke S., Fabian J., Chris P., Stefan Bieliauskas  -  All Rights Reserved.
  * Hochschule Bremen - University of Applied Sciences
  *
  *
@@ -16,10 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- *
- * Contact:
- *     Hs-Bremen: info@hs-bremen.de
- *
+
  * Web:
  *     https://github.com/B-Stefan/ZIMG
  *

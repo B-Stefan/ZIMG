@@ -21,18 +21,13 @@
  *     https://github.com/B-Stefan/ZIMG
  *
  */
-package ZIMG.persistence.repositories;
+package ZIMG.exceptions;
 
-import ZIMG.models.Favorite;
-import ZIMG.models.Tag;
-import ZIMG.models.User;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import java.util.List;
+public class NoItemsOnThisPageException extends Exception {
 
-public interface FavoriteRepository extends BaseRepository<Favorite> {
+    public NoItemsOnThisPageException(final int pageNumber){
+        super("We cant find any data for the page number " + pageNumber + ", sorry");
+    }
 
-    @Query(value = "SELECT * FROM favorites as f WHERE f.userid =:userId", nativeQuery =  true)
-    List<Favorite> getFavoritesByUser(@Param("userId") long userId);
 }

@@ -1,5 +1,5 @@
 /*
- * ZIMG-JAVA - Game, Copyright 2014  Nils Oke S., Fabian J., Chris P., Stefan Bieliauskas  -  All Rights Reserved.
+ * ZIMG-JAVA - Game, Copyright 2015  Nils Oke S., Fabian J., Chris P., Stefan Bieliauskas  -  All Rights Reserved.
  * Hochschule Bremen - University of Applied Sciences
  *
  *
@@ -23,6 +23,8 @@
  */
 package ZIMG.client.controller;
 
+import ZIMG.exceptions.NoItemsOnThisPageException;
+import ZIMG.exceptions.SpringRuntimeExceptionForUser;
 import ZIMG.models.Image;
 import ZIMG.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +38,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.swing.*;
+
 @Controller
-public class HomeController {
+public class HomeController extends BaseController {
 
     static final int imagesPerSite = 3;
     static final String JSP_PAGE_NAME = "home";
@@ -46,11 +50,6 @@ public class HomeController {
 
     @RequestMapping(JSP_PAGE_NAME)
     public String loadHomepage(Model m) {
-
-        Pageable pageable = new PageRequest(0, imagesPerSite, new Sort(Sort.Direction.DESC, "createdAt"));
-        Page<Image> imagePage = this.imageService.findAll(pageable);
-        m.addAttribute("imagePage", imagePage);
-
         return this.loadHomepagePage("0", m);
     }
 
@@ -59,10 +58,19 @@ public class HomeController {
 
         int pageNumber = Integer.parseInt(page);
 
-        Pageable pageable = new PageRequest(pageNumber, imagesPerSite, new Sort(Sort.Direction.DESC, "createdAt"));
-        Page<Image> imagePage = this.imageService.findAll(pageable);
-        m.addAttribute("imagePage", imagePage);
+        final Pageable pageable = new PageRequest(pageNumber, imagesPerSite, new Sort(Sort.Direction.DESC, "createdAt"));
+        final Page<Image> imagePage;
 
+        try{
+            imagePage = this.imageService.findAll(pageable);
+        }catch (NoItemsOnThisPageException e){
+            throw new SpringRuntimeExceptionForUser(e,
+                    SpringRuntimeExceptionForUser.TYPE.ERROR,
+                    JSP_PAGE_NAME);
+
+        }
+
+        m.addAttribute("imagePage", imagePage);
         m.addAttribute("pagePrevious", pageable.previousOrFirst().getPageNumber());
         m.addAttribute("pageNext", pageable.next().getPageNumber());
 
@@ -72,9 +80,8 @@ public class HomeController {
             m.addAttribute("pagePreviousDisable", false);
         }
 
-        Page<Image> imageNextPage = this.imageService.findAll(pageable.next());
 
-        if(imageNextPage.getSize() == 0) {
+        if(imagePage.getTotalPages() == pageable.getPageNumber()+1) {
             m.addAttribute("pageNextDisable", true);
         } else {
             m.addAttribute("pageNextDisable", false);
