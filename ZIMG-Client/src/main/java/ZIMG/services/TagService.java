@@ -18,6 +18,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * Tag service
+ */
 @Service
 @Scope("prototype")
 @Transactional
@@ -35,6 +38,10 @@ public class TagService extends BaseService<Tag,TagRepository> {
     private UserService userService;
 
 
+    /**
+     * Delte the tag
+     * @param t tag
+     */
     public void delete(final Tag t){
         final SecurityUser currentUser = this.userService.getCurrentUser();
         if(currentUser!= null && currentUser.isUserInRolePresent("ROLE_ADMIN")){
@@ -45,8 +52,8 @@ public class TagService extends BaseService<Tag,TagRepository> {
     }
 
     /**
-     * Gibt die zehn meist verwendeten Tags als Liste zurück
-     * @return List<Tag>
+     * Geht the top ten Tag
+     * @return Top ten Tags
      */
     public List<Tag> getTopTenTags() {
         final PageRequest request= new PageRequest(0,10);
@@ -55,6 +62,12 @@ public class TagService extends BaseService<Tag,TagRepository> {
         return list;
     }
 
+    /**
+     * Get the tag by name of the tag
+     * @param tag the nmae of the tag
+     * @return The tagg class instance
+     * @throws NotFoundException if name not found
+     */
     public Tag getTagByTag(String tag) throws NotFoundException {
         List<Tag> tagList = this.repository.getTagByTag(tag);
 
@@ -63,6 +76,13 @@ public class TagService extends BaseService<Tag,TagRepository> {
         }
         return tagList.get(0);
     }
+
+    /**
+     * Get the tag by the name and load the images for this tag
+     * @param tag the name of the tag
+     * @return
+     * @throws NotFoundException
+     */
     @Transactional
     public Tag getTagByTagAndLoadImages(String tag) throws  NotFoundException{
         final Tag t = this.getTagByTag(tag);
@@ -70,6 +90,14 @@ public class TagService extends BaseService<Tag,TagRepository> {
         return t;
     }
 
+    /**
+     * Create or save a new tag for a image
+     * @param tagStr The new or old tag str
+     * @param imageId the image id
+     * @return
+     * @throws NotFoundException
+     * @throws TagConstrainsException
+     */
     public Tag saveOrCreate(String tagStr, String imageId) throws NotFoundException,TagConstrainsException{
         Tag tag;
         try {
@@ -84,6 +112,15 @@ public class TagService extends BaseService<Tag,TagRepository> {
         return  tag;
 
     }
+
+    /**
+     * Save the tag string for the image
+     * @param tag the name of the tag
+     * @param imgId the image id
+     * @return
+     * @throws SecurityException
+     * @throws TagConstrainsException
+     */
     public Tag save(String tag, String imgId) throws SecurityException,TagConstrainsException{
         if(tag.length() < MIN_TAG_LENGTH){
             throw new TagConstrainsException(tag,MIN_TAG_LENGTH);

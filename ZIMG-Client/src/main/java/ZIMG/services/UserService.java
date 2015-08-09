@@ -31,6 +31,12 @@ public class UserService extends  BaseService<User,UserRepository> {
     private static final int USERNAME_MIN_LENGTH = 3;
 
 
+    /**
+     * Geht the user with the images
+     * @param userId
+     * @return
+     * @throws NotFoundException
+     */
     @Transactional
     public User getUserWithImages(String userId) throws NotFoundException{
         User  u = super.getById(userId);
@@ -38,6 +44,12 @@ public class UserService extends  BaseService<User,UserRepository> {
         return u;
     }
 
+    /**
+     * Get the user by name with images
+     * @param name
+     * @return
+     * @throws NotFoundException
+     */
     @Transactional
     public User getUserByNameWithImages (String name) throws NotFoundException{
         User  u = this.repository.findOneByName(name);
@@ -122,7 +134,7 @@ public class UserService extends  BaseService<User,UserRepository> {
 
     /**
      * Return the current user or null if the user not logged in
-     * @return
+     * @return The security user WITHOUT IMAGES FOR THE USER, ONLY BASE INFORMATION !
      * @throws SecurityException
      */
     public SecurityUser getCurrentUser() throws SecurityException {

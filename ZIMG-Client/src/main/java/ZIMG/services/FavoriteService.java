@@ -26,9 +26,6 @@ public class FavoriteService extends  BaseService<Favorite,FavoriteRepository>  
     @Autowired
     UserService userService;
 
-    public List<Favorite> getFavorites() {
-        return this.repository.findFavorites();
-    }
 
     public List<Favorite> getFavoritesByUser(User user) {
         return this.repository.getFavoritesByUser(user.getId());

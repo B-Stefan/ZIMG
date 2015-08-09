@@ -10,9 +10,6 @@ import java.util.List;
 
 public interface FavoriteRepository extends BaseRepository<Favorite> {
 
-    @Query(value = "SELECT * FROM users", nativeQuery =  true)
-    List<Favorite> findFavorites();
-
     @Query(value = "SELECT * FROM favorites as f WHERE f.userid =:userId", nativeQuery =  true)
     List<Favorite> getFavoritesByUser(@Param("userId") long userId);
 }

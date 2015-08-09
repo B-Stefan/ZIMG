@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller for creating a new user
+ */
 @Controller
 public class SignupViewController extends BaseController {
 
@@ -17,6 +20,11 @@ public class SignupViewController extends BaseController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Render the signup page only if the user is't already logged in
+     * @param m
+     * @return
+     */
     @RequestMapping(value = JSP_PAGE_NAME, method = RequestMethod.GET)
     public String getView(Model m) {
         try {
@@ -29,6 +37,13 @@ public class SignupViewController extends BaseController {
 
     }
 
+    /**
+     * Post method for creating a new user
+     * @param userEmail The emailaddress of the user
+     * @param username The username
+     * @param password
+     * @return
+     */
     @RequestMapping(value=JSP_PAGE_NAME, method= RequestMethod.POST)
     public String postView(@RequestParam("userEmail") String userEmail,
                            @RequestParam("username") String username,

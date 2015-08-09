@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
+/**
+ * Service for all comments
+ */
 @Service
 @Scope("prototype")
 @Transactional
@@ -21,6 +24,12 @@ public class CommentService extends BaseService<Comment,CommentRepository> {
     @Autowired
     private UserService userService;
 
+    /**
+     * Save a comment for an image id , check the comment content
+     * @param comment The new comment
+     * @param imgId The image id
+     * @throws CommentConstrainsException
+     */
     public void save(String comment, String imgId) throws CommentConstrainsException{
         if(comment.length() < MIN_LENGTH){
             throw new CommentConstrainsException(comment,MIN_LENGTH);

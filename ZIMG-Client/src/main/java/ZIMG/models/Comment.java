@@ -2,19 +2,31 @@ package ZIMG.models;
 
 import javax.persistence.*;
 
+/**
+ * Comment class
+ */
 @Entity
 @Table(name="comments")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Comment extends BaseModel {
 
 
+    /**
+     * The comment as string
+     */
     @Column(length = 500)
     private String comment;
 
+    /**
+     * The creator of the comment
+     */
     @ManyToOne
     @JoinColumn(name = "userid")
     private User user;
 
+    /**
+     * The image that the comment belongs to
+     */
     @ManyToOne
     @JoinColumn(name = "imageid")
     private Image image;

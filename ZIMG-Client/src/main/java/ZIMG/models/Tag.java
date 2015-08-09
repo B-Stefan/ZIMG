@@ -3,13 +3,18 @@ package ZIMG.models;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Tag entry class
+ */
 @Entity
 @Table(name="tags")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Tag extends BaseModel {
 
 
-
+    /**
+     * List of images for this spesific tag
+     */
     @ManyToMany
     @JoinTable( name = "tag2image",
             joinColumns = @JoinColumn(name = "tagid"),
@@ -17,6 +22,9 @@ public class Tag extends BaseModel {
     )
     private List<Image> images;
 
+    /**
+     * The name of the tag
+     */
     @Column(length = 100)
     private String tag;
 

@@ -17,6 +17,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
+/**
+ * Controller for the upload page
+ */
 @Controller
 public class UploadViewController extends BaseController {
 
@@ -39,6 +42,12 @@ public class UploadViewController extends BaseController {
         return JSP_PAGE_NAME;
     }
 
+    /**
+     * The post method for uploading a picture
+     * @param file The multipart file from the form
+     * @param m
+     * @return
+     */
     @RequestMapping(value=JSP_PAGE_NAME, method= RequestMethod.POST)
     public String handleUpload(@RequestParam("file") MultipartFile file, Model m) {
 

@@ -3,6 +3,9 @@ package ZIMG.models;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Base class for all models
+ */
 @MappedSuperclass
 public abstract class BaseModel {
 
@@ -29,6 +32,11 @@ public abstract class BaseModel {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Two BaseModels arre equal if the id is the same
+     * @param other
+     * @return
+     */
     @Override
     public boolean equals(Object other){
         if(other instanceof BaseModel){
