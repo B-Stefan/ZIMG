@@ -72,9 +72,8 @@ public class HomeController {
             m.addAttribute("pagePreviousDisable", false);
         }
 
-        Page<Image> imageNextPage = this.imageService.findAll(pageable.next());
 
-        if(imageNextPage.getSize() == 0) {
+        if(imagePage.getTotalPages() == pageable.getPageNumber()+1) {
             m.addAttribute("pageNextDisable", true);
         } else {
             m.addAttribute("pageNextDisable", false);
