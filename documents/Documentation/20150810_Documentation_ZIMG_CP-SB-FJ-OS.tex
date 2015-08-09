@@ -202,6 +202,8 @@ Exemplarisch für die typischen Anwendungen steht der Login-Vorgang, der sinngem
 	\label{AcitivityDiagramLogin}
 \end{figure}
 
+Zusätzlich noch weitere Aktivitätsdiagramme:
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=10cm]{footage/ZIMG_ActivityDiagram_Overview} 
@@ -244,7 +246,7 @@ In Abb. \ref{ERDiagramDatabase} ist das Entity-Relationship-Diagramm von ZIMG zu
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=7cm]{footage/ZIMG_RDiagram} 
+	\includegraphics[width=8cm]{footage/ZIMG_RDiagram} 
 	\caption{Datenbank nach relationalem Modell}
 	\label{DBrelationalModel}
 \end{figure}
@@ -263,7 +265,7 @@ Liste der Relationsschemata im relationalen Modell:
 		\item id:int
 		\item userId:int
 		\item imageId:int
-		\item cratedAt:date
+		\item createdAt:date
 	\end{itemize}
 	\item \textbf{comments}
 	\begin{itemize}
@@ -353,6 +355,8 @@ Die aufgelisteten Relationen unterliegen folgenden anwendungsspezifischen Constr
 
 Vorgabe für das Projekt war es, eine MySQL-Datenbank, also ein quelloffenes, relationales Datenbanksystem, zu nutzen. In der Regel erfolgt der Zugriff auf diese Datenbanken über sogenannte Queries, die in der Structured Query Language (SQL) verfasst werden. In diesem Projekt war jedoch zusätzlich die Idee da datenbankunabhängig zu modellieren, also fiel die Entscheidung Hibernate als ORM-Framework zu nutzen. Dieses Framework dient als Vermittler zwischen Anwendungslogik und Datenbanksystem. Letzteres ist durch Hibernate austauschbar, da Hibernate je nach Datenbanksystem verschiedene SQL-Dialekte nutzen kann.
 Hibernate wurde als OR-Mapper vom Spring Framework, genauer von Spring Data genutzt. Spring nutzt Dependency Injection um so den verwendeten Objekten ihre Ressourcen zuzuweisen und vereinfacht so die Entwicklung von Java EE Projekten.
+
+\newpage
 
 \subsection{Präsentation}
 % 2.4 Präsentation
