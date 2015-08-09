@@ -28,6 +28,7 @@ import ZIMG.models.Image;
 import ZIMG.models.Tag;
 import ZIMG.models.User;
 import ZIMG.services.*;
+import ZIMG.services.security.SecurityUser;
 import javassist.NotFoundException;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
@@ -84,9 +85,14 @@ public class ImageDetailViewController extends BaseController {
      */
     @RequestMapping(value="/"+JSP_PAGE_NAME+"/{imageId}", method= RequestMethod.GET)
     public String getImageDetailPage(@PathVariable String imageId, Model m) {
-
-        Image image = imageService.getImageById(imageId);
-        User user =  userService.getCurrentUser();
+        Image image;
+        User user;
+        try {
+            image = imageService.getImageById(imageId);
+            user =  userService.getCurrentUser();
+        }catch (NotFoundException | SecurityException e ){
+            throw new SpringRuntimeExceptionForUser(e);
+        }
 
         m.addAttribute("image", image);
 
@@ -137,7 +143,7 @@ public class ImageDetailViewController extends BaseController {
 
             try {
                 commentService.save(commentStr, imageId);
-            }catch (CommentConstrainsException e){
+            }catch (CommentConstrainsException | NotFoundException e){
                 throw new SpringRuntimeExceptionForUser(e);
             }
 

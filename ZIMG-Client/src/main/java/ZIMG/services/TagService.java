@@ -144,7 +144,7 @@ public class TagService extends BaseService<Tag,TagRepository> {
      * @throws SecurityException
      * @throws TagConstrainsException
      */
-    public Tag save(String tag, String imgId) throws SecurityException,TagConstrainsException{
+    public Tag save(String tag, String imgId) throws SecurityException,TagConstrainsException, NotFoundException{
         if(tag.length() < MIN_TAG_LENGTH){
             throw new TagConstrainsException(tag,MIN_TAG_LENGTH);
         }

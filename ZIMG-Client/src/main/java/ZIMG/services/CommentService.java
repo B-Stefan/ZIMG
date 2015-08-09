@@ -27,6 +27,7 @@ import ZIMG.exceptions.CommentConstrainsException;
 import ZIMG.models.Comment;
 import ZIMG.models.Image;
 import ZIMG.persistence.repositories.CommentRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -53,7 +54,7 @@ public class CommentService extends BaseService<Comment,CommentRepository> {
      * @param imgId The image id
      * @throws CommentConstrainsException
      */
-    public void save(String comment, String imgId) throws CommentConstrainsException{
+    public void save(String comment, String imgId) throws CommentConstrainsException, NotFoundException{
         if(comment.length() < MIN_LENGTH){
             throw new CommentConstrainsException(comment,MIN_LENGTH);
         }

@@ -27,6 +27,7 @@ import ZIMG.models.Image;
 import ZIMG.models.Tag;
 import ZIMG.models.User;
 import ZIMG.persistence.repositories.ImageRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.PageRequest;
@@ -58,8 +59,11 @@ public class ImageService extends BaseService<Image,ImageRepository> {
      * @return The image
      */
     @Transactional
-    public Image getImageById(String id) {
+    public Image getImageById(String id) throws NotFoundException{
         Image image= this.repository.findOne(Long.parseLong(id));
+        if(image == null){
+            throw new NotFoundException("The image with the id " + id + " not exists in the database");
+        }
         // Lazy loading nested lists
         image.getTags().size();
         image.getComments().size();
@@ -96,7 +100,7 @@ public class ImageService extends BaseService<Image,ImageRepository> {
      * @param tag Tag class
      * @param imageId Image id
      */
-    public void addTag(Tag tag, String imageId){
+    public void addTag(Tag tag, String imageId) throws NotFoundException{
         this.addTag(tag,this.getImageById(imageId));
     }
 
