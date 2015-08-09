@@ -29,7 +29,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Base repro. for additional methods
- * @param <G>
+ * @param <G> The model class for this repository
  */
 public interface BaseRepository<G extends BaseModel> extends JpaRepository<G,Long> {
 
