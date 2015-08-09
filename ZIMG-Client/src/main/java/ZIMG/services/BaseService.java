@@ -24,6 +24,7 @@
 package ZIMG.services;
 
 
+import ZIMG.exceptions.NoItemsOnThisPageException;
 import ZIMG.models.BaseModel;
 import ZIMG.models.Tag;
 import ZIMG.persistence.repositories.BaseRepository;
@@ -108,9 +109,12 @@ public abstract class BaseService<M extends BaseModel ,G extends BaseRepository<
      * @param pageable
      * @return
      */
-    public Page<M> findAll(Pageable pageable){
+    public Page<M> findAll(Pageable pageable) throws NoItemsOnThisPageException{
 
         org.springframework.data.domain.Page result = this.repository.findAll(pageable);
+        if(result.getTotalPages() < pageable.getPageNumber()){
+            throw new NoItemsOnThisPageException(pageable.getPageNumber());
+        }
 
         return result;
     }
