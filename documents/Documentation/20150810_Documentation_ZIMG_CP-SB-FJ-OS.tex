@@ -131,7 +131,7 @@
 %	- Welchen Mehrwert bietet die Webanwendung für dessen Nutzer?
 
 Im Rahmen des Moduls Datenbankbasierte Web-Anwedungen an der Hochschule Bremen im Sommersemester 2015 bei Steve Liedtke entstand das Web-Imageboard ZIMG. ZIMG ist eine Plattform zum Betrachten von Bildern und Gifs über das Internet. Zur Zielgruppe für diese Plattform gehören diejenigen Studierenden, die der Fakultät 4 angehören und den Standort ZIMT (Zentrum für Informatik und Medientechnologien) der Hochschule Bremen besuchen. \\
-Die Studierenden können sich einloggen, Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert (bewertet), durch Tags kategorisiert und kommentiert werden. \\
+Die Studierenden können sich einloggen, Bilder auf ZIMG hochladen und diese so mit der Community rund um ZIMG teilen. Zusätzlich können hochgeladene Bilder von den Benutzern favorisiert, bewertet, durch Tags kategorisiert und kommentiert werden. \\
 ZIMG bietet außerdem die Möglichkeit die Top Ten Tags, Top Ten Bilder und Top Five User zu begutachten. \\
 Diese Funktionen machen ZIMG zu einem Ort des Austausches zwischen Studierenden, die beispielsweise ihre Erlebnisse im Semester oder Auslandssemester mit ihren Kommilitonen teilen wollen.
 
@@ -166,13 +166,27 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 % 2.1 Gesamtarchitektur
 % In diesem Unterkapitel soll beschrieben werden, wie die Gesamtarchitektur der entwickelten Webanwendung aussieht. Dies kann mit UML Paket- oder Klassendiagrammen unterstützt werden.
 
-Die Gesamtarchitektur der Anwendung ZIMG ist eine Art Schichtenarchitektur (Abb. \ref{ArchitectureScheme}). Angefangen in der Präsentationsschicht (Views) über die Logikschicht (Controller, Services, Repository) bis zur Persistenzschicht (MySQL DB on a Vagrant VM). Wird also eine View angefordert so läuft diese Anfrage von oben nach unten durch die erwähnten Schichtenelemente. Die Antwort auf diese Anfrage läuft dann von unten nach oben, bis die Antwort in der Präsentationsschicht dargestellt wird.
+Die Gesamtarchitektur der Anwendung ZIMG ist eine Art Schichtenarchitektur (Abb. \ref{ArchitectureScheme}). Angefangen in der Präsentationsschicht (Views, Controller) über die Logikschicht (Controller, Services, Repository) bis zur Persistenzschicht (MySQL DB on a Vagrant VM). Wird also eine View angefordert so läuft diese Anfrage von oben nach unten durch die erwähnten Schichtenelemente. Die Antwort auf diese Anfrage läuft dann von unten nach oben, bis die Antwort in der Präsentationsschicht dargestellt wird.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=7cm]{footage/ZIMG_ProjektArchitektur} 
 	\caption{Architekturschema}
 	\label{ArchitectureScheme}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{footage/ZIMG_ClassDiagram_Models}
+	\caption{Klassendiagramm Models}
+	\label{ClassDiagramModels}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{footage/ZIMG_ClassDiagram_Services} 
+	\caption{Klassendiagramm Services}
+	\label{ClassDiagramServices}
 \end{figure}
 
 \subsection{Programmabläufe}
@@ -183,9 +197,30 @@ Exemplarisch für die typischen Anwendungen steht der Login-Vorgang, der sinngem
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{footage/ZIMG_ActivityDiagram_Login} 
+	\includegraphics[width=10cm]{footage/ZIMG_ActivityDiagram_Login} 
 	\caption{Aktivitätsdiagramm Login}
 	\label{AcitivityDiagramLogin}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{footage/ZIMG_ActivityDiagram_Overview} 
+	\caption{Aktivitätsdiagramm Overview}
+	\label{AcitivityDiagramOverview}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{footage/ZIMG_ActivityDiagram_ImageDetailview} 
+	\caption{Aktivitätsdiagramm Image Detailansicht}
+	\label{AcitivityDiagramImageDetailview}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm10cm]{footage/ZIMG_ActivityDiagram_topUploader} 
+	\caption{Aktivitätsdiagramm Top Uploader}
+	\label{AcitivityDiagramTopUploader}
 \end{figure}
 
 \newpage
@@ -205,6 +240,13 @@ In Abb. \ref{ERDiagramDatabase} ist das Entity-Relationship-Diagramm von ZIMG zu
 	\includegraphics[width=\linewidth]{footage/ZIMG_ERDiagram_Database} 
 	\caption{ER-Diagramm der Datenbank}
 	\label{ERDiagramDatabase}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=7cm]{footage/ZIMG_RDiagram} 
+	\caption{Datenbank nach relationalem Modell}
+	\label{DBrelationalModel}
 \end{figure}
 
 \subsubsection{Umsetzung}
