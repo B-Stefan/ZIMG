@@ -48,4 +48,17 @@ public class TagServiceTest {
 
     }
 
+    /**
+     * Method to add 1000 tags for testing
+     */
+    public void add1000Tags(){
+
+        for(int i = 0; i != 1000; i++){
+
+            final Tag t = new Tag();
+            t.setTag("tag-" + i);
+            this.tagService.create(t);
+        }
+    }
+
 }
