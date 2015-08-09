@@ -152,7 +152,7 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 \begin{figure}[H]
  	\centering
  	\includegraphics[width=8cm]{footage/ZIMG_UseCaseDiagram} 
- 	\caption{ZIMG Use-Case-Diagramm}
+ 	\caption{Use-Case-Diagramm}
 	\label{ZIMGUseCaseDiagram}
  \end{figure}
 
@@ -176,32 +176,171 @@ Die für ZIMG vorgesehenen User Anforderungen waren folgende (vgl. Abb. \ref{ZIM
 \subsection{Programmabläufe}
 % 2.2 Programmabläufe
 % In diesem Unterkapitel sollte exemplarisch gezeigt werden, wie die typischen Abläufe in der Webanwendung aussehen. Hierfür sollten Aktivitäts-/Sequenzdiagramme genutzt werden.
-\blindtext
+
+Exemplarisch für die typischen Anwendungen steht der Login-Vorgang, der sinngemäß an erster Stelle bei der Benutzung der Web-Anwendung steht. In Abb. \ref{AcitivityDiagramLogin} ist das Aktivitätsdiagramm des Login-Vorgangs zu sehen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{footage/ZIMG_ActivityDiagram_Login} 
+	\caption{Aktivitätsdiagramm Login}
+	\label{AcitivityDiagramLogin}
+\end{figure}
 
 \subsection{Persistenz}
 % 2.3 Persistenz
 % In diesem Unterkapitel soll die genutzte Datenbank und der Zugriff auf ihre Daten erläutert werden.
-\blindtext
 
 \subsubsection{Konzeption}
 % 2.3.1 Konzeption
 % In diesem Unterkapitel soll die konzipierte Datenbank nach ER-Diagramm beschrieben werden
-\blindtext
+
+In Abb \ref{ERDiagramDatabase} ist das Entity-Relationship-Diagramm von ZIMG zu sehen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{footage/ZIMG_ERDiagram_Database} 
+	\caption{ER-Diagramm der Datenbank}
+	\label{ERDiagramDatabase}
+\end{figure}
 
 \subsubsection{Umsetzung}
 % 2.3.2 Umsetzung
 % In diesem Unterkapitel soll die Datenbank nach relationalem Modell beschrieben werden. Außerdem sollten anwendungsspezifische Constraints aufgelistet werden, die bei der Implementierung bedacht werden müssen.
-\blindtext
+
+Eine Besonderheit (oder auch nicht) der ZIMG-Datenbank ist, dass aus Vereinfachungsgründen jede Relation ein Attribut id:int enthält, das als Schlüssel dient. Ansonsten enthalten die Relationen die Attribute, die auch schon in Abb. \ref{ERDiagramDatabase} dargestellt sind.
+
+Liste der Relationsschemata im relationalen Modell:
+
+\begin{itemize}
+	\item \textbf{favorites}
+	\begin{itemize}
+		\item id:int
+		\item userId:int
+		\item imageId:int
+		\item cratedAt:date
+	\end{itemize}
+	\item \textbf{comments}
+	\begin{itemize}
+		\item id:int
+		\item comment:string
+		\item uderId:int
+		\item imageId:int
+		\item createdAt:date
+	\end{itemize}
+	\item \textbf{upvotes}
+	\begin{itemize}
+		\item id:int
+		\item uderId:int
+		\item ImageId:int
+		\item createdAt:date
+	\end{itemize}
+	\item \textbf{users}
+	\begin{itemize}
+		\item id:int
+		\item name:string
+		\item password:string
+		\item email:string
+		\item admin:bool
+	\end{itemize}
+	\item \textbf{images}
+	\begin{itemize}
+		\item id:int
+		\item uploaderId:int
+		\item fileName:string
+		\item createdAt:date
+	\end{itemize}
+	\item \textbf{tags}
+	\begin{itemize}
+		\item id:int
+		\item tag:string
+		\item createdAt:date
+	\end{itemize}
+	\item \textbf{tag2image}
+	\begin{itemize}
+		\item id:int
+		\item tagId:int
+		\item imageId:int
+	\end{itemize}
+\end{itemize}
+
+Die aufgelisteten Relationen unterliegen folgenden anwendungsspezifischen Constraints:
+
+\begin{itemize}
+	\item \textbf{Comment}
+	\begin{itemize}
+		\item Wenn eine Relation Comment angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
+		\item Wenn eine Relation Comment angelegt wird, muss das Attribut userId einen gültigen Wert enthalten.
+	\end{itemize}
+	\item \textbf{User}
+	\begin{itemize}
+		\item Wenn eine Relation User angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
+		\item Wenn eine Relation User angelegt wird, muss das Attribut admin standardmäßig auf false gesetz werden.
+		\item Wenn eine Relation User angelegt wird, muss das Attribut createdAt auf das aktuelle Datum (DD.MM.YYYY HH:mm:SS) gesetzt werden.
+	\end{itemize}
+	\item \textbf{Image}
+	\begin{itemize}
+		\item Wenn eine Relation Image angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
+		\item Wenn eine Relation Image angelegt wird, muss eine gültige User.Id in das Attribut uploaderId eingetragen werden.
+		\item Wenn eine Relation Image angelegt/geupdatet wird, muss das Attribut fileName auf einen Namen gesetzt werden, der im lokalen File-System des Servers exisitert.
+	\end{itemize}
+	\item \textbf{Upvote}
+	\begin{itemize}
+		\item Wenn eine Relation Upvote angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
+		\item Wenn eine Relation Upvote angelegt wird, muss das Attribut createdAt auf die aktuellen Datum (DD.MM.YYYY HH:mm:SS) gesetzt werden.
+	\end{itemize}
+	\item \textbf{Tag}
+	\begin{itemize}
+		\item Wenn eine Relation Tag angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
+		\item Wenn eine Relation Tag angelegt wird, muss das Attribut createdAt auf die aktuellen Datum (DD.MM.YYYY HH:mm:SS) gesetzt werden.
+	\end{itemize}
+	\item \textbf{Tag2Iamge}
+	\begin{itemize}
+		\item Wenn eine Relation Tag2Image angelegt wird, muss das Attribut ID mit einem eindeutigen Wert für die Relation gefüllt werden.
+		\item Wenn eine Relation Tag2Image angelegt/geupdatet wird, muss das Attribut tagId eine Id enthalten der einer Relation Tag.id zuzuordnen ist.
+		\item Wenn eine Relation Tag2Image angelegt/geupdatet wird, muss das Attribut imageId eine Id enthalten der einer Relation Image.id zuzuordnen ist.
+		\item Wenn eine Relation Tag2Image angelegt wird, muss das Attribut createdAt auf das aktuelle Datum(DD.MM.YYYY HH:mm:SS) gesetzt werden.
+	\end{itemize}
+\end{itemize}
 
 \subsubsection{Zugriff}
 % 2.3.3 Zugriff
 % In diesem Unterkapitel soll beschrieben werden mit welchen Technologien und Frameworks von der Webanwendung auf die Datenbank zugegriffen wird.
-\blindtext
+
+Vorgabe für das Projekt war es, eine MySQL-Datenbank, also ein quelloffenes, relationales Datenbanksystem, zu nutzen. In der Regel erfolgt der Zugriff auf diese Datenbanken über sogenannte Queries, die in der Structured Query Language (SQL) verfasst werden. In diesem Projekt war jedoch zusätzlich die Idee da datenbankunabhängig zu modellieren, also fiel die Entscheidung Hibernate als ORM-Framework zu nutzen. Dieses Framework dient als Vermittler zwischen Anwendungslogik und Datenbanksystem. Letzteres ist durch Hibernate austauschbar, da Hibernate je nach Datenbanksystem verschiedene SQL-Dialekte nutzen kann.
+Hibernate wurde als OR-Mapper vom Spring Framework, genauer von Spring Data genutzt. Spring nutzt Dependency Injection um so den verwendeten Objekten ihre Ressourcen zu zuweisen und vereinfacht so die Entwicklung von Java EE Projekten.
 
 \subsection{Präsentation}
 % 2.4 Präsentation
 % In diesem Unterkapitel soll die Präsentationsschicht der Webanwendung beschrieben werden. Hierzu u.a. die genutzte Technologie/Framework. 
-\blindtext
+
+Für die Präsentationsschicht wurde die Technologie JavaServer Pages (JSP) genutzt. Diese Technologie ermöglicht es Java-Code in HTML-Dokumente einzubinden. Zusätzlich wurde die JSP-Tag-Library genutzt, um z. B. Page-Header und -Footer effizient in die Präsentationsschicht einzubinden. \\
+\\
+Die Präsentationsschichte ist folgendermaßen aufgebaut:	
+
+\begin{table}[ht!]
+\centering
+\begin{tabular}{| p{1.9cm} | p{6.2cm} | p{6.2cm} | l}
+\hline                       
+\textbf{Seite}	& \textbf{Zweck}	& \textbf{URI}	\\
+\hline
+login	& Wenn der User nicht eingeloggt ist, wird eine Loginmaske angezeigt.	& host.de/login \\
+\hline
+home	& Wenn der User eingeloggt ist, werden ihm die letzen 50 Bilder angezeigt. Durch eine Schaltfläche Page n wird die jeweilige Seite angezeigt.	& host.de/home \\
+\hline
+user	& Zeigt alle hochgeladenen Bilder, Kommentare und Favoriten und die Gesamtanzahl der Upvotes an.	& host.de/user/\${username} \\
+\hline
+image	& Zeigt ein Bild mit den zugehörigen Tags und Kommentaren an. Ebenfalls wird der Count der Upvotes des Bildes angezeigt.	& host.de/image/\${imageid} \\
+\hline
+images-top10	& Zeigt die zehn Bilder mit den meisten Upvotes.	& host.de/top10-images \\
+\hline
+tags-top10	& Zeigt die zehn meist verwendeten Tags.	& host.de/top10-tags \\
+\hline
+users-top5	& Zeigt die fünf aktivsten User	& host.de/top5-users \\
+\hline
+\end{tabular}
+\caption{Struktur der Präsentationsschicht}
+\label{StructurePresentationlayer}
+\end{table}
 
 \newpage
 
