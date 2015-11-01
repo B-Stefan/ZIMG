@@ -20,7 +20,7 @@ http://www.sivalabs.in/2014/03/springmvc4-spring-data-jpa.html
 ![Image](./graphics/zimg-login.png?raw=true)
 ![Image](./graphics/zimg-top-10.gif?raw=true)
 ![Image](./graphics/zimg-image-detail.png?raw=true)
-![Image](./graphics/zimg-image-top-tags.png?raw=true)
+![Image](./graphics/zimg-image-top-10-tags.png?raw=true)
 
 ##Structure
 The following diagrams show you the structure of the application. 
