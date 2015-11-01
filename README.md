@@ -27,7 +27,7 @@ The following diagrams show you the structure of the application.
 
 ###Models-Class-Diagramm 
 
-![Klassendiagramm Client](http://b-stefan.github.io/ZIMG/master/documents/Documentation/Footage/ZIMG_ClassDiagram_Models.svg "Class diagram models ")
+![Klassendiagramm Client](./documents/Documentation/Footage/ZIMG_ClassDiagram_Models.svg?raw=true "Class diagram models ")
 
 ###Services-Class-Diagramm 
 
